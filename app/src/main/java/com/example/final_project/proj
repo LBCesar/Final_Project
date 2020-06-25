@@ -1,0 +1,46 @@
+Expense tracking system
+
+Synopsis
+Expense Tracker application will keep and track of income-expense of a user on a day to day basis. Each
+user will be required to register to use the application. This application contains a calculator that takes
+income (annually), maximum daily expense, and the amount of saving a user plans to reach annually as
+inputs and calculates the amount of saving. If the user exceeds the daily expense limit, the amount of
+saving is reduced by the amount of extra expense. If the saving becomes 0 then it gives you a new daily
+expense amount to maintain the saving goals, and if the daily expense is less than the amount of
+planned expense, then it will add the surplus to the saving. The expense tracking application will
+generate a report at the end of a month to show income\expense via multiple graphs.
+
+Breaking down the functionalities
+
+1- A splash screen that shows your company name or logo.
+
+
+2- User registration
+    a. Username
+    b. Password
+    c. Retype Password
+    d. Email address
+
+
+3- Setting
+    a. Amount of annual income
+    b. Amount of daily expenses
+    c. Amount of desired saving
+    d. Daily Saving = ((annual income)/365) – (Daily expense)
+    Annual Saving = (Daily Saving) * 365
+    e. A list of expense items. The user can customize this list by adding or removing items and
+    changing the price.
+    If an item already in use for the previous expenses, the user is not allowed to delete it.
+    Examples of items are grocery, uber, …
+
+
+4- Data entry
+    a. The user selects an expense item from a list
+    b. The user enters the amount of expense
+    c. The app calculates the total daily cost amount of saving for that day
+    5- Reports
+    a. A report for daily expenses (Bar chart or line graph)
+    i. The range of days can be specified by the user
+    b. A report for daily saving (bar chart or line graph)
+    c. An itemized report that shows how much is spent on each item in a given date range (a
+    pie chart)
