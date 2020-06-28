@@ -1,28 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout"
-    android:background="@color/cardview_dark_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/dashboardLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="main screen dashboard Shit. This is where overview with one chart will go.
-        Each tab is a fragment
-        Tabs can be added as many as we want."
-        android:textColor="#FFFFFF"
-        android:gravity="center"
-        android:textSize="26sp" />
+        android:paddingStart="15dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Annual Income: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$1100"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/dashboardLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingStart="15dp"
+        android:layout_below="@id/dashboardLayout1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daily Expense: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$50"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/dashLine"
+        android:layout_below="@id/dashboardLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#FF0000FF"
+        android:layout_marginTop="5dp"/>
+
+
+    <LinearLayout
+        android:id="@+id/dashboardLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingStart="15dp"
+        android:layout_below="@id/dashboardLayout2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Savings: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$30"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
 
     <com.anychart.AnyChartView
         android:id="@+id/piechart"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:layout_width="match_parent"
-        android:layout_height="526dp"
+        android:layout_height="match_parent"
         android:background="@color/cardview_dark_background" />
 
 
