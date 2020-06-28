@@ -40,7 +40,7 @@ public class Dashboard extends Fragment {
         Pie pie = AnyChart.pie();
 
         List<DataEntry> data = new ArrayList<>();
-        data.add(new ValueDataEntry("MSI GE75 GAMING", 1300));
+        data.add(new ValueDataEntry("Toilet Paper", 1000000));
         pie.data(data);
         pie.labels().position("outside");
 

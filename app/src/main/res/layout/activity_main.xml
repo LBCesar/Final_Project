@@ -1,30 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1B1B1B"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@id/txtUserName"
+        android:layout_marginBottom="20dp">
 
-    <Button
-        android:id="@+id/testBtn"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="deez nuts"
+            android:textAlignment="center"
+            android:textColor="#5BC3EB"
+            android:textSize="30dp"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/txtUserName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DashBoard Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.233" />
+        android:layout_height="45dp"
+        android:layout_above="@id/txtPassword"
+        android:layout_centerHorizontal="true"
+        android:background="@color/cardview_dark_background"
+        android:ems="10"
+        android:paddingLeft="10dp"
+        android:hint="Enter Username"
+        android:inputType="textPersonName"
+        android:textColor="#EDD5CBCB" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:autofillHints=""
+        android:background="@color/cardview_dark_background"
+        android:ems="10"
+        android:paddingLeft="10dp"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        android:textColor="#EDD5CBCB" />
+
+    <LinearLayout
+        android:id="@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPassword"
+        android:layout_marginTop="50dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="250dp"
+            android:background="#5BC3EB"
+            android:layout_height="wrap_content"
+            android:text="Login" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout3"
+        android:layout_marginTop="15dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="#E55812"
+            android:text="Sign up" />
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
