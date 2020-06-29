@@ -38,7 +38,7 @@ Breaking down the functionalities
     a. The user selects an expense item from a list
     b. The user enters the amount of expense
     c. The app calculates the total daily cost amount of saving for that day
-    5- Reports
+5- Reports
     a. A report for daily expenses (Bar chart or line graph)
     i. The range of days can be specified by the user
     b. A report for daily saving (bar chart or line graph)

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Register"></activity>
+        <activity android:name=".DisplayContact"/>
+        <activity android:name=".DBMainActivity"/>
+
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
