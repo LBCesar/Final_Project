@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "MyDBName.db";
+    public static final String DATABASE_NAME = "MyDBName2.db";
     public static final String CONTACTS_TABLE_NAME = "contacts";
     public static final String CONTACTS_COLUMN_ID = "id";
     public static final String CONTACTS_COLUMN_NAME = "name";
@@ -44,7 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 5);
+        super(context, DATABASE_NAME , null, 1);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
         );
         db.execSQL(
                 "create table expenses"+
-                        "(expensesid integer primary key,userid integer,itemid integer,price integer,date text)"
+                        "(expensesid integer primary key AUTOINCREMENT NOT NULL,userid integer,itemid integer,price integer,date text)"
         );
         db.execSQL(
                 "create table users"+
@@ -65,8 +65,41 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(
                 "create table items"+
-                        "(itemid integer primary key,userid integer,item text,description text)"
+                        "(itemid integer primary key AUTOINCREMENT NOT NULL,userid integer,item text,description text)"
         );
+
+        //Preloading a DB insertUser insertItem (int itemid, int userid, String item, String description)
+        //insertUser(0,"cesar","123","Cesar",1000);
+//        ContentValues contentValues = new ContentValues();
+//        //contentValues.put("userid", userid);
+//        contentValues.put("username", "cesar");
+//        contentValues.put("password", "123");
+//        contentValues.put("name", "Cesar");
+//        contentValues.put("budget", 1000);
+//        db.insert("users", null, contentValues);
+//        //insertUser(0,"shoraj","123","Shoraj",1253);
+//        ContentValues contentValues2 = new ContentValues();
+//        //contentValues.put("userid", userid);
+//        contentValues2.put("username", "shoraj");
+//        contentValues2.put("password", "123");
+//        contentValues2.put("name", "Shoraj");
+//        contentValues2.put("budget", 1253);
+//        db.insert("users", null, contentValues2);
+/*
+        insertItem(0,1,"Groceries","Food and stuff");
+        insertItem(0,1,"Book","This is a book");
+        insertItem(0,1,"Ice Cream","Mint chocolate chip");
+        insertItem(0,2,"Book","Book number 2");
+        insertItem(0,2,"Movie Theater","Saw Paul Blart mall cop");
+
+        insertExpenses(1,1,2,50,"2020-06-28");
+        insertExpenses(1,1,3,1000,"2020-06-28");
+
+ */
+
+
+
+
     }
 
     @Override
@@ -83,7 +116,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean insertExpenses (int expensesid, int userid, int itemid, int price,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("expensesid", expensesid);
+        //contentValues.put("expensesid", expensesid);
         contentValues.put("userid", userid);
         contentValues.put("itemid", itemid);
         contentValues.put("price", price);
@@ -94,7 +127,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean insertItem (int itemid, int userid, String item, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("itemid", itemid);
+        //contentValues.put("itemid", itemid);
         contentValues.put("userid", userid);
         contentValues.put("item", item);
         contentValues.put("description", description);
