@@ -40,6 +40,7 @@ public class DBMainActivity extends AppCompatActivity {
         mydb.insertItem(0,2,"Book","Book number 2");
         mydb.insertItem(0,2,"Movie Theater","Saw Paul Blart mall cop");
 
+        mydb.insertExpenses(1,1,1,55555,"2020-06-28");
         mydb.insertExpenses(1,1,2,50,"2020-06-28");
         mydb.insertExpenses(1,1,3,1000,"2020-06-28");
        // mydb.insertUser(0,"cesar","cesar123","Cesar",430);
@@ -61,7 +62,9 @@ public class DBMainActivity extends AppCompatActivity {
 
          */
 
-        ArrayList array_list = mydb.getAllCotacts();
+        //ArrayList array_list = mydb.getAllCotacts();
+        ArrayList array_list = mydb.getAllItemsName();
+
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
 
         obj = (ListView)findViewById(R.id.listView1);
@@ -81,6 +84,11 @@ public class DBMainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+
+
     }
 
     @Override

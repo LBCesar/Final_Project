@@ -42,23 +42,30 @@ public class DisplayContact extends Activity {
 
             if(Value>0){
                 //means this is the view part not the add contact part.
-                Cursor rs = mydb.getData(Value);
+                //Cursor rs = mydb.getData(Value);
+                //                                      user id, item id
+                Cursor rs=mydb.getDataExpensesForItem(1,Value);
                 id_To_Update = Value;
                 rs.moveToFirst();
-
-                String strName = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
-                String strPhone = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_PHONE));
-                String strEmail = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_EMAIL));
-                String strStreet = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_STREET));
-                String strPlace = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_CITY));
+                int exp=rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
+               // String strName = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
+                String strName="";
+               // String strPhone = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_PHONE));
+                String strPhone="";
+               // String strEmail = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_EMAIL));
+                String strEmail="";
+                //String strStreet = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_STREET));
+                String strStreet="";
+                //String strPlace = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_CITY));
+                String strPlace="";
 
                 if (!rs.isClosed())  {
                     rs.close();
                 }
                 Button b = (Button)findViewById(R.id.button1);
                 b.setVisibility(View.INVISIBLE);
-
-                name.setText((CharSequence) strName);
+                name.setText(String.valueOf(exp));
+                //name.setText((CharSequence) strName);
                 name.setFocusable(false);
                 name.setClickable(false);
 
