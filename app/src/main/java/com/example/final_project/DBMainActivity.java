@@ -31,18 +31,25 @@ public class DBMainActivity extends AppCompatActivity {
 
         mydb = new DBHelper(this);
         int x=0;
-        mydb.insertUser(0,"cesar","123","Cesar",1000);
-        mydb.insertUser(0,"shoraj","123","Shoraj",1253);
-
-        mydb.insertItem(0,1,"Groceries","Food and stuff");
-        mydb.insertItem(0,1,"Book","This is a book");
-        mydb.insertItem(0,1,"Ice Cream","Mint chocolate chip");
-        mydb.insertItem(0,2,"Book","Book number 2");
-        mydb.insertItem(0,2,"Movie Theater","Saw Paul Blart mall cop");
-
-        mydb.insertExpenses(1,1,1,55555,"2020-06-28");
-        mydb.insertExpenses(1,1,2,50,"2020-06-28");
-        mydb.insertExpenses(1,1,3,1000,"2020-06-28");
+        //txtName=findViewById(R.id.txtName);
+        Intent intent=getIntent();
+        //Retrieve the username from the main activity
+        String message=intent.getStringExtra("first message");
+        int ourID=intent.getIntExtra("itemid",0);
+        //Update the text on the welcome screen
+        //txtName.setText(txtName.getText().toString()+" "+message+"!");
+//        mydb.insertUser(0,"cesar","123","Cesar",1000,65000);
+//        mydb.insertUser(0,"shoraj","123","Shoraj",1253,100000);
+//
+//        mydb.insertItem(0,1,"Groceries","Food and stuff");
+//        mydb.insertItem(0,1,"Book","This is a book");
+//        mydb.insertItem(0,1,"Ice Cream","Mint chocolate chip");
+//        mydb.insertItem(0,2,"Book","Book number 2");
+//        mydb.insertItem(0,2,"Movie Theater","Saw Paul Blart mall cop");
+//
+//        mydb.insertExpenses(1,1,1,55555,"2020-06-28");
+//        mydb.insertExpenses(1,1,2,50,"2020-06-28");
+//        mydb.insertExpenses(1,1,3,1000,"2020-06-28");
        // mydb.insertUser(0,"cesar","cesar123","Cesar",430);
         //mydb.insertUser(0,"shoraj","shoraj123","Shoraj",5);
         //int x=mydb.verify("cesar","cesar123");
@@ -63,7 +70,7 @@ public class DBMainActivity extends AppCompatActivity {
          */
 
         //ArrayList array_list = mydb.getAllCotacts();
-        ArrayList array_list = mydb.getAllItemsName();
+        ArrayList array_list = mydb.getAllItemsName(ourID);
 
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
 

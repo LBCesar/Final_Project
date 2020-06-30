@@ -28,6 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String USERS_COLUMN_PASSWORD="password";
     public static final String USERS_COLUMN_NAME="name";
     public static final String USERS_COLUMN_BUDGET="budget";
+    public static final String USERS_COLUMN_ANNUAL="annual";
 
     public static final String ITEMS_TABLE_NAME="items";
     public static final String ITEMS_COLUMN_ID="itemid";
@@ -44,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 1);
+        super(context, DATABASE_NAME , null, 2);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper {
         );
         db.execSQL(
                 "create table users"+
-                        "(userid integer primary key AUTOINCREMENT NOT NULL,username text,password text,name text,budget integer)"
+                        "(userid integer primary key AUTOINCREMENT NOT NULL,username text,password text,name text,budget integer,annual integer)"
         );
 
         db.execSQL(
@@ -124,7 +125,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert("expenses", null, contentValues);
         return true;
     }
-    public boolean insertItem (int itemid, int userid, String item, String description) {
+    public boolean insertItem (int itemid, int userid, String item, String description, int price,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //contentValues.put("itemid", itemid);
@@ -132,11 +133,19 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("item", item);
         contentValues.put("description", description);
         //contentValues.put("place", place);
-        db.insert("items", null, contentValues);
+        //long id = db.insert(...);
+        long id=db.insert("items", null, contentValues);
+        ContentValues contentValues2 = new ContentValues();
+        contentValues2.put("userid", userid);
+        contentValues2.put("itemid", id);
+        contentValues2.put("price", price);
+        contentValues2.put("date", date);
+        db.insert("expenses", null, contentValues);
+
         return true;
     }
 
-    public boolean insertUser (int userid, String username, String password, String name,int budget) {
+    public boolean insertUser (int userid, String username, String password, String name,int budget,int annual) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //contentValues.put("userid", userid);
@@ -144,6 +153,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("password", password);
         contentValues.put("name", name);
         contentValues.put("budget", budget);
+        contentValues.put("annual", annual);
         db.insert("users", null, contentValues);
         return true;
     }
@@ -194,6 +204,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         res.close();
         return 0;
+    }
+    public Cursor getItemID(int userid1,String item){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery( "select * from items where username= ? and userid= "+userid1+"", new String[] { item } );
+        return res;
+
     }
 
 
@@ -303,12 +319,12 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return array_list;
     }
-    public ArrayList<String> getAllItemsName() {
+    public ArrayList<String> getAllItemsName(int id) {
         ArrayList<String> array_list = new ArrayList<String>();
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from items", null );
+        Cursor res =  db.rawQuery( "select * from items where userid="+id+"", null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){

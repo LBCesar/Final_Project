@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userName;
     private EditText password;
+    DBHelper mydb;
 
 
     @Override
@@ -23,15 +26,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        userName=findViewById(R.id.txtUserName);
+        password=findViewById(R.id.txtPassword);
+        mydb = new DBHelper(this);
+
 
         // go to dashboard activity
         Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-                Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
-                startActivity(intent);
+                String s1=userName.getText().toString();
+                String s2=password.getText().toString();
+               // int x= mydb.verify(s1,s2);
+                int x=0;
+                Cursor res =mydb.verify2(s1,s2);
+                if(res.getCount() > 0) {
+                    res.moveToFirst();
+                    while (!res.isAfterLast()) {
+                        // Do whatever you like with the result.
+                        String pwd = res.getString(res.getColumnIndex(DBHelper.USERS_COLUMN_PASSWORD));
+                        if (pwd.equals(s2)) {
+                            //res.close();
+                            //res.getInt(res.g)
+                            x= res.getInt(res.getColumnIndex(DBHelper.USERS_COLUMN_ID));
+                        }
+                        res.moveToNext();
+                    }
+                }
+
+                if(x!=0) {
+                    Toast.makeText(getApplicationContext(), "Login Successful" + x,
+                            Toast.LENGTH_LONG).show();
+                    //Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                    Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
+                    intent.putExtra("itemid",x);
+                    startActivity(intent);
+                }
             }
         });
 

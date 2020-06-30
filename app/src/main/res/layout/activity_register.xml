@@ -24,9 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:hint="Enter Name"/>
+            android:hint="Enter Name"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
 
@@ -48,8 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="Name"
-            android:hint="Enter UserName"/>
+            android:hint="Enter UserName" />
     </LinearLayout>
 
 
@@ -71,8 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="Password"
-            android:hint="Enter Password"/>
+            android:hint="Enter Password" />
     </LinearLayout>
 
 
@@ -94,8 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="rePassword"
-            android:hint="Confirm Password"/>
+            android:hint="Confirm Password" />
     </LinearLayout>
 
 
@@ -109,26 +105,45 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Email: " />
+            android:text="Savings Goal: "
+            android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/newEmail"
+            android:id="@+id/newSavings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="Email"
-            android:hint="abcd@gmail.com"/>
+            android:hint="abcd@gmail.com" />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/reglayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reglayout4"
+        android:layout_marginTop="105dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Savings Goal: "
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/newAnnual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="abcd@gmail.com" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnRegisterComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/reglayout5"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
         android:text="Sign Me up" />
 
 
