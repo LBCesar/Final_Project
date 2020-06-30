@@ -21,56 +21,24 @@ public class DBMainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "MESSAGE";
     private ListView obj;
     DBHelper mydb;
-
+    int ourID;
+    int xx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dbactivity_main);
-
-
-
         mydb = new DBHelper(this);
         int x=0;
         //txtName=findViewById(R.id.txtName);
         Intent intent=getIntent();
         //Retrieve the username from the main activity
         String message=intent.getStringExtra("first message");
-        int ourID=intent.getIntExtra("itemid",0);
+        ourID=intent.getIntExtra("itemid",0);
         //Update the text on the welcome screen
-        //txtName.setText(txtName.getText().toString()+" "+message+"!");
-//        mydb.insertUser(0,"cesar","123","Cesar",1000,65000);
-//        mydb.insertUser(0,"shoraj","123","Shoraj",1253,100000);
-//
-//        mydb.insertItem(0,1,"Groceries","Food and stuff");
-//        mydb.insertItem(0,1,"Book","This is a book");
-//        mydb.insertItem(0,1,"Ice Cream","Mint chocolate chip");
-//        mydb.insertItem(0,2,"Book","Book number 2");
-//        mydb.insertItem(0,2,"Movie Theater","Saw Paul Blart mall cop");
-//
-//        mydb.insertExpenses(1,1,1,55555,"2020-06-28");
-//        mydb.insertExpenses(1,1,2,50,"2020-06-28");
-//        mydb.insertExpenses(1,1,3,1000,"2020-06-28");
-       // mydb.insertUser(0,"cesar","cesar123","Cesar",430);
-        //mydb.insertUser(0,"shoraj","shoraj123","Shoraj",5);
-        //int x=mydb.verify("cesar","cesar123");
-        /*
-       Cursor res=mydb.verify2("cesar","cesar123");
-        if(res.getCount() > 0) {
-            res.moveToFirst();
-            while (!res.isAfterLast()) {
-                x = res.getInt(res.getColumnIndex(DBHelper.USERS_COLUMN_ID));
-                res.moveToNext();
-            }
-        }
-        Toast.makeText(getApplicationContext(), "Login Successful"+x,
-                Toast.LENGTH_LONG).show();
 
-
-
-         */
 
         //ArrayList array_list = mydb.getAllCotacts();
-        ArrayList array_list = mydb.getAllItemsName(ourID);
+        final ArrayList array_list = mydb.getAllItemsName(ourID);
 
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
 
@@ -86,7 +54,21 @@ public class DBMainActivity extends AppCompatActivity {
                 dataBundle.putInt("id", id_To_Search);
 
                 Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
+                intent.putExtra("ourID",ourID);
+                Toast.makeText(getApplicationContext(), array_list.get(id_To_Search-1).toString(),
+                        Toast.LENGTH_SHORT).show();
+                Cursor u=mydb.getItemID(ourID,array_list.get(id_To_Search-1).toString());
+                if(u.getCount() > 0) {
+                   u.moveToFirst();
+                    while (!u.isAfterLast()) {
 
+                        xx = u.getInt(u.getColumnIndex(DBHelper.ITEMS_COLUMN_ID));
+                        Toast.makeText(getApplicationContext(), "In Main xx"+xx,
+                                Toast.LENGTH_SHORT).show();
+                        u.moveToNext();
+                    }
+                }
+                intent.putExtra("itemid",xx);
                 intent.putExtras(dataBundle);
                 startActivity(intent);
             }
@@ -115,9 +97,29 @@ public class DBMainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
                 intent.putExtras(dataBundle);
-
+                intent.putExtra("ourID",ourID);
+                intent.putExtra("itemid",xx);
                 startActivity(intent);
                 return true;
+            case R.id.item3:
+                Intent intent2 = new Intent(getApplicationContext(),DashboardActivity.class);
+                //intent2.putExtras(dataBundle);
+                intent2.putExtra("ourID",ourID);
+                intent2.putExtra("itemid",xx);
+                startActivity(intent2);
+                return true;
+//            case R.id.item2:
+//                Bundle dataBundle2 = new Bundle();
+//                dataBundle2.putInt("id", 3);
+//
+//                Intent intent3 = new Intent(getApplicationContext(),DisplayContact.class);
+//                intent3.putExtras(dataBundle2);
+//                intent3.putExtra("ourID",ourID);
+//                intent3.putExtra("itemid",xx);
+//                startActivity(intent3);
+//                return true;
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }

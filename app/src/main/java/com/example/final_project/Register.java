@@ -71,30 +71,8 @@ public class Register extends AppCompatActivity {
                 mydb.insertItem(0,x,"Groceries","Food and stuff",123,"2002-10-26");
                 mydb.insertItem(0,x,"Book","This is a book",456,"2002-10-26");
                 mydb.insertItem(0,x,"Ice Cream","Mint chocolate chip",789,"2002-10-26");
-                //mydb.insertItem(0,2,"Book","Book number 2");
                 mydb.insertItem(0,x,"Movie Theater","Saw Paul Blart mall cop",123,"2002-10-26");
-//                int y=0;
-//                int p=0;
-//                Cursor r=mydb.getItemID(x,"Groceries");
-//                if (r.getCount() > 0) {
-//                    r.moveToFirst();
-//                    while (!r.isAfterLast()) {
-//                        p = res.getInt(res.getColumnIndex(DBHelper.ITEMS_COLUMN_ID));
-//                        r.moveToNext();
-//                    }
-//                }
-//
-//                //y=helperID(r);
-//                mydb.insertExpenses(0,x,p,12,"2002-10-26");
-//                r=mydb.getItemID(x,"Book");
-//                y=helperID(r);
-//                mydb.insertExpenses(0,x,y,13,"2002-10-26");
-//                r=mydb.getItemID(x,"Ice Cream");
-//                y=helperID(r);
-//                mydb.insertExpenses(0,x,y,14,"2002-10-26");
-//                r=mydb.getItemID(x,"Movie Theater");
-//                y=helperID(r);
-//                mydb.insertExpenses(0,x,y,15,"2002-10-26");
+
 
                 Intent i=new Intent(getApplicationContext(),MainActivity.class);
                     //Send the hash map back to the main activity
@@ -110,13 +88,7 @@ public class Register extends AppCompatActivity {
         if (res.getCount() > 0) {
             res.moveToFirst();
             while (!res.isAfterLast()) {
-                // Do whatever you like with the result.
-                //String pwd = res.getString(res.getColumnIndex(DBHelper.USERS_COLUMN_PASSWORD));
-                //if (pwd.equals(pwd1)) {
-                //res.close();
-                //res.getInt(res.g)
                 x = res.getInt(res.getColumnIndex(DBHelper.ITEMS_COLUMN_ID));
-                //}
                 res.moveToNext();
             }
         }

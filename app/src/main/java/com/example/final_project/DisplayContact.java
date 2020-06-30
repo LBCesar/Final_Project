@@ -18,25 +18,39 @@ public class DisplayContact extends Activity {
     private DBHelper mydb ;
 
     TextView name ;
-    TextView phone;
-    TextView email;
-    TextView street;
+    TextView descriptiontxt;
+    TextView currentExpense;
+    TextView newExpense;
     TextView place;
     int id_To_Update = 0;
+    int ourID;
+    int itemID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_contact);
         name =  findViewById(R.id.editTextName);
-        phone =  findViewById(R.id.editTextPhone);
-        email =  findViewById(R.id.editTextStreet);
-        street =  findViewById(R.id.editTextEmail);
-        place =  findViewById(R.id.editTextCity);
+        descriptiontxt =  findViewById(R.id.editTextPhone);
+        currentExpense =  findViewById(R.id.editTextStreet);
+        newExpense =  findViewById(R.id.editTextEmail);
+        //place =  findViewById(R.id.editTextCity);
 
         mydb = new DBHelper(this);
 
         Bundle extras = getIntent().getExtras();
+        int exp=0;
+        String name22 = null;
+        String description22 = null;
+        ourID=getIntent().getIntExtra("ourID",0);
+        itemID=getIntent().getIntExtra("itemid",0);
+        Toast.makeText(getApplicationContext(), " OUR ID"+ ourID,
+                Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), " ITEM ID "+itemID,
+                Toast.LENGTH_LONG).show();
+
+
+        //ArrayList array_list = mydb.getAllItemsName(ourID);
         if(extras !=null) {
             int Value = extras.getInt("id");
 
@@ -44,16 +58,40 @@ public class DisplayContact extends Activity {
                 //means this is the view part not the add contact part.
                 //Cursor rs = mydb.getData(Value);
                 //                                      user id, item id
-                Cursor rs=mydb.getDataExpensesForItem(1,Value);
+                Cursor rs=mydb.getDataExpensesForItem(ourID,itemID);
+                Cursor sr=mydb.getDataItem(ourID,itemID);
                 id_To_Update = Value;
-                rs.moveToFirst();
-                int exp=rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
+
+                if(rs.getCount()>0) {
+                    rs.moveToFirst();
+                    while (!rs.isAfterLast()) {
+
+                        exp = rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
+                        //name22=rs.getString(rs.getColumnIndex(DBHelper.EXP))
+                        Toast.makeText(getApplicationContext(), "EXP: "+exp,
+                                Toast.LENGTH_SHORT).show();
+                        rs.moveToNext();
+                    }
+                }
+                if(sr.getCount()>0) {
+                    sr.moveToFirst();
+                    while (!sr.isAfterLast()) {
+
+                        //exp = rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
+                        name22=sr.getString(sr.getColumnIndex(DBHelper.ITEMS_COLUMN_ITEM));
+                        description22=sr.getString(sr.getColumnIndex(DBHelper.ITEMS_COLUMN_DESCRIPTION));
+                        //name22=rs.getString(rs.getColumnIndex(DBHelper.EXP))
+                        Toast.makeText(getApplicationContext(), "EXP: "+exp,
+                                Toast.LENGTH_SHORT).show();
+                        sr.moveToNext();
+                    }
+                }
                // String strName = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
                 String strName="";
                // String strPhone = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_PHONE));
                 String strPhone="";
                // String strEmail = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_EMAIL));
-                String strEmail="";
+                String strEmail="is this it ?";
                 //String strStreet = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_STREET));
                 String strStreet="";
                 //String strPlace = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_CITY));
@@ -63,27 +101,30 @@ public class DisplayContact extends Activity {
                     rs.close();
                 }
                 Button b = (Button)findViewById(R.id.button1);
-                b.setVisibility(View.INVISIBLE);
-                name.setText(String.valueOf(exp));
+                //b.setVisibility(View.INVISIBLE);
+                name.setText(name22);
                 //name.setText((CharSequence) strName);
                 name.setFocusable(false);
                 name.setClickable(false);
 
-                phone.setText((CharSequence) strPhone);
-                phone.setFocusable(false);
-                phone.setClickable(false);
+                descriptiontxt.setText(description22);
+                descriptiontxt.setEnabled(true);
+                descriptiontxt.setFocusableInTouchMode(true);
+                descriptiontxt.setClickable(true);
 
-                email.setText((CharSequence) strEmail);
-                email.setFocusable(false);
-                email.setClickable(false);
+                currentExpense.setText(String.valueOf(exp));
+                currentExpense.setFocusable(false);
+                currentExpense.setClickable(false);
 
-                street.setText((CharSequence) strStreet);
-                street.setFocusable(false);
-                street.setClickable(false);
+                newExpense.setText((CharSequence) strStreet);
+                newExpense.setEnabled(true);
+                newExpense.setFocusableInTouchMode(true);
+                newExpense.setClickable(true);
 
-                place.setText((CharSequence) strPlace);
-                place.setFocusable(false);
-                place.setClickable(false);
+//                place.setText(String.valueOf(exp));
+//                place.setEnabled(true);
+//                place.setFocusableInTouchMode(true);
+//                place.setClickable(true);
             }
         }
     }
@@ -114,21 +155,25 @@ public class DisplayContact extends Activity {
                 name.setFocusableInTouchMode(true);
                 name.setClickable(true);
 
-                phone.setEnabled(true);
-                phone.setFocusableInTouchMode(true);
-                phone.setClickable(true);
+                descriptiontxt.setEnabled(true);
+                descriptiontxt.setFocusableInTouchMode(true);
+                descriptiontxt.setClickable(true);
 
-                email.setEnabled(true);
-                email.setFocusableInTouchMode(true);
-                email.setClickable(true);
+                currentExpense.setEnabled(true);
+                currentExpense.setFocusableInTouchMode(true);
+                currentExpense.setClickable(true);
+//
+//                currentExpense.setText(String.valueOf(exp));
+//                currentExpense.setFocusable(false);
+//                currentExpense.setClickable(false);
 
-                street.setEnabled(true);
-                street.setFocusableInTouchMode(true);
-                street.setClickable(true);
+                newExpense.setEnabled(true);
+                newExpense.setFocusableInTouchMode(true);
+                newExpense.setClickable(true);
 
-                place.setEnabled(true);
-                place.setFocusableInTouchMode(true);
-                place.setClickable(true);
+//                place.setEnabled(true);
+//                place.setFocusableInTouchMode(true);
+//                place.setClickable(true);
 
                 return true;
             case R.id.Delete_Contact:
@@ -165,20 +210,33 @@ public class DisplayContact extends Activity {
         Bundle extras = getIntent().getExtras();
         if(extras !=null) {
             int Value = extras.getInt("id");
+            if(Value==3){
+                Toast.makeText(getApplicationContext(), "We are in delete mode.", Toast.LENGTH_SHORT).show();
+
+            }
             if(Value>0){
-                if(mydb.updateContact(id_To_Update,name.getText().toString(),
-                        phone.getText().toString(), email.getText().toString(),
-                        street.getText().toString(), place.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
+//                if(mydb.updateContact(id_To_Update,name.getText().toString(),
+//                        phone.getText().toString(), email.getText().toString(),
+//                        street.getText().toString(), place.getText().toString())){
+                if(mydb.updateExpense(itemID,ourID,itemID,Integer.parseInt(newExpense.getText().toString()),"2020-06-29")){
+                    Toast.makeText(getApplicationContext(), "Updated"+newExpense.getText().toString(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
+                    intent.putExtra("itemid",ourID);
                     startActivity(intent);
                 } else{
                     Toast.makeText(getApplicationContext(), "not Updated", Toast.LENGTH_SHORT).show();
                 }
             } else{
-                if(mydb.insertContact(name.getText().toString(), phone.getText().toString(),
-                        email.getText().toString(), street.getText().toString(),
-                        place.getText().toString())){
+                //Creating a new row entry.
+//                if(mydb.insertContact(name.getText().toString(), phone.getText().toString(),
+//                        email.getText().toString(), street.getText().toString(),
+//                        place.getText().toString())){
+//                ourID=getIntent().getIntExtra("ourID",0);
+//                itemID=getIntent().getIntExtra("itemid",0);
+                //mydb.insertItem()
+                if(mydb.insertItem(0,ourID,name.getText().toString(), descriptiontxt.getText().toString(),
+                        Integer.parseInt(newExpense.getText().toString()),"2020-06-29")){
+
                     Toast.makeText(getApplicationContext(), "done",
                             Toast.LENGTH_SHORT).show();
                 } else{
@@ -186,6 +244,10 @@ public class DisplayContact extends Activity {
                             Toast.LENGTH_SHORT).show();
                 }
                 Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
+                intent.putExtra("itemid",ourID);
+                Toast.makeText(getApplicationContext(), "OUR ID:"+ourID,
+                        Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
                 startActivity(intent);
             }
         }

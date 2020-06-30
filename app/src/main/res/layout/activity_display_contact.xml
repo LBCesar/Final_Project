@@ -19,11 +19,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="149dp"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="82dp"
             android:ems="10"
-            android:inputType="text" >
-        </EditText>
+            android:inputType="text"></EditText>
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -41,16 +40,15 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/editTextName"
             android:layout_alignParentLeft="true"
-            android:text="@string/name"
+            android:text="Item"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editTextCity"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="17dp"
             android:onClick="run"
             android:text="@string/save" />
 
@@ -58,18 +56,18 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/editTextEmail"
             android:layout_alignLeft="@+id/textView1"
-            android:text="@string/email"
+            android:layout_alignBottom="@+id/editTextEmail"
+            android:text="New Expense"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/editTextPhone"
             android:layout_alignLeft="@+id/textView1"
-            android:text="@string/phone"
+            android:layout_alignBottom="@+id/editTextPhone"
+            android:text="Description"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -78,28 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/editTextEmail"
             android:layout_alignLeft="@+id/textView5"
-            android:text="@string/street"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/editTextCity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/editTextName"
-            android:layout_below="@+id/editTextEmail"
-            android:layout_marginTop="30dp"
-            android:ems="10"
-            android:inputType="text" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/editTextCity"
-            android:layout_alignBottom="@+id/editTextCity"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/editTextEmail"
-            android:text="@string/country"
+            android:text="Current Expense"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
@@ -121,7 +98,17 @@
             android:layout_alignLeft="@+id/editTextStreet"
             android:layout_below="@+id/editTextName"
             android:ems="10"
-            android:inputType="phone|text" />
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextEmail"
+            android:layout_marginStart="107dp"
+            android:layout_marginTop="100dp"
+            android:layout_toEndOf="@+id/button1"
+            android:text="Button" />
 
     </RelativeLayout>
 </ScrollView>

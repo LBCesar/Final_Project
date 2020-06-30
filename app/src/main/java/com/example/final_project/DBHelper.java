@@ -45,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 2);
+        super(context, DATABASE_NAME , null, 3);
     }
 
     @Override
@@ -135,12 +135,13 @@ public class DBHelper extends SQLiteOpenHelper {
         //contentValues.put("place", place);
         //long id = db.insert(...);
         long id=db.insert("items", null, contentValues);
-        ContentValues contentValues2 = new ContentValues();
-        contentValues2.put("userid", userid);
-        contentValues2.put("itemid", id);
-        contentValues2.put("price", price);
-        contentValues2.put("date", date);
-        db.insert("expenses", null, contentValues);
+        insertExpenses(0,userid,(int)id,price,date);
+//        ContentValues contentValues2 = new ContentValues();
+//        contentValues2.put("userid", userid);
+//        contentValues2.put("itemid", id);
+//        contentValues2.put("price", price);
+//        contentValues2.put("date", date);
+//        db.insert("expenses", null, contentValues);
 
         return true;
     }
@@ -207,7 +208,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public Cursor getItemID(int userid1,String item){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery( "select * from items where username= ? and userid= "+userid1+"", new String[] { item } );
+        Cursor res = db.rawQuery( "select * from items where item= ? and userid= "+userid1+"", new String[] { item } );
+        //Cursor res = db.rawQuery( "select * from items where item= "+item+ " and userid= "+userid1+"", null);
+
         return res;
 
     }
@@ -231,9 +234,9 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery( "select * from contacts where id="+id+"", null );
         return res;
     }
-    public Cursor getDataItem(int id) {
+    public Cursor getDataItem(int id,int itemid2) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from items where userid="+id+"", null );
+        Cursor res =  db.rawQuery( "select * from items where userid="+id+" and itemid ="+itemid2+"", null );
         return res;
     }
     public Cursor getDataUsers(int id) {
@@ -269,15 +272,26 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
         return true;
     }
+    public boolean updateItem (int itemid, int userid, String item, String description, int price,String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ITEMS_COLUMN_USER_ID, userid);
+        contentValues.put(ITEMS_COLUMN_ITEM, item);
+        contentValues.put(ITEMS_COLUMN_DESCRIPTION, description);
+        //contentValues.put(ITEM, street);
+        //contentValues.put("place", place);
+        db.update("items", contentValues, "id = ? ", new String[] { Integer.toString(itemid) } );
+        return true;
+    }
     public boolean updateExpense (int expensesid, int userid, int itemid, int price,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("expensesid", expensesid);
+        //contentValues.put("expensesid", expensesid);
         contentValues.put("userid", userid);
         contentValues.put("itemid", itemid);
         contentValues.put("price", price);
         contentValues.put("date", date);
-        db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(expensesid) } );
+        db.update("expenses", contentValues, "expensesid = ? ", new String[] { Integer.toString(expensesid) } );
         return true;
     }
 
