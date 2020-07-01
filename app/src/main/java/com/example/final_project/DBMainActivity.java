@@ -52,7 +52,9 @@ public class DBMainActivity extends AppCompatActivity {
         expenseMain.setText(expenseMain.getText().toString()+o);
         nameMain.setText(nameMain.getText().toString()+ourName);
         //ArrayList array_list = mydb.getAllCotacts();
-        final ArrayList array_list = mydb.getAllItemsName(ourID);
+        //final ArrayList array_list = mydb.getAllItemsName(ourID);
+        //String dummyDate="2020-07-2";
+        final ArrayList array_list=mydb.getAllItemsNameWithDate(ourID,todayDate);
 
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
 
@@ -158,11 +160,6 @@ public class DBMainActivity extends AppCompatActivity {
     public String date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
-//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
-
-        //System.out.println("Current Date: "+ft.format(dNow));
         return ft.format(dNow);
     }
 }

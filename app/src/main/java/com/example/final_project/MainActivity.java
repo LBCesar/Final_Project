@@ -77,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
                     if (z == 1) {
                         mydb.setLogIn(x);
                     }
+                    String datetest=mydb.lastLoginDate(x);
+                    Toast.makeText(getApplicationContext(), "OUR DATE AGAIN:====" + datetest,
+                            Toast.LENGTH_LONG).show();
                     //Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                     Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
                     intent.putExtra("itemid", x);
@@ -107,13 +110,6 @@ public class MainActivity extends AppCompatActivity {
     public String date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
-//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
-
-        //System.out.println("Current Date: "+ft.format(dNow));
         return ft.format(dNow);
     }
-
-
 }

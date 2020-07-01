@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -32,6 +34,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String USERS_COLUMN_ANNUAL="annual";
     public static final String USERS_COLUMN_SAVINGS="savings";
     public static final String USERS_COLUMN_LOG="log";
+    public static final String USERS_COLUMN_DATE="date";
+
 
 
 
@@ -50,7 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 4);
+        super(context, DATABASE_NAME , null, 7);
     }
 
     @Override
@@ -67,7 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "create table users"+
                         "(userid integer primary key AUTOINCREMENT NOT NULL,username text,password text,name text,budget integer" +
-                        ",annual integer,savings integer,log integer)"
+                        ",annual integer,savings integer,log integer,date String)"
         );
         //income (annually), maximum daily expense, and the amount of savin
         db.execSQL(
@@ -110,7 +114,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean insertUser (int userid, String username, String password, String name,int budget,int annual,int savings, int log) {
+    public boolean insertUser (int userid, String username, String password, String name,int budget,int annual,int savings, int log,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //contentValues.put("userid", userid);
@@ -121,6 +125,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("annual", annual);
         contentValues.put("savings", savings);
         contentValues.put("log", log);
+        contentValues.put("date", date);
         db.insert("users", null, contentValues);
         return true;
     }
@@ -252,7 +257,40 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("expenses", contentValues, "expensesid = ? ", new String[] { Integer.toString(expensesid) } );
         return true;
     }
+    public void itsANewDay(int id,String date){
+        ArrayList<String> array_list = new ArrayList<String>();
+        ArrayList<String> array_list2 = new ArrayList<String>();
 
+        String todaysDate=date();
+        array_list=getAllItemsNameWithDate(id,date);
+        array_list2=getAllItemsDescriptionWithDate(id,date);
+        for(int i=0;i<array_list.size();i++) {
+            insertItem(0, id, array_list.get(i), array_list2.get(i), 0, todaysDate);
+        }
+        dateUpdate(id);
+    }
+    public String lastLoginDate(int uid){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from users where userid="+uid+"",null );
+        res.moveToFirst();
+        String results="";
+        while(res.isAfterLast() == false){
+            //array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
+            //x=x+res.getInt(res.getColumnIndex(EXPENSES_COLUMN_PRICE));
+            results=res.getString(res.getColumnIndex(USERS_COLUMN_DATE));
+            res.moveToNext();
+        }
+        return results;
+    }
+    public void dateUpdate(int uid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        String todaysDate=date();
+
+        contentValues.put("date", todaysDate);
+        db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
+        //return true;
+    }
     public Integer deleteContact (Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("contacts",
@@ -360,6 +398,38 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return array_list;
     }
+    public ArrayList<String> getAllItemsNameWithDate(int id,String date) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        //Cursor r=db.rawQuery("select * from items,expenses where expenses.date= ? and items.userid= ? ", new String[] { date,Integer.toString(id) });
+        Cursor r=db.rawQuery("select items.item from items inner join expenses on expenses.itemid = items.itemid where items.userid="+id+
+                " and expenses.date= ?", new String[] { date});
+        r.moveToFirst();
+
+        while(r.isAfterLast() == false){
+            array_list.add(r.getString(r.getColumnIndex(ITEMS_COLUMN_ITEM)));
+            r.moveToNext();
+        }
+        return array_list;
+    }
+    public ArrayList<String> getAllItemsDescriptionWithDate(int id,String date) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        //Cursor r=db.rawQuery("select * from items,expenses where expenses.date= ? and items.userid= ? ", new String[] { date,Integer.toString(id) });
+        Cursor r=db.rawQuery("select items.item from items inner join expenses on expenses.itemid = items.itemid where items.userid="+id+
+                " and expenses.date= ?", new String[] { date});
+        r.moveToFirst();
+
+        while(r.isAfterLast() == false){
+            array_list.add(r.getString(r.getColumnIndex(ITEMS_COLUMN_DESCRIPTION)));
+            r.moveToNext();
+        }
+        return array_list;
+    }
     public ArrayList<String> getAllExpenses(int id) {
         ArrayList<String> array_list = new ArrayList<String>();
 
@@ -373,5 +443,15 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         return array_list;
+    }
+    public String date() {
+        Date dNow = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
+//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
+
+        //System.out.println("Current Date: "+ft.format(dNow));
+        return ft.format(dNow);
     }
 }

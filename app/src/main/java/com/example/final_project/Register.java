@@ -23,6 +23,7 @@ public class Register extends AppCompatActivity {
     private EditText annual;
     private Button suBtn;
     DBHelper mydb;
+    String currentDate=date();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class Register extends AppCompatActivity {
                     int annual3=Integer.parseInt(annualIncome);
                     //Add the new user to the hashmap
                     //credentials.put(user.name,user);
-                mydb.insertUser(0,name2,pwd1,name1,save2,annual2,annual3,0);
+                mydb.insertUser(0,name2,pwd1,name1,save2,annual2,annual3,0,currentDate);
                 int x=0;
                 Cursor res =mydb.verify2(name2,pwd1);
                 if(res.getCount() > 0) {
@@ -74,7 +75,6 @@ public class Register extends AppCompatActivity {
                         res.moveToNext();
                     }
                 }
-                String currentDate=date();
                 Toast toast2=Toast.makeText(getApplicationContext(), "Current Date Register: "+currentDate, Toast.LENGTH_LONG);
                 toast2.show();
 
