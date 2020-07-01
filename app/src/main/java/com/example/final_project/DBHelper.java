@@ -420,7 +420,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
         //Cursor r=db.rawQuery("select * from items,expenses where expenses.date= ? and items.userid= ? ", new String[] { date,Integer.toString(id) });
-        Cursor r=db.rawQuery("select items.item from items inner join expenses on expenses.itemid = items.itemid where items.userid="+id+
+        Cursor r=db.rawQuery("select items.description from items inner join expenses on expenses.itemid = items.itemid where items.userid="+id+
                 " and expenses.date= ?", new String[] { date});
         r.moveToFirst();
 
