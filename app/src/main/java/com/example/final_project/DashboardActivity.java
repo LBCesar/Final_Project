@@ -48,10 +48,11 @@ public class DashboardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         ourID=intent.getIntExtra("ourID",0);
-        Toast.makeText(getApplicationContext(), "Nothing"+ourID,
+        Toast.makeText(getApplicationContext(), "Nothing"+ ourID,
                 Toast.LENGTH_SHORT).show();
         ArrayList<String> a=mydb.getAllItemsName(ourID);
         ArrayList<String> b=mydb.getAllExpenses(ourID);
+
         if(a.size()>0) {
             Toast.makeText(getApplicationContext(), "======" + a.get(0),
                     Toast.LENGTH_SHORT).show();

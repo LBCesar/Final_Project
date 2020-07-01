@@ -104,33 +104,23 @@ public class DBMainActivity extends AppCompatActivity {
             case R.id.item1:
                 Bundle dataBundle = new Bundle();
                 dataBundle.putInt("id", 0);
-
                 Intent intent = new Intent(getApplicationContext(), DisplayContact.class);
                 intent.putExtras(dataBundle);
                 intent.putExtra("ourID",ourID);
                 intent.putExtra("itemid",xx);
                 startActivity(intent);
                 return true;
+
             case R.id.item3:
                 Intent intent2 = new Intent(getApplicationContext(), DashboardActivity.class);
-                //intent2.putExtras(dataBundle);
-                Toast.makeText(getApplicationContext(), "In MainOUR ID"+ourID,
-                        Toast.LENGTH_SHORT).show();
                 intent2.putExtra("ourID",ourID);
                 intent2.putExtra("itemid",xx);
                 startActivity(intent2);
                 return true;
 
-//            case R.id.item2:
-//                Bundle dataBundle2 = new Bundle();
-//                dataBundle2.putInt("id", 3);
-//
-//                Intent intent3 = new Intent(getApplicationContext(),DisplayContact.class);
-//                intent3.putExtras(dataBundle2);
-//                intent3.putExtra("ourID",ourID);
-//                intent3.putExtra("itemid",xx);
-//                startActivity(intent3);
-//                return true;
+             case R.id.item5:
+                 Intent intent5 = new Intent(getApplicationContext(), Settings.class);
+                 startActivity(intent5);
 
             default:
                 return super.onOptionsItemSelected(item);
