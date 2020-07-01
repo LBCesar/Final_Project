@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:id="@+id/regLayout10"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -29,7 +29,7 @@
         android:layout_below="@id/regLayout10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/reglayout7"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:text="@string/sign_me_up" />
 
 </RelativeLayout>

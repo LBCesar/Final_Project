@@ -31,25 +31,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         cb = findViewById(R.id.checkBox);
         userName = findViewById(R.id.txtUserName);
         password = findViewById(R.id.txtPassword);
-        final String sss=date();
-        Toast.makeText(getApplicationContext(), "OUR DATE:====" + sss,
-                Toast.LENGTH_LONG).show();
 
+        final String sss = date();
+//        Toast.makeText(getApplicationContext(), "OUR DATE:====" + sss,
+//                Toast.LENGTH_LONG).show();
 
         mydb = new DBHelper(this);
         y = mydb.logInSearch();
+
         if (y != -1) {
-            String datetest=mydb.lastLoginDate(y);
+            String datetest = mydb.lastLoginDate(y);
             //"2020-07-08"
             //sss
+
             if(!datetest.equals(sss)){
                 mydb.itsANewDay(y,datetest);
                 Toast.makeText(getApplicationContext(), "Values have been reset",
                         Toast.LENGTH_LONG).show();
             }
+
             Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
             intent.putExtra("itemid", y);
             startActivity(intent);
@@ -119,4 +123,6 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         return ft.format(dNow);
     }
+
+
 }

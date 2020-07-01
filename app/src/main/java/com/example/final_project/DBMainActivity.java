@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,46 +26,59 @@ public class DBMainActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "MESSAGE";
     private ListView obj;
-    DBHelper mydb;
+    private DBHelper mydb;
+
+    private TextView expenseMain ;
+    private TextView savingsGoal;
+    private TextView nameMain;
     int ourID;
     int xx;
-    TextView expenseMain ;
-    TextView nameMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dbactivity_main);
+
         expenseMain =  findViewById(R.id.textView);
+        savingsGoal = findViewById(R.id.txtSavingsGoal);
         nameMain =  findViewById(R.id.textView2);
+
         mydb = new DBHelper(this);
         int x=0;
-        //txtName=findViewById(R.id.txtName);
+
+        // txtName=findViewById(R.id.txtName);
         Intent intent=getIntent();
-        //Retrieve the username from the main activity
-        String message=intent.getStringExtra("first message");
+
+        // Retrieve the username from the main activity
+        String message = intent.getStringExtra("first message");
         ourID=intent.getIntExtra("itemid",0);
-        //Update the text on the welcome screen
+
+        // Update the text on the welcome screen
         String todayDate= date();
-        int o=mydb.getSumDaily(ourID,0,todayDate);
-        Toast.makeText(getApplicationContext(),"OUR SUM:"+o,
-                Toast.LENGTH_SHORT).show();
-        String ourName=mydb.getOurName(ourID);
-        expenseMain.setText(expenseMain.getText().toString()+o);
-        nameMain.setText(nameMain.getText().toString()+ourName);
-        //ArrayList array_list = mydb.getAllCotacts();
-        //final ArrayList array_list = mydb.getAllItemsName(ourID);
+        int o = mydb.getSumDaily(ourID,0, todayDate);
+
+//        Toast.makeText(getApplicationContext(),"OUR SUM:"+o,
+//                Toast.LENGTH_SHORT).show();
+
+        String ourName = mydb.getOurName(ourID);
+        nameMain.setText(nameMain.getText().toString() + ourName);
+
+        String todaysExpense = currencyFormat(Integer.toString(o));
+        expenseMain.setText(expenseMain.getText().toString() + "$" + todaysExpense);
+
+        String ourGoal = mydb.getOurGoal(ourID);
+        ourGoal = currencyFormat(ourGoal);
+        savingsGoal.setText(savingsGoal.getText().toString() + " $" + ourGoal);
+
+
         //String dummyDate="2020-07-2";
-        final ArrayList array_list=mydb.getAllItemsNameWithDate(ourID,todayDate);
-
+        final ArrayList array_list = mydb.getAllItemsNameWithDate(ourID,todayDate);
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
-
-        obj = (ListView)findViewById(R.id.listView1);
+        obj = findViewById(R.id.listView1);
         obj.setAdapter(arrayAdapter);
         obj.setOnItemClickListener(new OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,long id) {
-                // TODO Auto-generated method stub
                 int id_To_Search = position + 1;
 
                 Bundle dataBundle = new Bundle();
@@ -74,17 +88,18 @@ public class DBMainActivity extends AppCompatActivity {
                 intent.putExtra("ourID",ourID);
                 Toast.makeText(getApplicationContext(), array_list.get(id_To_Search-1).toString(),
                         Toast.LENGTH_SHORT).show();
+
                 Cursor u=mydb.getItemID(ourID,array_list.get(id_To_Search-1).toString());
                 if(u.getCount() > 0) {
                    u.moveToFirst();
                     while (!u.isAfterLast()) {
-
                         xx = u.getInt(u.getColumnIndex(DBHelper.ITEMS_COLUMN_ID));
                         Toast.makeText(getApplicationContext(), "In Main xx"+xx,
                                 Toast.LENGTH_SHORT).show();
                         u.moveToNext();
                     }
                 }
+
                 intent.putExtra("itemid",xx);
                 intent.putExtras(dataBundle);
                 startActivity(intent);
@@ -230,7 +245,6 @@ public class DBMainActivity extends AppCompatActivity {
                  intent5.putExtra("ourID", ourID);
                  startActivity(intent5);
 
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -242,9 +256,17 @@ public class DBMainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keycode, event);
     }
+
     public String date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         return ft.format(dNow);
     }
+
+    public static String currencyFormat(String amount) {
+        DecimalFormat formatter = new DecimalFormat("###,###,##0.00");
+        return formatter.format(Double.parseDouble(amount));
+    }
+
+
 }
