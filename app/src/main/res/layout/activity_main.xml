@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="$$$$$$$$$$$"
+            android:text="eTrack"
             android:textAlignment="center"
             android:textColor="#5BC3EB"
             android:textSize="30dp"
@@ -89,7 +89,15 @@
             android:text="Sign up" />
     </LinearLayout>
 
-
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_below="@id/layout4"
+        android:background="#5BC3EB"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="CheckBox" />
 
 
 </RelativeLayout>
