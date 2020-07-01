@@ -9,15 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".About"></activity>
+        <activity android:name=".Help" />
         <activity android:name=".Register" />
-        <activity android:name=".DisplayContact"/>
-        <activity android:name=".DBMainActivity"/>
-
+        <activity android:name=".DisplayContact" />
+        <activity android:name=".DBMainActivity" />
+        <activity android:name=".Settings" />
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

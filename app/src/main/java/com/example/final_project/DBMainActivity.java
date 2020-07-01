@@ -129,6 +129,7 @@ public class DBMainActivity extends AppCompatActivity {
 
              case R.id.item5:
                  Intent intent5 = new Intent(getApplicationContext(), Settings.class);
+//                 intent5.putExtra("ourID", ourID);
                  startActivity(intent5);
 
             default:

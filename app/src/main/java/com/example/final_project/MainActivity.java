@@ -106,11 +106,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String date() {
-
-
         Date dNow = new Date();
-        SimpleDateFormat ft =
-                new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 //        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
 //        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
 //        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
