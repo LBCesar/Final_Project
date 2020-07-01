@@ -258,7 +258,7 @@ public class DisplayContact extends Activity {
                     int o = mydb.getSumDaily(ourID,0, date());
                     if(o>ourBudget){
                         Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
-                        mydb.setNewBudget(ourID,o);
+                        mydb.setNewBudget(ourID,o,ourBudget);
                     }
 
 
@@ -292,7 +292,7 @@ public class DisplayContact extends Activity {
                 int o = mydb.getSumDaily(ourID,0, date());
                 if(o>ourBudget){
                     Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
-                    mydb.setNewBudget(ourID,o);
+                    mydb.setNewBudget(ourID,o,ourBudget);
                 }
                 //Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
                 startActivity(intent);

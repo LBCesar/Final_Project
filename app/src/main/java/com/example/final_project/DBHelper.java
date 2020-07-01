@@ -415,11 +415,27 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
         //return true;
     }
-    public void setNewBudget(int uid,int newBudget){
+    public void setSavings(int uid,int newSave){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(USERS_COLUMN_BUDGET, newBudget);
+        contentValues.put(USERS_COLUMN_SAVINGS, newSave);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
+        //return true;
+    }
+    public void setNewBudget(int uid,int newBudget,int saving){
+        int newTotal=newBudget-saving;
+        int newSavings=getSavingsGoal(uid)-newTotal;
+        if(newSavings<0){
+            setSavings(uid,0);
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(USERS_COLUMN_BUDGET, newBudget);
+
+            db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
+        }
+        else{
+            setSavings(uid,newSavings);
+        }
         //return true;
     }
     public int logInSearch(){
