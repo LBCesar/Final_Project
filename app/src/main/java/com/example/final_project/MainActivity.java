@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
 
 
-
         mydb = new DBHelper(this);
         y = mydb.logInSearch();
         if (y != -1) {

@@ -14,11 +14,18 @@ import java.util.ArrayList;
 
 public class Settings  extends Activity {
 
+    private DBHelper mydb;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Intent intent5 = getIntent();
+
+        final int LogMeOut = 0;
+        mydb = new DBHelper(this);
+
+        final Intent intent5 = getIntent();
+        final int ourID = intent5.getIntExtra("ourID",0);
 
         ArrayList<String> settings_menu = new ArrayList<>();
         settings_menu.add("Update User Info");
@@ -47,7 +54,10 @@ public class Settings  extends Activity {
                     startActivity(intentAbout);
                 }
                 if (position == 3){
-                    Toast.makeText(Settings.this, "Log out", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Settings.this, "Loggin out", Toast.LENGTH_SHORT).show();
+                    mydb.logOut(ourID);
+                    Intent i = new Intent(Settings.this, MainActivity.class);
+                    startActivity(i);
                 }
             }
         });

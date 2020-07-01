@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class DBMainActivity extends AppCompatActivity {
+
     public final static String EXTRA_MESSAGE = "MESSAGE";
     private ListView obj;
     DBHelper mydb;
@@ -26,6 +27,7 @@ public class DBMainActivity extends AppCompatActivity {
     int xx;
     TextView expenseMain ;
     TextView nameMain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,10 +85,6 @@ public class DBMainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
 
     @Override
@@ -117,6 +115,7 @@ public class DBMainActivity extends AppCompatActivity {
                 intent2.putExtra("itemid",xx);
                 startActivity(intent2);
                 return true;
+
             case R.id.item4:
                 Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
                 //intent2.putExtras(dataBundle);
@@ -126,10 +125,9 @@ public class DBMainActivity extends AppCompatActivity {
                 startActivity(intent3);
                 return true;
 
-
              case R.id.item5:
                  Intent intent5 = new Intent(getApplicationContext(), Settings.class);
-//                 intent5.putExtra("ourID", ourID);
+                 intent5.putExtra("ourID", ourID);
                  startActivity(intent5);
 
             default:
