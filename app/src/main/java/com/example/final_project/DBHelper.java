@@ -30,6 +30,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String USERS_COLUMN_NAME="name";
     public static final String USERS_COLUMN_BUDGET="budget";
     public static final String USERS_COLUMN_ANNUAL="annual";
+    public static final String USERS_COLUMN_SAVINGS="savings";
+    public static final String USERS_COLUMN_LOG="log";
+
+
 
     public static final String ITEMS_TABLE_NAME="items";
     public static final String ITEMS_COLUMN_ID="itemid";
@@ -46,7 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(Context context) {
-        super(context, DATABASE_NAME , null, 3);
+        super(context, DATABASE_NAME , null, 4);
     }
 
     @Override
@@ -62,9 +66,10 @@ public class DBHelper extends SQLiteOpenHelper {
         );
         db.execSQL(
                 "create table users"+
-                        "(userid integer primary key AUTOINCREMENT NOT NULL,username text,password text,name text,budget integer,annual integer)"
+                        "(userid integer primary key AUTOINCREMENT NOT NULL,username text,password text,name text,budget integer" +
+                        ",annual integer,savings integer,log integer)"
         );
-
+        //income (annually), maximum daily expense, and the amount of savin
         db.execSQL(
                 "create table items"+
                         "(itemid integer primary key AUTOINCREMENT NOT NULL,userid integer,item text,description text)"
@@ -119,7 +124,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean insertUser (int userid, String username, String password, String name,int budget,int annual) {
+    public boolean insertUser (int userid, String username, String password, String name,int budget,int annual,int savings, int log) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         //contentValues.put("userid", userid);
@@ -128,6 +133,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("name", name);
         contentValues.put("budget", budget);
         contentValues.put("annual", annual);
+        contentValues.put("savings", savings);
+        contentValues.put("log", log);
         db.insert("users", null, contentValues);
         return true;
     }
@@ -316,6 +323,35 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         return x;
+    }
+
+    public void logOut(int uid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("log", 0);
+        db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
+        //return true;
+    }
+    public void setLogIn(int uid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("log", 1);
+        db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
+        //return true;
+    }
+    public int logInSearch(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from users where log="+1+"" ,null );
+        res.moveToFirst();
+        int x=0;
+        while(res.isAfterLast() == false){
+            //array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
+            x=x+res.getInt(res.getColumnIndex(USERS_COLUMN_ID));
+
+            res.moveToNext();
+            return x;
+        }
+        return -1;
     }
     public ArrayList<String> getAllCotacts() {
         ArrayList<String> array_list = new ArrayList<String>();

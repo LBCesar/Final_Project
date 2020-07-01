@@ -17,6 +17,7 @@ public class Register extends AppCompatActivity {
     private EditText pwd2;
     private EditText email;
     private EditText phone;
+    private EditText annual;
     private Button suBtn;
     DBHelper mydb;
 
@@ -30,6 +31,7 @@ public class Register extends AppCompatActivity {
         pwd2=findViewById(R.id.newRePassword);
         email=findViewById(R.id.newSavings);
         phone=findViewById(R.id.newAnnual);
+        annual=findViewById(R.id.newAnnual2);
         mydb = new DBHelper(this);
 
         suBtn=findViewById(R.id.btnRegisterComplete);
@@ -49,9 +51,11 @@ public class Register extends AppCompatActivity {
                     int save2=Integer.parseInt(save1);
                     String annual1=phone.getText().toString();
                     int annual2=Integer.parseInt(annual1);
+                    String annualIncome=annual.getText().toString();
+                    int annual3=Integer.parseInt(annualIncome);
                     //Add the new user to the hashmap
                     //credentials.put(user.name,user);
-                mydb.insertUser(0,name2,pwd1,name1,save2,annual2);
+                mydb.insertUser(0,name2,pwd1,name1,save2,annual2,annual3,0);
                 int x=0;
                 Cursor res =mydb.verify2(name2,pwd1);
                 if(res.getCount() > 0) {

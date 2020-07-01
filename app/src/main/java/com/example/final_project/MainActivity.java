@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,18 +19,25 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userName;
     private EditText password;
+    private CheckBox cb;
     DBHelper mydb;
-
+    int z=0;
+    int y=-1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        cb = findViewById(R.id.checkBox);
         userName=findViewById(R.id.txtUserName);
         password=findViewById(R.id.txtPassword);
         mydb = new DBHelper(this);
-
+        y=mydb.logInSearch();
+        if(y!=-1){
+            Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
+            intent.putExtra("itemid",y);
+            startActivity(intent);
+        }
 
         // go to dashboard activity
         Button btnLogin = findViewById(R.id.btnLogin);
@@ -58,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 if(x!=0) {
                     Toast.makeText(getApplicationContext(), "Login Successful" + x,
                             Toast.LENGTH_LONG).show();
+                    if(z==1){
+                        mydb.setLogIn(x);
+                    }
                     //Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                     Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
                     intent.putExtra("itemid",x);
@@ -75,7 +86,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(register);
             }
         });
-
+        cb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                z=1;
+            }
+        });
 
 
     }

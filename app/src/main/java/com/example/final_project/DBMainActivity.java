@@ -117,6 +117,15 @@ public class DBMainActivity extends AppCompatActivity {
                 intent2.putExtra("itemid",xx);
                 startActivity(intent2);
                 return true;
+            case R.id.item4:
+                Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
+                //intent2.putExtras(dataBundle);
+                mydb.logOut(ourID);
+                intent3.putExtra("ourID",ourID);
+                intent3.putExtra("itemid",xx);
+                startActivity(intent3);
+                return true;
+
 
              case R.id.item5:
                  Intent intent5 = new Intent(getApplicationContext(), Settings.class);
