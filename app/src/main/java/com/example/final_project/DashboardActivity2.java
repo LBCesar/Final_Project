@@ -25,20 +25,43 @@ import com.anychart.enums.LegendLayout;
 import com.anychart.enums.MarkerType;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 // report graph 3
 public class DashboardActivity2 extends Activity {
 
     DBHelper mydb;
+    int ourID=0;
+    ArrayList<String> alldates=new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard2);
 
+        Intent intent = getIntent();
+        ourID=intent.getIntExtra("ourID",0);
+        alldates=intent.getStringArrayListExtra("ad");
+        if(alldates.get(0)!=null) {
+            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
+                    Toast.LENGTH_SHORT).show();
+        }
+//       // ArrayList<String> a=mydb.getAllItemsName(ourID);
+//        //ArrayList<String> b=mydb.getAllExpenses(ourID);
+//
+//                alldates=mydb.getAllDates(ourID);
+//
+//        java.util.Set<String> set2 = new HashSet<>(alldates);
+//        alldates.clear();
+//        alldates.addAll(set2);
+//        Toast.makeText(getApplicationContext(), "======" ,
+//                Toast.LENGTH_SHORT).show();
+//        if(alldates.size()>0) {
+//            Toast.makeText(getApplicationContext(), "======" + alldates.get(0),
+//                    Toast.LENGTH_SHORT).show();
+//        }
 
-        Intent intent7 = getIntent();
 
 
         AnyChartView anyChartView = findViewById(R.id.any_chart_view2);

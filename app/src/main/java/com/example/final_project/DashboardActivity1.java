@@ -32,19 +32,31 @@ import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 // report graph 2
 public class DashboardActivity1 extends Activity {
     DBHelper mydb;
-
+    int ourID=0;
+    ArrayList<String> alldates;
+    ArrayList<Integer> myExp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard1);
 
 
-        Intent intent6 = getIntent();
+
+        Intent intent = getIntent();
+        ourID=intent.getIntExtra("ourID",0);
+        alldates=intent.getStringArrayListExtra("ad");
+        myExp=intent.getIntegerArrayListExtra("me");
+        if(alldates.get(0)!=null) {
+            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
+                    Toast.LENGTH_SHORT).show();
+        }
+//        int y=mydb.getSumDaily(ourID,0,alldates.get(0));
 
         AnyChartView anyChartView = findViewById(R.id.any_chart_view1);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar1));
@@ -69,15 +81,26 @@ public class DashboardActivity1 extends Activity {
         cartesian.xAxis(0).labels().padding(5d, 5d, 5d, 5d);
 
         List<DataEntry> seriesData = new ArrayList<>();
-        seriesData.add(new CustomDataEntry("1986", 3.6, 2.3, 2.8));
-        seriesData.add(new CustomDataEntry("1987", 7.1, 4.0, 4.1));
-        seriesData.add(new CustomDataEntry("1988", 8.5, 6.2, 5.1));
-        seriesData.add(new CustomDataEntry("1989", 9.2, 11.8, 6.5));
-        seriesData.add(new CustomDataEntry("1990", 10.1, 13.0, 12.5));
-        seriesData.add(new CustomDataEntry("1991", 11.6, 13.9, 18.0));
-        seriesData.add(new CustomDataEntry("1992", 16.4, 18.0, 21.0));
-        seriesData.add(new CustomDataEntry("1993", 18.0, 23.3, 20.3));
-        seriesData.add(new CustomDataEntry("1994", 13.2, 24.7, 19.2));
+        for (int i = 0; i < alldates.size(); i++) {
+            if(alldates.get(i)!=null) {
+                //String w=alldates.get(i);
+                //int w2=mydb.getSumDaily(ourID, 0, w);
+                // myExp.set(i, w2);
+               // myExp.add(i,w2);
+                seriesData.add(new CustomDataEntry(alldates.get(i), myExp.get(i), 2.3, 2.8));
+                seriesData.add(new CustomDataEntry("2020-07-02", 1200, 2.3, 2.8));
+
+            }
+        }
+//        seriesData.add(new CustomDataEntry("1986", 3.6, 2.3, 2.8));
+//        seriesData.add(new CustomDataEntry("1987", 7.1, 4.0, 4.1));
+//        seriesData.add(new CustomDataEntry("1988", 8.5, 6.2, 5.1));
+//        seriesData.add(new CustomDataEntry("1989", 9.2, 11.8, 6.5));
+//        seriesData.add(new CustomDataEntry("1990", 10.1, 13.0, 12.5));
+//        seriesData.add(new CustomDataEntry("1991", 11.6, 13.9, 18.0));
+//        seriesData.add(new CustomDataEntry("1992", 16.4, 18.0, 21.0));
+//        seriesData.add(new CustomDataEntry("1993", 18.0, 23.3, 20.3));
+//        seriesData.add(new CustomDataEntry("1994", 13.2, 24.7, 19.2));
 
         Set set = Set.instantiate();
         set.data(seriesData);

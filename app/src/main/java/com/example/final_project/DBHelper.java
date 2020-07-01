@@ -324,6 +324,20 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return x;
     }
+//    public ArrayList<String> getAllExpensesWithDate(int id,String date) {
+//        ArrayList<String> array_list = new ArrayList<String>();
+//
+//        //hp = new HashMap();
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor res =  db.rawQuery( "select * from expenses where userid="+id+"and expenses.date= ?", new String[] { date} );
+//        res.moveToFirst();
+//
+//        while(res.isAfterLast() == false){
+//            array_list.add(res.getString(res.getColumnIndex(EXPENSES_COLUMN_PRICE)));
+//            res.moveToNext();
+//        }
+//        return array_list;
+//    }
 
     public void logOut(int uid){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -438,6 +452,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
         while(res.isAfterLast() == false){
             array_list.add(res.getString(res.getColumnIndex(EXPENSES_COLUMN_PRICE)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+    public ArrayList<String> getAllExpensesWithDate(int id,String date) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from expenses where userid="+id+"and expenses.date= ?", new String[] { date} );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndex(EXPENSES_COLUMN_PRICE)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+    public ArrayList<String> getAllDates(int id) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from expenses where userid="+id+"", null );
+        res.moveToFirst();
+
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndex(EXPENSES_COLUMN_date)));
             res.moveToNext();
         }
         return array_list;

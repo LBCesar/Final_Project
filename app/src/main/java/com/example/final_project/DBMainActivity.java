@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
 public class DBMainActivity extends AppCompatActivity {
 
@@ -122,12 +123,62 @@ public class DBMainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.item6:    // report 2 line graph
-                Intent intent6 = new Intent(getApplicationContext(), DashboardActivity1.class);
-                startActivity(intent6);
+                Intent intentx = new Intent(getApplicationContext(), DashboardActivity1.class);
+                Toast.makeText(getApplicationContext(), "Nothing"+ ourID,
+                        Toast.LENGTH_SHORT).show();
+                // ArrayList<String> a=mydb.getAllItemsName(ourID);
+                //ArrayList<String> b=mydb.getAllExpenses(ourID);
+                ArrayList<String> alldates=new ArrayList<String>();
+                alldates=mydb.getAllDates(ourID);
+
+                java.util.Set<String> set2 = new HashSet<>(alldates);
+                alldates.clear();
+                alldates.addAll(set2);
+                //        int y=mydb.getSumDaily(ourID,0,alldates.get(0));
+                ArrayList<Integer> myExp=new ArrayList<Integer>();
+                //if(alldates.size()>0) {
+                    for (int i = 0; i < alldates.size(); i++) {
+                        if(alldates.get(i)!=null) {
+                            String w=alldates.get(i);
+                            int w2=mydb.getSumDaily(ourID, 0, w);
+                           // myExp.set(i, w2);
+                            myExp.add(i,w2);
+                        }
+                    }
+                //}
+                if(myExp.size()>0) {
+                    Toast.makeText(getApplicationContext(), "======LLL"+myExp.get(0),
+                            Toast.LENGTH_SHORT).show();
+                }
+                if(alldates.size()>0) {
+                    Toast.makeText(getApplicationContext(), "======" + alldates.get(0),
+                            Toast.LENGTH_SHORT).show();
+                }
+                intentx.putStringArrayListExtra("ad",alldates);
+                intentx.putIntegerArrayListExtra("me",myExp);
+                intentx.putExtra("ourID",ourID);
+                intentx.putExtra("itemid",xx);
+                startActivity(intentx);
                 return true;
 
             case R.id.item7: // report 3
+
                 Intent intent7 = new Intent(getApplicationContext(), DashboardActivity2.class);
+                ArrayList<String> alldates2=new ArrayList<String>();
+                alldates2=mydb.getAllDates(ourID);
+
+                java.util.Set<String> set3 = new HashSet<>(alldates2);
+                alldates2.clear();
+                alldates2.addAll(set3);
+                Toast.makeText(getApplicationContext(), "======" ,
+                        Toast.LENGTH_SHORT).show();
+                if(alldates2.size()>0) {
+                    Toast.makeText(getApplicationContext(), "======" + alldates2.get(0),
+                            Toast.LENGTH_SHORT).show();
+                }
+                intent7.putStringArrayListExtra("ad",alldates2);
+                intent7.putExtra("ourID",ourID);
+                intent7.putExtra("itemid",xx);
                 startActivity(intent7);
                 return true;
 
