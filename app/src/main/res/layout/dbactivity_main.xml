@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="60dp"
         android:layout_marginTop="88dp"
-        android:text="Todays expenses: xxx"
+        android:text="Todays expenses: "
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,7 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="48dp"
-        android:text="Welcome username"
+        android:text="Welcome "
         android:textColor="#ff16ff01"
         android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"

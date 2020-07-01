@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -186,6 +187,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
 
     }
+    public String getOurName(int userid1){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res=db.rawQuery( "select * from users where  userid= "+userid1+"", null);
+        String ourName="";
+        if(res.getCount() > 0) {
+            res.moveToFirst();
+            while (!res.isAfterLast()) {
+                ourName=res.getString(res.getColumnIndex(USERS_COLUMN_NAME));
+                res.moveToNext();
+            }
+        }
+    return ourName;
+    }
 
 
     public boolean insertContact (String name, String phone, String email, String street,String place) {
@@ -290,6 +305,18 @@ public class DBHelper extends SQLiteOpenHelper {
     //The getAll___ family will return an array list containing all Strings that are relevant to the table.
     //ex. getAllItems() will return every single item in the table. It does not check for user id, so every single
     //item will be returned, even duplicates.
+    public int getSumDaily(int userid1,int itemid1,String date1){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from expenses where userid="+userid1+" and date= ?", new String[] { date1 } );
+        res.moveToFirst();
+        int x=0;
+        while(res.isAfterLast() == false){
+            //array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
+            x=x+res.getInt(res.getColumnIndex(EXPENSES_COLUMN_PRICE));
+            res.moveToNext();
+        }
+        return x;
+    }
     public ArrayList<String> getAllCotacts() {
         ArrayList<String> array_list = new ArrayList<String>();
 

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +24,14 @@ public class DBMainActivity extends AppCompatActivity {
     DBHelper mydb;
     int ourID;
     int xx;
+    TextView expenseMain ;
+    TextView nameMain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dbactivity_main);
+        expenseMain =  findViewById(R.id.textView);
+        nameMain =  findViewById(R.id.textView2);
         mydb = new DBHelper(this);
         int x=0;
         //txtName=findViewById(R.id.txtName);
@@ -35,8 +40,12 @@ public class DBMainActivity extends AppCompatActivity {
         String message=intent.getStringExtra("first message");
         ourID=intent.getIntExtra("itemid",0);
         //Update the text on the welcome screen
-
-
+        int o=mydb.getSumDaily(ourID,0,"2020-06-29");
+        Toast.makeText(getApplicationContext(),"OUR SUM:"+o,
+                Toast.LENGTH_SHORT).show();
+        String ourName=mydb.getOurName(ourID);
+        expenseMain.setText(expenseMain.getText().toString()+o);
+        nameMain.setText(nameMain.getText().toString()+ourName);
         //ArrayList array_list = mydb.getAllCotacts();
         final ArrayList array_list = mydb.getAllItemsName(ourID);
 
