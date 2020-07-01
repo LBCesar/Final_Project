@@ -132,6 +132,15 @@ public class DBMainActivity extends AppCompatActivity {
 
             case R.id.item3:    // report 1 pie chart
                 Intent intent2 = new Intent(getApplicationContext(), DashboardActivity.class);
+                ArrayList<String> allitems=new ArrayList<>();
+                ArrayList<Integer> totalSumforItem=new ArrayList<>();
+                allitems=mydb.getAllItemsName(ourID);
+                for(int i=0;i<allitems.size();i++){
+                    int u=mydb.sumAllExpensesForAnItem(ourID,allitems.get(i));
+                    totalSumforItem.add(i,u);
+                }
+                intent2.putStringArrayListExtra("ai",allitems);
+                intent2.putIntegerArrayListExtra("tsfi",totalSumforItem);
                 intent2.putExtra("ourID",ourID);
                 intent2.putExtra("itemid",xx);
                 startActivity(intent2);
@@ -221,12 +230,6 @@ public class DBMainActivity extends AppCompatActivity {
                 }
                 intent7.putIntegerArrayListExtra("me",myExp2);
                 intent7.putIntegerArrayListExtra("ms",mySave);
-
-
-
-
-
-
                 intent7.putStringArrayListExtra("ad",alldates2);
                 intent7.putExtra("ourID",ourID);
                 intent7.putExtra("itemid",xx);

@@ -289,9 +289,43 @@ public class DBHelper extends SQLiteOpenHelper {
         res.moveToFirst();
         String results="";
         while(res.isAfterLast() == false){
-            //array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
-            //x=x+res.getInt(res.getColumnIndex(EXPENSES_COLUMN_PRICE));
             results=res.getString(res.getColumnIndex(USERS_COLUMN_DATE));
+            res.moveToNext();
+        }
+        return results;
+    }
+    public int getAnnualIncome(int uid){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from users where userid="+uid+"",null );
+        res.moveToFirst();
+        //String results="";
+        int results=0;
+        while(res.isAfterLast() == false){
+            results=res.getInt(res.getColumnIndex(USERS_COLUMN_ANNUAL));
+            res.moveToNext();
+        }
+        return results;
+    }
+    public int getSavingsGoal(int uid){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from users where userid="+uid+"",null );
+        res.moveToFirst();
+        //String results="";
+        int results=0;
+        while(res.isAfterLast() == false){
+            results=res.getInt(res.getColumnIndex(USERS_COLUMN_SAVINGS));
+            res.moveToNext();
+        }
+        return results;
+    }
+    public int getMaxExpense(int uid){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from users where userid="+uid+"",null );
+        res.moveToFirst();
+        //String results="";
+        int results=0;
+        while(res.isAfterLast() == false){
+            results=res.getInt(res.getColumnIndex(USERS_COLUMN_BUDGET));
             res.moveToNext();
         }
         return results;
@@ -471,6 +505,39 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         return array_list;
+    }
+    public int sumAllExpensesForAnItem(int id,String itemName) {
+        ArrayList<String> array_list = new ArrayList<String>();
+        Cursor r =getItemID(id,itemName);
+        int iid=0;
+        r.moveToFirst();
+
+        while(r.isAfterLast() == false){
+           // array_list.add(r.getString(r.getColumnIndex(ITEMS_COLUMN_ITEM)));
+            iid=r.getInt(r.getColumnIndex(ITEMS_COLUMN_ID));
+            r.moveToNext();
+        }
+        Cursor xp =getDataExpensesForItem(id,iid);
+        xp.moveToFirst();
+        int total=0;
+        while(xp.isAfterLast() == false){
+            // array_list.add(r.getString(r.getColumnIndex(ITEMS_COLUMN_ITEM)));
+            total=total+xp.getInt(xp.getColumnIndex(EXPENSES_COLUMN_PRICE));
+            xp.moveToNext();
+        }
+        return total;
+    }
+    public int getTotalSum(int userid1,int itemid1,String date1){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from expenses where userid= "+userid1+"",null);
+        res.moveToFirst();
+        int x=0;
+        while(res.isAfterLast() == false){
+            //array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
+            x=x+res.getInt(res.getColumnIndex(EXPENSES_COLUMN_PRICE));
+            res.moveToNext();
+        }
+        return x;
     }
     public ArrayList<String> getAllExpensesWithDate(int id,String date) {
         ArrayList<String> array_list = new ArrayList<String>();

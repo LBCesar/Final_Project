@@ -31,6 +31,8 @@ import java.util.List;
 // report graph 1
 public class DashboardActivity extends AppCompatActivity {
     DBHelper mydb;
+    ArrayList<String> alldates;
+    ArrayList<Integer> myExp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,13 @@ public class DashboardActivity extends AppCompatActivity {
 //        TabLayout tabs = findViewById(R.id.tabs);
 //        tabs.setupWithViewPager(viewPager);
         mydb = new DBHelper(this);
- //       Cursor rs = mydb.getDataExpensesForItem(ourID, itemID);
-//        Cursor sr = mydb.getDataItem(ourID,itemID);
 
         Intent intent = getIntent();
+
         ourID=intent.getIntExtra("ourID",0);
+        alldates=intent.getStringArrayListExtra("ai");
+        myExp=intent.getIntegerArrayListExtra("tsfi");
+
         Toast.makeText(getApplicationContext(), "Nothing"+ ourID,
                 Toast.LENGTH_SHORT).show();
         ArrayList<String> a=mydb.getAllItemsName(ourID);
@@ -64,25 +68,14 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
 
-
-/*
-        if(rs.getCount()>0) {
-            rs.moveToFirst();
-            while (!rs.isAfterLast()) {
-
-                int exp = rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
-                price.add(exp);
-                rs.moveToNext();
-            }
-        }
-*/
-//
         AnyChartView anyChartView = findViewById(R.id.piechart);
         Pie pie = AnyChart.pie();
 
         List<DataEntry> data = new ArrayList<>();
+        for(int i=0;i<alldates.size();i++){
+            data.add(new ValueDataEntry(alldates.get(i), myExp.get(i)));
 
-        data.add(new ValueDataEntry("okaljsad", 0001));
+        }
         pie.data(data);
 
         pie.labels().position("outside");
@@ -100,8 +93,6 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     }
-
-
 }
 
 
