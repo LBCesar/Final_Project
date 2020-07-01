@@ -67,6 +67,7 @@ public class DBMainActivity extends AppCompatActivity {
         expenseMain.setText(expenseMain.getText().toString() + "$" + todaysExpense);
 
         String ourGoal = mydb.getOurGoal(ourID);
+
         ourGoal = currencyFormat(ourGoal);
         savingsGoal.setText(savingsGoal.getText().toString() + " $" + ourGoal);
 

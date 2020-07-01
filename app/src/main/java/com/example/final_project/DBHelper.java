@@ -249,6 +249,17 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
         return true;
     }
+    public boolean updateBudget (int id,int budget) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        //contentValues.put("name", name);
+        //contentValues.put("phone", phone);
+        //contentValues.put("email", email);
+        //contentValues.put("street", street);
+        contentValues.put(USERS_COLUMN_BUDGET, budget);
+        db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(id) } );
+        return true;
+    }
     public boolean updateItem (int itemid, int userid, String item, String description, int price,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -401,6 +412,13 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("log", 1);
+        db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
+        //return true;
+    }
+    public void setNewBudget(int uid,int newBudget){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(USERS_COLUMN_BUDGET, newBudget);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
         //return true;
     }

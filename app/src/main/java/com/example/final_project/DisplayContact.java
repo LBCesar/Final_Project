@@ -254,6 +254,14 @@ public class DisplayContact extends Activity {
                     Toast.makeText(getApplicationContext(), "Updated"+newExpense.getText().toString(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
                     intent.putExtra("itemid",ourID);
+                    int ourBudget=mydb.getMaxExpense(ourID);
+                    int o = mydb.getSumDaily(ourID,0, date());
+                    if(o>ourBudget){
+                        Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
+                        mydb.setNewBudget(ourID,o);
+                    }
+
+
                     startActivity(intent);
                 } else{
                     Toast.makeText(getApplicationContext(), "not Updated", Toast.LENGTH_SHORT).show();
@@ -280,6 +288,12 @@ public class DisplayContact extends Activity {
                 intent.putExtra("itemid",ourID);
                 Toast.makeText(getApplicationContext(), "OUR ID:"+ourID,
                         Toast.LENGTH_SHORT).show();
+                int ourBudget=mydb.getMaxExpense(ourID);
+                int o = mydb.getSumDaily(ourID,0, date());
+                if(o>ourBudget){
+                    Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
+                    mydb.setNewBudget(ourID,o);
+                }
                 //Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
                 startActivity(intent);
             }
