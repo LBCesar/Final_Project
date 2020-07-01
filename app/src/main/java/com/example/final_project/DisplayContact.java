@@ -43,8 +43,10 @@ public class DisplayContact extends Activity {
         int exp=0;
         String name22 = null;
         String description22 = null;
-        ourID=getIntent().getIntExtra("ourID",0);
-        itemID=getIntent().getIntExtra("itemid",0);
+        ourID = getIntent().getIntExtra("ourID",0);
+        itemID = getIntent().getIntExtra("itemid",0);
+
+
         Toast.makeText(getApplicationContext(), " OUR ID"+ ourID,
                 Toast.LENGTH_LONG).show();
         Toast.makeText(getApplicationContext(), " ITEM ID "+itemID,
@@ -59,8 +61,8 @@ public class DisplayContact extends Activity {
                 //means this is the view part not the add contact part.
                 //Cursor rs = mydb.getData(Value);
                 //                                      user id, item id
-                Cursor rs=mydb.getDataExpensesForItem(ourID,itemID);
-                Cursor sr=mydb.getDataItem(ourID,itemID);
+                Cursor rs = mydb.getDataExpensesForItem(ourID,itemID);
+                Cursor sr = mydb.getDataItem(ourID,itemID);
                 id_To_Update = Value;
 
                 if(rs.getCount()>0) {
@@ -69,18 +71,19 @@ public class DisplayContact extends Activity {
 
                         exp = rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
                         //name22=rs.getString(rs.getColumnIndex(DBHelper.EXP))
-                        Toast.makeText(getApplicationContext(), "EXP: "+exp,
+                        Toast.makeText(getApplicationContext(), "EXP: "+ exp,
                                 Toast.LENGTH_SHORT).show();
                         rs.moveToNext();
                     }
                 }
+
                 if(sr.getCount()>0) {
                     sr.moveToFirst();
                     while (!sr.isAfterLast()) {
 
                         //exp = rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
-                        name22=sr.getString(sr.getColumnIndex(DBHelper.ITEMS_COLUMN_ITEM));
-                        description22=sr.getString(sr.getColumnIndex(DBHelper.ITEMS_COLUMN_DESCRIPTION));
+                        name22 = sr.getString(sr.getColumnIndex(DBHelper.ITEMS_COLUMN_ITEM));
+                        description22 = sr.getString(sr.getColumnIndex(DBHelper.ITEMS_COLUMN_DESCRIPTION));
                         //name22=rs.getString(rs.getColumnIndex(DBHelper.EXP))
                         Toast.makeText(getApplicationContext(), "EXP: "+exp,
                                 Toast.LENGTH_SHORT).show();

@@ -1,6 +1,7 @@
 package com.example.final_project;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +27,6 @@ import java.util.List;
 // tab1 dashboard
 public class Dashboard extends Fragment {
 
-//    AnyChartView anyChartView = getView().getRootView().findViewById(R.id.piechart);
-
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -39,6 +38,7 @@ public class Dashboard extends Fragment {
         AnyChartView anyChartView = root.findViewById(R.id.piechart);
         Pie pie = AnyChart.pie();
 
+
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("Toilet Paper", 1000000));
         pie.data(data);
@@ -48,12 +48,10 @@ public class Dashboard extends Fragment {
         pie.legend().title()
                 .text("My yearly expense")
                 .padding(0d, 0d, 10d, 0d);
-
         pie.legend()
                 .position("center-bottom")
                 .itemsLayout(LegendLayout.HORIZONTAL)
                 .align(Align.CENTER);
-
         anyChartView.setChart(pie);
 
 
