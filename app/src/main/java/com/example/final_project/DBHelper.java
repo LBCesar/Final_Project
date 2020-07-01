@@ -74,11 +74,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "create table items"+
                         "(itemid integer primary key AUTOINCREMENT NOT NULL,userid integer,item text,description text)"
         );
-
-
-
-
-
     }
 
     @Override
@@ -110,17 +105,8 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("userid", userid);
         contentValues.put("item", item);
         contentValues.put("description", description);
-        //contentValues.put("place", place);
-        //long id = db.insert(...);
         long id=db.insert("items", null, contentValues);
         insertExpenses(0,userid,(int)id,price,date);
-//        ContentValues contentValues2 = new ContentValues();
-//        contentValues2.put("userid", userid);
-//        contentValues2.put("itemid", id);
-//        contentValues2.put("price", price);
-//        contentValues2.put("date", date);
-//        db.insert("expenses", null, contentValues);
-
         return true;
     }
 
@@ -138,28 +124,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert("users", null, contentValues);
         return true;
     }
-
-    //verify and verify2 are attempts at validating password
-    //Verify2 works right now
-    /*
-    //This is what i used to test it, in main
-        mydb = new DBHelper(this);
-        int x=0;
-
-        mydb.insertUser(0,"cesar","cesar123","Cesar",430);
-        mydb.insertUser(0,"shoraj","shoraj123","Shoraj",5);
-        //int x=mydb.verify("cesar","cesar123");
-       Cursor res=mydb.verify2("cesar","cesar123");
-        if(res.getCount() > 0) {
-            res.moveToFirst();
-            while (!res.isAfterLast()) {
-                x = res.getInt(res.getColumnIndex(DBHelper.USERS_COLUMN_ID));
-                res.moveToNext();
-            }
-        }
-        Toast.makeText(getApplicationContext(), "Login Successful"+x,
-                Toast.LENGTH_LONG).show();
-     */
     public Cursor verify2(String username2,String password){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery( "select * from users where username= ?", new String[] { username2 } );

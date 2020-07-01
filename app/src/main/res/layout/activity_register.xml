@@ -134,8 +134,7 @@
             android:id="@+id/newAnnual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="abcd@gmail.com" />
+            android:ems="10" />
     </LinearLayout>
 
     <LinearLayout
@@ -155,8 +154,7 @@
             android:id="@+id/newAnnual2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="abcd@gmail.com" />
+            android:ems="10" />
     </LinearLayout>
 
     <Button

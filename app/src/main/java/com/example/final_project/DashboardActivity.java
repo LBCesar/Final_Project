@@ -61,6 +61,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
 
+
 /*
         if(rs.getCount()>0) {
             rs.moveToFirst();
