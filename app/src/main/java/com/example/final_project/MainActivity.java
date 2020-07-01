@@ -12,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button btnRegister;
@@ -21,21 +24,27 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
     private CheckBox cb;
     DBHelper mydb;
-    int z=0;
-    int y=-1;
+    int z = 0;
+    int y = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cb = findViewById(R.id.checkBox);
-        userName=findViewById(R.id.txtUserName);
-        password=findViewById(R.id.txtPassword);
+        userName = findViewById(R.id.txtUserName);
+        password = findViewById(R.id.txtPassword);
+        String sss=date();
+        Toast.makeText(getApplicationContext(), "OUR DATE:====" + sss,
+                Toast.LENGTH_LONG).show();
+
+
+
         mydb = new DBHelper(this);
-        y=mydb.logInSearch();
-        if(y!=-1){
+        y = mydb.logInSearch();
+        if (y != -1) {
             Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
-            intent.putExtra("itemid",y);
+            intent.putExtra("itemid", y);
             startActivity(intent);
         }
 
@@ -44,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String s1=userName.getText().toString();
-                String s2=password.getText().toString();
-               // int x= mydb.verify(s1,s2);
-                int x=0;
-                Cursor res =mydb.verify2(s1,s2);
-                if(res.getCount() > 0) {
+                String s1 = userName.getText().toString();
+                String s2 = password.getText().toString();
+                // int x= mydb.verify(s1,s2);
+                int x = 0;
+                Cursor res = mydb.verify2(s1, s2);
+                if (res.getCount() > 0) {
                     res.moveToFirst();
                     while (!res.isAfterLast()) {
                         // Do whatever you like with the result.
@@ -57,21 +66,21 @@ public class MainActivity extends AppCompatActivity {
                         if (pwd.equals(s2)) {
                             //res.close();
                             //res.getInt(res.g)
-                            x= res.getInt(res.getColumnIndex(DBHelper.USERS_COLUMN_ID));
+                            x = res.getInt(res.getColumnIndex(DBHelper.USERS_COLUMN_ID));
                         }
                         res.moveToNext();
                     }
                 }
 
-                if(x!=0) {
+                if (x != 0) {
                     Toast.makeText(getApplicationContext(), "Login Successful" + x,
                             Toast.LENGTH_LONG).show();
-                    if(z==1){
+                    if (z == 1) {
                         mydb.setLogIn(x);
                     }
                     //Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
                     Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
-                    intent.putExtra("itemid",x);
+                    intent.putExtra("itemid", x);
                     startActivity(intent);
                 }
             }
@@ -89,11 +98,25 @@ public class MainActivity extends AppCompatActivity {
         cb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                z=1;
+                z = 1;
             }
         });
 
 
+    }
+
+    String date() {
+
+
+        Date dNow = new Date();
+        SimpleDateFormat ft =
+                new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
+//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
+
+        //System.out.println("Current Date: "+ft.format(dNow));
+        return ft.format(dNow);
     }
 
 
