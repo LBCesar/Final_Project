@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome "
-            android:textSize="29dp"
+            android:textSize="29sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +43,8 @@
             android:gravity="right"
             android:text="Your Savings Goal: "
             android:textColor="#F264E612"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
 
@@ -61,7 +62,8 @@
             android:gravity="right"
             android:text="Today's expenses: "
             android:textColor="#F0E62128"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="RtlHardcoded" />
     </LinearLayout>
 
     <View
@@ -80,63 +82,4 @@
         tools:ignore="NestedScrolling" />
 
 </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-<!--    <?xml version="1.0" encoding="utf-8"?>-->
-
-<!--<androidx.constraintlayout.widget.ConstraintLayout-->
-<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--xmlns:tools="http://schemas.android.com/tools"-->
-<!--android:layout_width="match_parent"-->
-<!--tools:context=".DBMainActivity"-->
-<!--android:layout_height="match_parent">-->
-
-<!--<TextView-->
-<!--    android:id="@+id/textView"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:layout_alignParentTop="true"-->
-<!--    android:layout_centerHorizontal="true"-->
-<!--    android:layout_marginStart="60dp"-->
-<!--    android:layout_marginTop="88dp"-->
-<!--    android:text="Today's expenses: "-->
-<!--    android:textSize="30sp"-->
-<!--    app:layout_constraintStart_toStartOf="parent"-->
-<!--    app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--<TextView-->
-<!--    android:id="@+id/textView2"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:layout_below="@+id/textView"-->
-<!--    android:layout_centerHorizontal="true"-->
-<!--    android:layout_marginStart="60dp"-->
-<!--    android:text="Welcome "-->
-<!--    android:textColor="#ff16ff01"-->
-<!--    android:textSize="35sp"-->
-<!--    app:layout_constraintStart_toStartOf="parent"-->
-<!--    app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--<ListView-->
-<!--    android:id="@+id/listView1"-->
-<!--    android:layout_width="370dp"-->
-<!--    android:layout_height="436dp"-->
-<!--    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--    app:layout_constraintEnd_toEndOf="parent"-->
-<!--    app:layout_constraintStart_toStartOf="parent"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/textView"-->
-<!--    tools:ignore="NestedScrolling" />-->
-
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-
 

@@ -57,4 +57,14 @@
     <string name="this_help_activity">This is Help Activity</string>
 
 
+    <string name="err_name">Invalid Name</string>
+    <string name="err_username">Invalid Username</string>
+    <string name="err_password">Invalid Password. Needs to be in correct format</string>
+    <string name="err_savings">Invalid Savings</string>
+    <string name="err_repassword">Password do not match</string>
+    <string name="err_savings_goal">Invalid Savings Goal</string>
+    <string name="err_daily_expense">Invalid Max Daily Expense</string>
+    <string name="err_annual_income">Invalid Annual Income</string>
+
+
 </resources>
