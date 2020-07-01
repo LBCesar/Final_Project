@@ -75,7 +75,7 @@ public class DashboardActivity1 extends Activity {
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
 
-        cartesian.title("Line Chart that shows expense");
+        cartesian.title("Daily Expense");
 
         cartesian.yAxis(0).title("Number of Bottles Buy");
         cartesian.xAxis(0).labels().padding(5d, 5d, 5d, 5d);

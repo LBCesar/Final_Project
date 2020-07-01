@@ -176,6 +176,40 @@ public class DBMainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "======" + alldates2.get(0),
                             Toast.LENGTH_SHORT).show();
                 }
+                ArrayList<Integer> myExp2=new ArrayList<Integer>();
+                //if(alldates.size()>0) {
+                for (int i = 0; i < alldates2.size(); i++) {
+                    if(alldates2.get(i)!=null) {
+                        String w=alldates2.get(i);
+                        int w2=mydb.getSumDaily(ourID, 0, w);
+                        // myExp.set(i, w2);
+                        myExp2.add(i,w2);
+                    }
+                }
+                //}
+                if(myExp2.size()>0) {
+                    Toast.makeText(getApplicationContext(), "======LLL"+myExp2.get(0),
+                            Toast.LENGTH_SHORT).show();
+                }
+                if(alldates2.size()>0) {
+                    Toast.makeText(getApplicationContext(), "======" + alldates2.get(0),
+                            Toast.LENGTH_SHORT).show();
+                }
+                //intentx.putStringArrayListExtra("ad",alldates);
+                int annaulINC=20000;
+                ArrayList<Integer> mySave= new ArrayList<Integer>();
+                for (int i = 0; i < alldates2.size(); i++) {
+                    if(alldates2.get(i)!=null) {
+                        //d. Daily Saving = ((annual income)/365) – (Daily expense)
+                        mySave.add(i,((annaulINC)/365)-myExp2.get(i));
+                    }
+                }
+                intent7.putIntegerArrayListExtra("me",myExp2);
+
+
+
+
+
                 intent7.putStringArrayListExtra("ad",alldates2);
                 intent7.putExtra("ourID",ourID);
                 intent7.putExtra("itemid",xx);
