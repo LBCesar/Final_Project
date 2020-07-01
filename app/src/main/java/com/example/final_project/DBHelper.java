@@ -36,7 +36,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String USERS_COLUMN_LOG="log";
     public static final String USERS_COLUMN_DATE="date";
 
-
     public static final String ITEMS_TABLE_NAME="items";
     public static final String ITEMS_COLUMN_ID="itemid";
     public static final String ITEMS_COLUMN_USER_ID="userid";
@@ -161,19 +160,36 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
 
     }
+
     public String getOurName(int userid1){
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor res=db.rawQuery( "select * from users where  userid= "+userid1+"", null);
+        Cursor res=db.rawQuery( "select * from users where  userid= " + userid1 + "", null);
         String ourName="";
+
         if(res.getCount() > 0) {
             res.moveToFirst();
             while (!res.isAfterLast()) {
-                ourName=res.getString(res.getColumnIndex(USERS_COLUMN_NAME));
+                ourName = res.getString(res.getColumnIndex(USERS_COLUMN_NAME));
                 res.moveToNext();
             }
         }
-    return ourName;
+        return ourName + ", ";
+    }
+
+    // this one to get the goal
+    public String getOurGoal(int userid1){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res=db.rawQuery( "select * from users where  userid= " + userid1 + "", null);
+        String ourGoal = "";
+
+        if(res.getCount() > 0) {
+            res.moveToFirst();
+            while (!res.isAfterLast()) {
+                ourGoal = res.getString(res.getColumnIndex(USERS_COLUMN_SAVINGS));
+                res.moveToNext();
+            }
+        }
+        return ourGoal;
     }
 
 

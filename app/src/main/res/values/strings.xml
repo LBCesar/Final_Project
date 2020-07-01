@@ -43,7 +43,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <string name="save">Save Details</string>
+    <string name="save">Save Item</string>
     <string name="itemDisplayItem">Item</string>
     <string name="new_expense_display_contact">New Expense</string>
     <string name="description_display_contact">Description</string>
