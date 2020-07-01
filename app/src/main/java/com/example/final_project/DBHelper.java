@@ -359,12 +359,12 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return array_list;
     }
-    public ArrayList<String> getAllExpenses() {
+    public ArrayList<String> getAllExpenses(int id) {
         ArrayList<String> array_list = new ArrayList<String>();
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from expenses", null );
+        Cursor res =  db.rawQuery( "select * from expenses where userid="+id+"", null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){

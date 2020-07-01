@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="60dp"
         android:text="Welcome "
         android:textColor="#ff16ff01"
         android:textSize="35sp"

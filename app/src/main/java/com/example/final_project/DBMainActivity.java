@@ -113,6 +113,8 @@ public class DBMainActivity extends AppCompatActivity {
             case R.id.item3:
                 Intent intent2 = new Intent(getApplicationContext(),DashboardActivity.class);
                 //intent2.putExtras(dataBundle);
+                Toast.makeText(getApplicationContext(), "In MainOUR ID"+ourID,
+                        Toast.LENGTH_SHORT).show();
                 intent2.putExtra("ourID",ourID);
                 intent2.putExtra("itemid",xx);
                 startActivity(intent2);
