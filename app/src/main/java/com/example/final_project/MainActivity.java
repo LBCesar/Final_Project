@@ -42,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         mydb = new DBHelper(this);
         y = mydb.logInSearch();
         if (y != -1) {
+            String datetest=mydb.lastLoginDate(y);
+            //"2020-07-08"
+            //sss
+            if(!datetest.equals(sss)){
+                mydb.itsANewDay(y,datetest);
+                Toast.makeText(getApplicationContext(), "Values have been reset",
+                        Toast.LENGTH_LONG).show();
+            }
             Intent intent = new Intent(MainActivity.this, DBMainActivity.class);
             intent.putExtra("itemid", y);
             startActivity(intent);
@@ -104,8 +112,6 @@ public class MainActivity extends AppCompatActivity {
                 z = 1;
             }
         });
-
-
     }
 
     public String date() {
