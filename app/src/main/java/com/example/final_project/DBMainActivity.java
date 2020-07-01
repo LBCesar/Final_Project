@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DBMainActivity extends AppCompatActivity {
 
@@ -42,7 +44,8 @@ public class DBMainActivity extends AppCompatActivity {
         String message=intent.getStringExtra("first message");
         ourID=intent.getIntExtra("itemid",0);
         //Update the text on the welcome screen
-        int o=mydb.getSumDaily(ourID,0,"2020-06-29");
+        String todayDate= date();
+        int o=mydb.getSumDaily(ourID,0,todayDate);
         Toast.makeText(getApplicationContext(),"OUR SUM:"+o,
                 Toast.LENGTH_SHORT).show();
         String ourName=mydb.getOurName(ourID);
@@ -151,5 +154,15 @@ public class DBMainActivity extends AppCompatActivity {
             moveTaskToBack(true);
         }
         return super.onKeyDown(keycode, event);
+    }
+    public String date() {
+        Date dNow = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
+//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
+
+        //System.out.println("Current Date: "+ft.format(dNow));
+        return ft.format(dNow);
     }
 }

@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DisplayContact extends Activity {
 
     private DBHelper mydb ;
@@ -245,7 +248,9 @@ public class DisplayContact extends Activity {
 //                if(mydb.updateContact(id_To_Update,name.getText().toString(),
 //                        phone.getText().toString(), email.getText().toString(),
 //                        street.getText().toString(), place.getText().toString())){
-                if(mydb.updateExpense(itemID,ourID,itemID,Integer.parseInt(newExpense.getText().toString()),"2020-06-29")){
+                String currentDate=date();
+
+                if(mydb.updateExpense(itemID,ourID,itemID,Integer.parseInt(newExpense.getText().toString()),currentDate)){
                     Toast.makeText(getApplicationContext(), "Updated"+newExpense.getText().toString(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
                     intent.putExtra("itemid",ourID);
@@ -261,8 +266,9 @@ public class DisplayContact extends Activity {
 //                ourID=getIntent().getIntExtra("ourID",0);
 //                itemID=getIntent().getIntExtra("itemid",0);
                 //mydb.insertItem()
+                String currentDate=date();
                 if(mydb.insertItem(0,ourID,name.getText().toString(), descriptiontxt.getText().toString(),
-                        Integer.parseInt(newExpense.getText().toString()),"2020-06-29")){
+                        Integer.parseInt(newExpense.getText().toString()),currentDate)){
 
                     Toast.makeText(getApplicationContext(), "done",
                             Toast.LENGTH_SHORT).show();
@@ -278,5 +284,15 @@ public class DisplayContact extends Activity {
                 startActivity(intent);
             }
         }
+    }
+    public String date() {
+        Date dNow = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
+//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
+
+        //System.out.println("Current Date: "+ft.format(dNow));
+        return ft.format(dNow);
     }
 }

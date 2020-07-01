@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Register extends AppCompatActivity {
     private EditText name;
     private EditText uName;
@@ -71,11 +74,14 @@ public class Register extends AppCompatActivity {
                         res.moveToNext();
                     }
                 }
+                String currentDate=date();
+                Toast toast2=Toast.makeText(getApplicationContext(), "Current Date Register: "+currentDate, Toast.LENGTH_LONG);
+                toast2.show();
 
-                mydb.insertItem(0,x,"Groceries","Food and stuff",123,"2002-10-26");
-                mydb.insertItem(0,x,"Book","This is a book",456,"2002-10-26");
-                mydb.insertItem(0,x,"Ice Cream","Mint chocolate chip",789,"2002-10-26");
-                mydb.insertItem(0,x,"Movie Theater","Saw Paul Blart mall cop",123,"2002-10-26");
+                mydb.insertItem(0,x,"Groceries","Food and stuff",100,currentDate);
+                mydb.insertItem(0,x,"Book","This is a book",200,currentDate);
+                mydb.insertItem(0,x,"Ice Cream","Mint chocolate chip",300,currentDate);
+                mydb.insertItem(0,x,"Movie Theater","Saw Paul Blart mall cop",400,currentDate);
 
 
                 Intent i=new Intent(getApplicationContext(),MainActivity.class);
@@ -97,6 +103,16 @@ public class Register extends AppCompatActivity {
             }
         }
         return x;
+    }
+    public String date() {
+        Date dNow = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
+//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
+
+        //System.out.println("Current Date: "+ft.format(dNow));
+        return ft.format(dNow);
     }
 
     }
