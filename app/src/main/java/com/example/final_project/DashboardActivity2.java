@@ -57,8 +57,6 @@ public class DashboardActivity2 extends Activity {
             Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
                     Toast.LENGTH_SHORT).show();
         }
-//        int y=mydb.getSumDaily(ourID,0,alldates.get(0));
-
         AnyChartView anyChartView = findViewById(R.id.any_chart_view2);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar1));
 
@@ -84,10 +82,6 @@ public class DashboardActivity2 extends Activity {
         List<DataEntry> seriesData = new ArrayList<>();
         for (int i = 0; i < alldates.size(); i++) {
             if(alldates.get(i)!=null) {
-                //String w=alldates.get(i);
-                //int w2=mydb.getSumDaily(ourID, 0, w);
-                // myExp.set(i, w2);
-                // myExp.add(i,w2);
                 seriesData.add(new DashboardActivity2.CustomDataEntry(alldates.get(i), mySave.get(i), 2.3, 2.8));
                 seriesData.add(new DashboardActivity2.CustomDataEntry("2020-07-02", 1200, 2.3, 2.8));
 

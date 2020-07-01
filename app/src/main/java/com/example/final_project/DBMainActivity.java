@@ -220,7 +220,7 @@ public class DBMainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
                 //intentx.putStringArrayListExtra("ad",alldates);
-                int annaulINC=50000;
+                int annaulINC=mydb.getAnnualIncome(ourID);
                 ArrayList<Integer> mySave= new ArrayList<Integer>();
                 for (int i = 0; i < alldates2.size(); i++) {
                     if(alldates2.get(i)!=null) {
