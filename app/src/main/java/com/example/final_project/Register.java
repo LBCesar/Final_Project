@@ -59,7 +59,8 @@ public class Register extends AppCompatActivity {
                     int annual3=Integer.parseInt(annualIncome);
                     //Add the new user to the hashmap
                     //credentials.put(user.name,user);
-                mydb.insertUser(0,name2,pwd1,name1,save2,annual2,annual3,0,currentDate);
+                //mydb.insertUser()
+                mydb.insertUser(0,name2,pwd1,name1,annual2,annual3,save2,0,currentDate);
                 int x=0;
                 Cursor res =mydb.verify2(name2,pwd1);
                 if(res.getCount() > 0) {
@@ -78,10 +79,10 @@ public class Register extends AppCompatActivity {
                 Toast toast2=Toast.makeText(getApplicationContext(), "Current Date Register: "+currentDate, Toast.LENGTH_LONG);
                 toast2.show();
 
-                mydb.insertItem(0,x,"Groceries","Food and stuff",100,currentDate);
-                mydb.insertItem(0,x,"Book","This is a book",200,currentDate);
-                mydb.insertItem(0,x,"Ice Cream","Mint chocolate chip",300,currentDate);
-                mydb.insertItem(0,x,"Movie Theater","Saw Paul Blart mall cop",400,currentDate);
+                mydb.insertItem(0,x,"Groceries","Food and stuff",0,currentDate);
+                mydb.insertItem(0,x,"Book","This is a book",0,currentDate);
+                mydb.insertItem(0,x,"Ice Cream","Mint chocolate chip",0,currentDate);
+                mydb.insertItem(0,x,"Movie Theater","Saw Paul Blart mall cop",0,currentDate);
 
 
                 Intent i=new Intent(getApplicationContext(),MainActivity.class);

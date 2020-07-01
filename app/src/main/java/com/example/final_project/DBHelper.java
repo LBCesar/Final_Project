@@ -17,12 +17,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName2.db";
     public static final String CONTACTS_TABLE_NAME = "contacts";
-    public static final String CONTACTS_COLUMN_ID = "id";
-    public static final String CONTACTS_COLUMN_NAME = "name";
-    public static final String CONTACTS_COLUMN_EMAIL = "email";
-    public static final String CONTACTS_COLUMN_STREET = "street";
-    public static final String CONTACTS_COLUMN_CITY = "place";
-    public static final String CONTACTS_COLUMN_PHONE = "phone";
+//    public static final String CONTACTS_COLUMN_ID = "id";
+//    public static final String CONTACTS_COLUMN_NAME = "name";
+//    public static final String CONTACTS_COLUMN_EMAIL = "email";
+//    public static final String CONTACTS_COLUMN_STREET = "street";
+//    public static final String CONTACTS_COLUMN_CITY = "place";
+//    public static final String CONTACTS_COLUMN_PHONE = "phone";
     private HashMap hp;
 
     public static final String USERS_TABLE_NAME="users";
@@ -57,10 +57,10 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
-        db.execSQL(
-                "create table contacts " +
-                        "(id integer primary key, name text,phone text,email text, street text,place text)"
-        );
+//        db.execSQL(
+//                "create table contacts " +
+//                        "(id integer primary key, name text,phone text,email text, street text,place text)"
+//        );
         db.execSQL(
                 "create table expenses"+
                         "(expensesid integer primary key AUTOINCREMENT NOT NULL,userid integer,itemid integer,price integer,date text)"
@@ -80,7 +80,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        db.execSQL("DROP TABLE IF EXISTS contacts");
+        //db.execSQL("DROP TABLE IF EXISTS contacts");
         db.execSQL("DROP TABLE IF EXISTS users");
         db.execSQL("DROP TABLE IF EXISTS items");
         db.execSQL("DROP TABLE IF EXISTS expenses");
@@ -130,28 +130,8 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery( "select * from users where username= ?", new String[] { username2 } );
         return res;
-
     }
-    public int verify(String username2,String password){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from users where username="+ username2+"", null );
-        if(res.getCount() > 0) {
-            res.moveToFirst();
-            while (!res.isAfterLast()) {
-                // Do whatever you like with the result.
-                String pwd = res.getString(res.getColumnIndex(USERS_COLUMN_PASSWORD));
-                if (password.equals(pwd)) {
-                    //res.close();
-                    //res.getInt(res.g)
-                    return res.getInt(res.getColumnIndex(USERS_COLUMN_ID));
-                }
-                res.moveToNext();
-            }
-        }
 
-        res.close();
-        return 0;
-    }
     public Cursor getItemID(int userid1,String item){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery( "select * from items where item= ? and userid= "+userid1+"", new String[] { item } );
@@ -191,26 +171,8 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return ourGoal;
     }
-
-
-    public boolean insertContact (String name, String phone, String email, String street,String place) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        contentValues.put("phone", phone);
-        contentValues.put("email", email);
-        contentValues.put("street", street);
-        contentValues.put("place", place);
-        db.insert("contacts", null, contentValues);
-        return true;
-    }
     //The getData___ family will return a pointer to all of the data we queried.
     //ex. getDataItem(int id) will return all items belonging to a particular user id.
-    public Cursor getData(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from contacts where id="+id+"", null );
-        return res;
-    }
     public Cursor getDataItem(int id,int itemid2) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from items where userid="+id+" and itemid ="+itemid2+"", null );
@@ -238,17 +200,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public boolean updateContact (Integer id, String name, String phone, String email, String street,String place) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        contentValues.put("phone", phone);
-        contentValues.put("email", email);
-        contentValues.put("street", street);
-        contentValues.put("place", place);
-        db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
-        return true;
-    }
     public boolean updateBudget (int id,int budget) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -348,7 +299,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         contentValues.put("date", todaysDate);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
-        //return true;
     }
     public Integer deleteContact (Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -385,20 +335,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return x;
     }
-//    public ArrayList<String> getAllExpensesWithDate(int id,String date) {
-//        ArrayList<String> array_list = new ArrayList<String>();
-//
-//        //hp = new HashMap();
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor res =  db.rawQuery( "select * from expenses where userid="+id+"and expenses.date= ?", new String[] { date} );
-//        res.moveToFirst();
-//
-//        while(res.isAfterLast() == false){
-//            array_list.add(res.getString(res.getColumnIndex(EXPENSES_COLUMN_PRICE)));
-//            res.moveToNext();
-//        }
-//        return array_list;
-//    }
 
     public void logOut(int uid){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -420,7 +356,6 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(USERS_COLUMN_SAVINGS, newSave);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
-        //return true;
     }
     public void setNewBudget(int uid,int newBudget,int saving){
         int newTotal=newBudget-saving;
@@ -436,7 +371,6 @@ public class DBHelper extends SQLiteOpenHelper {
         else{
             setSavings(uid,newSavings);
         }
-        //return true;
     }
     public int logInSearch(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -452,24 +386,9 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return -1;
     }
-    public ArrayList<String> getAllCotacts() {
-        ArrayList<String> array_list = new ArrayList<String>();
 
-        //hp = new HashMap();
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from contacts", null );
-        res.moveToFirst();
-
-        while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
-            res.moveToNext();
-        }
-        return array_list;
-    }
     public ArrayList<String> getAllUsersName() {
         ArrayList<String> array_list = new ArrayList<String>();
-
-        //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from users", null );
         res.moveToFirst();
@@ -604,11 +523,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public String date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
-//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
-
-        //System.out.println("Current Date: "+ft.format(dNow));
         return ft.format(dNow);
     }
 }
