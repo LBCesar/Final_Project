@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView1"
@@ -8,29 +9,48 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="10dp">
 
+        <LinearLayout
+            android:id="@+id/itemLayout10"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/itemDisplayItem"
+            android:textSize="25sp"
+            android:gravity="center"/>
+
+        </LinearLayout>
+
+
         <EditText
             android:id="@+id/editTextName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="149dp"
-            android:layout_marginTop="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/itemLayout10"
+            android:layout_marginStart="149dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:inputType="text"></EditText>
+            android:inputType="text" />
+
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editTextStreet"
+            android:layout_alignStart="@+id/editTextStreet"
             android:layout_below="@+id/editTextStreet"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textEmailAddress" />
 
@@ -39,8 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/editTextName"
-            android:layout_alignParentLeft="true"
-            android:text="Item"
+            android:layout_alignParentStart="true"
+            android:text="@string/itemDisplayItem"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
@@ -50,24 +70,25 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="17dp"
             android:onClick="run"
+            android:layout_marginStart="30sp"
             android:text="@string/save" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
+            android:layout_alignStart="@+id/textView1"
             android:layout_alignBottom="@+id/editTextEmail"
-            android:text="New Expense"
+            android:text="@string/new_expense_display_contact"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
+            android:layout_alignStart="@+id/textView1"
             android:layout_alignBottom="@+id/editTextPhone"
-            android:text="Description"
+            android:text="@string/description_display_contact"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -75,19 +96,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/editTextEmail"
-            android:layout_alignLeft="@+id/textView5"
-            android:text="Current Expense"
+            android:layout_alignStart="@+id/textView5"
+            android:text="@string/current_expense_display_contact"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/editTextStreet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editTextName"
+            android:layout_alignStart="@+id/editTextName"
             android:layout_below="@+id/editTextPhone"
             android:ems="10"
+            android:layout_marginTop="10dp"
             android:inputType="text" >
-
             <requestFocus />
         </EditText>
 
@@ -95,10 +116,13 @@
             android:id="@+id/editTextPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editTextStreet"
+            android:layout_alignStart="@+id/editTextStreet"
             android:layout_below="@+id/editTextName"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType=""
+            tools:ignore="LabelFor,TextFields"
+            android:autofillHints="Specify what type of item this is" />
 
         <Button
             android:id="@+id/button"
@@ -109,7 +133,7 @@
             android:layout_marginTop="100dp"
             android:layout_toEndOf="@+id/button1"
             android:onClick="run2"
-            android:text="Button" />
+            android:text="@string/delete_item_display_contact" />
 
     </RelativeLayout>
 </ScrollView>

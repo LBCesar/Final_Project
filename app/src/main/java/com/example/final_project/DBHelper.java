@@ -37,8 +37,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String USERS_COLUMN_DATE="date";
 
 
-
-
     public static final String ITEMS_TABLE_NAME="items";
     public static final String ITEMS_COLUMN_ID="itemid";
     public static final String ITEMS_COLUMN_USER_ID="userid";

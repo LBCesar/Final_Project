@@ -19,12 +19,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="eTrack"
+            android:text="@string/etrack"
             android:textAlignment="center"
             android:textColor="#5BC3EB"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="italic" />
-
     </LinearLayout>
 
 
@@ -36,23 +35,23 @@
         android:layout_centerHorizontal="true"
         android:background="@color/cardview_dark_background"
         android:ems="10"
-        android:paddingLeft="10dp"
-        android:hint="Enter Username"
+        android:paddingStart="10dp"
+        android:hint="@string/enter_username"
         android:inputType="textPersonName"
-        android:textColor="#EDD5CBCB" />
+        android:textColor="#EDD5CBCB"
+        tools:ignore="RtlSymmetry" />
 
     <EditText
         android:id="@+id/txtPassword"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:autofillHints=""
         android:background="@color/cardview_dark_background"
         android:ems="10"
-        android:paddingLeft="10dp"
-        android:hint="Enter Password"
+        android:paddingStart="10dp"
+        android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:textColor="#EDD5CBCB" />
 
@@ -69,9 +68,8 @@
             android:layout_width="250dp"
             android:background="#5BC3EB"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="@string/login" />
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/layout4"
@@ -86,18 +84,18 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="#E55812"
-            android:text="Sign up" />
+            android:text="@string/sign_up" />
     </LinearLayout>
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_below="@id/layout4"
-        android:background="#5BC3EB"
+        android:textColor="#EDD5CBCB"
         android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="CheckBox" />
-
+        android:text="@string/keep_logged_in" />
 
 </RelativeLayout>
+
