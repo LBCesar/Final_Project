@@ -39,15 +39,11 @@ public class Register extends AppCompatActivity {
         mydb = new DBHelper(this);
 
         suBtn=findViewById(R.id.btnRegisterComplete);
-//        Intent register =  getIntent();
         suBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  if(valid.validate()){
                     Toast toast=Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG);
                     toast.show();
-                    //Creating a new user, and filling it with data.
-                    //UserData user = new UserData();
                     String name1=name.getText().toString();
                     String name2=uName.getText().toString();
                     String pwd1=pwd.getText().toString();
@@ -57,9 +53,6 @@ public class Register extends AppCompatActivity {
                     int annual2=Integer.parseInt(annual1);
                     String annualIncome=annual.getText().toString();
                     int annual3=Integer.parseInt(annualIncome);
-                    //Add the new user to the hashmap
-                    //credentials.put(user.name,user);
-                //mydb.insertUser()
                 mydb.insertUser(0,name2,pwd1,name1,annual2,annual3,save2,0,currentDate);
                 int x=0;
                 Cursor res =mydb.verify2(name2,pwd1);
@@ -69,8 +62,6 @@ public class Register extends AppCompatActivity {
                         // Do whatever you like with the result.
                         String pwd = res.getString(res.getColumnIndex(DBHelper.USERS_COLUMN_PASSWORD));
                         if (pwd.equals(pwd1)) {
-                            //res.close();
-                            //res.getInt(res.g)
                             x= res.getInt(res.getColumnIndex(DBHelper.USERS_COLUMN_ID));
                         }
                         res.moveToNext();
@@ -86,10 +77,7 @@ public class Register extends AppCompatActivity {
 
 
                 Intent i=new Intent(getApplicationContext(),MainActivity.class);
-                    //Send the hash map back to the main activity
-                    //i.putExtra("data", credentials);
                     startActivity(i);
-               // }
             }
         });
     }
@@ -108,13 +96,7 @@ public class Register extends AppCompatActivity {
     public String date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
-//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
-
-        //System.out.println("Current Date: "+ft.format(dNow));
         return ft.format(dNow);
     }
-
-    }
+}
 
