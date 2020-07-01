@@ -109,11 +109,21 @@ public class DBMainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
-            case R.id.item3:
+            case R.id.item3:    // report 1 pie chart
                 Intent intent2 = new Intent(getApplicationContext(), DashboardActivity.class);
                 intent2.putExtra("ourID",ourID);
                 intent2.putExtra("itemid",xx);
                 startActivity(intent2);
+                return true;
+
+            case R.id.item6:    // report 2 line graph
+                Intent intent6 = new Intent(getApplicationContext(), DashboardActivity1.class);
+                startActivity(intent6);
+                return true;
+
+            case R.id.item7: // report 3
+                Intent intent7 = new Intent(getApplicationContext(), DashboardActivity2.class);
+                startActivity(intent7);
                 return true;
 
             case R.id.item4:
@@ -129,6 +139,7 @@ public class DBMainActivity extends AppCompatActivity {
                  Intent intent5 = new Intent(getApplicationContext(), Settings.class);
                  intent5.putExtra("ourID", ourID);
                  startActivity(intent5);
+
 
             default:
                 return super.onOptionsItemSelected(item);

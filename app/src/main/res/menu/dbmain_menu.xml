@@ -10,15 +10,24 @@
     </item>
 
     <item android:id="@+id/item3"
-        android:title="Reports" >
+        android:title="Report1" >
+    </item>
+
+    <item android:id="@+id/item6"
+        android:title="Report2" >
+    </item>
+
+    <item android:id="@+id/item7"
+        android:title="Report3" >
+    </item>
+
+    <item android:id="@+id/item5"
+        android:title="Settings" >
     </item>
 
     <item android:id="@+id/item4"
         android:title="Logout" >
     </item>
 
-    <item android:id="@+id/item5"
-        android:title="Settings" >
-    </item>
 
 </menu>

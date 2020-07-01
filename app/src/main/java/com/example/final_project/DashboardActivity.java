@@ -28,6 +28,7 @@ import com.example.final_project.ui.main.SectionsPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+// report graph 1
 public class DashboardActivity extends AppCompatActivity {
     DBHelper mydb;
 
@@ -53,6 +54,7 @@ public class DashboardActivity extends AppCompatActivity {
         ArrayList<String> a=mydb.getAllItemsName(ourID);
         ArrayList<String> b=mydb.getAllExpenses(ourID);
 
+
         if(a.size()>0) {
             Toast.makeText(getApplicationContext(), "======" + a.get(0),
                     Toast.LENGTH_SHORT).show();
@@ -75,26 +77,26 @@ public class DashboardActivity extends AppCompatActivity {
         }
 */
 //
-//        AnyChartView anyChartView = findViewById(R.id.piechart);
-//        Pie pie = AnyChart.pie();
-//
-//        List<DataEntry> data = new ArrayList<>();
-//
-//        data.add(new ValueDataEntry("okaljsad", 0001));
-//        pie.data(data);
-//
-//        pie.labels().position("outside");
-//
-//        pie.legend().title().enabled(true);
-//        pie.legend().title()
-//                .text("My yearly expense")
-//                .padding(0d, 0d, 10d, 0d);
-//
-//        pie.legend()
-//                .position("center-bottom")
-//                .itemsLayout(LegendLayout.HORIZONTAL)
-//                .align(Align.CENTER);
-//        anyChartView.setChart(pie);
+        AnyChartView anyChartView = findViewById(R.id.piechart);
+        Pie pie = AnyChart.pie();
+
+        List<DataEntry> data = new ArrayList<>();
+
+        data.add(new ValueDataEntry("okaljsad", 0001));
+        pie.data(data);
+
+        pie.labels().position("outside");
+
+        pie.legend().title().enabled(true);
+        pie.legend().title()
+                .text("My yearly expense")
+                .padding(0d, 0d, 10d, 0d);
+
+        pie.legend()
+                .position("center-bottom")
+                .itemsLayout(LegendLayout.HORIZONTAL)
+                .align(Align.CENTER);
+        anyChartView.setChart(pie);
 
 
     }

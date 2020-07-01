@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.final_project.Category;
-import com.example.final_project.Dashboard;
+import com.example.final_project.DashboardActivity2;
+import com.example.final_project.DashboardActivity1;
 import com.example.final_project.R;
 
 /**
@@ -34,11 +34,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                Dashboard tab1_dashboard = new Dashboard();
-                return tab1_dashboard;
+                DashboardActivity1 tab1_dashboard = new DashboardActivity1();
+//                return tab1_dashboard;
             case 1:
-                Category tab2_category = new Category();
-                return tab2_category;
+                DashboardActivity2 tab2_category = new DashboardActivity2();
+//                return tab2_category;
             default:
                 return null;
         }
