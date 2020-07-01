@@ -69,34 +69,6 @@ public class DBHelper extends SQLiteOpenHelper {
                         "(itemid integer primary key AUTOINCREMENT NOT NULL,userid integer,item text,description text)"
         );
 
-        //Preloading a DB insertUser insertItem (int itemid, int userid, String item, String description)
-        //insertUser(0,"cesar","123","Cesar",1000);
-//        ContentValues contentValues = new ContentValues();
-//        //contentValues.put("userid", userid);
-//        contentValues.put("username", "cesar");
-//        contentValues.put("password", "123");
-//        contentValues.put("name", "Cesar");
-//        contentValues.put("budget", 1000);
-//        db.insert("users", null, contentValues);
-//        //insertUser(0,"shoraj","123","Shoraj",1253);
-//        ContentValues contentValues2 = new ContentValues();
-//        //contentValues.put("userid", userid);
-//        contentValues2.put("username", "shoraj");
-//        contentValues2.put("password", "123");
-//        contentValues2.put("name", "Shoraj");
-//        contentValues2.put("budget", 1253);
-//        db.insert("users", null, contentValues2);
-/*
-        insertItem(0,1,"Groceries","Food and stuff");
-        insertItem(0,1,"Book","This is a book");
-        insertItem(0,1,"Ice Cream","Mint chocolate chip");
-        insertItem(0,2,"Book","Book number 2");
-        insertItem(0,2,"Movie Theater","Saw Paul Blart mall cop");
-
-        insertExpenses(1,1,2,50,"2020-06-28");
-        insertExpenses(1,1,3,1000,"2020-06-28");
-
- */
 
 
 
@@ -299,6 +271,19 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("contacts",
                 "id = ? ",
+                new String[] { Integer.toString(id) });
+    }
+    public Integer deleteItem (Integer id) {
+        deleteExpense(id);
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("items",
+                "itemid = ? ",
+                new String[] { Integer.toString(id) });
+    }
+    public Integer deleteExpense (Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("expenses",
+                "expensesid = ? ",
                 new String[] { Integer.toString(id) });
     }
 

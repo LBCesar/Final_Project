@@ -22,6 +22,7 @@ public class DisplayContact extends Activity {
     TextView currentExpense;
     TextView newExpense;
     TextView place;
+    int p=0;
     int id_To_Update = 0;
     int ourID;
     int itemID;
@@ -151,6 +152,13 @@ public class DisplayContact extends Activity {
             case R.id.Edit_Contact:
                 Button b = (Button)findViewById(R.id.button1);
                 b.setVisibility(View.VISIBLE);
+                Button c=findViewById(R.id.button);
+                c.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        p=1;
+                    }
+                });
                 name.setEnabled(true);
                 name.setFocusableInTouchMode(true);
                 name.setClickable(true);
@@ -205,6 +213,21 @@ public class DisplayContact extends Activity {
 
         }
     }
+    public void run2(View view) {
+        Toast.makeText(getApplicationContext(), "We are in delete mode.", Toast.LENGTH_SHORT).show();
+
+        Bundle extras = getIntent().getExtras();
+        if(extras !=null) {
+            int Value = extras.getInt("id");
+            if (Value > 0) {
+                mydb.deleteItem(itemID);
+                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
+                intent.putExtra("itemid",ourID);
+                startActivity(intent);
+            }
+        }
+    }
 
     public void run(View view) {
         Bundle extras = getIntent().getExtras();
@@ -215,6 +238,7 @@ public class DisplayContact extends Activity {
 
             }
             if(Value>0){
+
 //                if(mydb.updateContact(id_To_Update,name.getText().toString(),
 //                        phone.getText().toString(), email.getText().toString(),
 //                        street.getText().toString(), place.getText().toString())){

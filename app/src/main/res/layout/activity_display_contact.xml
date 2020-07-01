@@ -108,6 +108,7 @@
             android:layout_marginStart="107dp"
             android:layout_marginTop="100dp"
             android:layout_toEndOf="@+id/button1"
+            android:onClick="run2"
             android:text="Button" />
 
     </RelativeLayout>
