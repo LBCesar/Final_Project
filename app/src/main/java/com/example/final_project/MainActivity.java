@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.txtPassword);
 
         final String sss = date();
-//        Toast.makeText(getApplicationContext(), "OUR DATE:====" + sss,
-//                Toast.LENGTH_LONG).show();
 
         mydb = new DBHelper(this);
         y = mydb.logInSearch();

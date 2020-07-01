@@ -38,8 +38,6 @@ public class DisplayContact extends Activity {
         descriptiontxt =  findViewById(R.id.editTextPhone);
         currentExpense =  findViewById(R.id.editTextStreet);
         newExpense =  findViewById(R.id.editTextEmail);
-        //place =  findViewById(R.id.editTextCity);
-
         mydb = new DBHelper(this);
 
         Bundle extras = getIntent().getExtras();
@@ -49,68 +47,42 @@ public class DisplayContact extends Activity {
         ourID = getIntent().getIntExtra("ourID",0);
         itemID = getIntent().getIntExtra("itemid",0);
 
-
-        Toast.makeText(getApplicationContext(), " OUR ID"+ ourID,
-                Toast.LENGTH_LONG).show();
-        Toast.makeText(getApplicationContext(), " ITEM ID "+itemID,
-                Toast.LENGTH_LONG).show();
-
-
-        //ArrayList array_list = mydb.getAllItemsName(ourID);
         if(extras !=null) {
             int Value = extras.getInt("id");
 
             if(Value>0){
-                //means this is the view part not the add contact part.
-                //Cursor rs = mydb.getData(Value);
-                //                                      user id, item id
                 Cursor rs = mydb.getDataExpensesForItem(ourID,itemID);
                 Cursor sr = mydb.getDataItem(ourID,itemID);
                 id_To_Update = Value;
-
+                //Get the expense for an item.
                 if(rs.getCount()>0) {
                     rs.moveToFirst();
                     while (!rs.isAfterLast()) {
-
                         exp = rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
-                        //name22=rs.getString(rs.getColumnIndex(DBHelper.EXP))
                         Toast.makeText(getApplicationContext(), "EXP: "+ exp,
                                 Toast.LENGTH_SHORT).show();
                         rs.moveToNext();
                     }
                 }
-
+                //Get the item name and description
                 if(sr.getCount()>0) {
                     sr.moveToFirst();
                     while (!sr.isAfterLast()) {
-
-                        //exp = rs.getInt(rs.getColumnIndex(DBHelper.EXPENSES_COLUMN_PRICE));
                         name22 = sr.getString(sr.getColumnIndex(DBHelper.ITEMS_COLUMN_ITEM));
                         description22 = sr.getString(sr.getColumnIndex(DBHelper.ITEMS_COLUMN_DESCRIPTION));
-                        //name22=rs.getString(rs.getColumnIndex(DBHelper.EXP))
                         Toast.makeText(getApplicationContext(), "EXP: "+exp,
                                 Toast.LENGTH_SHORT).show();
                         sr.moveToNext();
                     }
                 }
-               // String strName = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
-                String strName="";
-               // String strPhone = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_PHONE));
-                String strPhone="";
-               // String strEmail = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_EMAIL));
-                String strEmail="is this it ?";
-                //String strStreet = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_STREET));
+
                 String strStreet="";
-                //String strPlace = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_CITY));
-                String strPlace="";
 
                 if (!rs.isClosed())  {
                     rs.close();
                 }
                 Button b = (Button)findViewById(R.id.button1);
-                //b.setVisibility(View.INVISIBLE);
                 name.setText(name22);
-                //name.setText((CharSequence) strName);
                 name.setFocusable(false);
                 name.setClickable(false);
 
@@ -128,10 +100,6 @@ public class DisplayContact extends Activity {
                 newExpense.setFocusableInTouchMode(true);
                 newExpense.setClickable(true);
 
-//                place.setText(String.valueOf(exp));
-//                place.setEnabled(true);
-//                place.setFocusableInTouchMode(true);
-//                place.setClickable(true);
             }
         }
     }
@@ -176,18 +144,10 @@ public class DisplayContact extends Activity {
                 currentExpense.setEnabled(true);
                 currentExpense.setFocusableInTouchMode(true);
                 currentExpense.setClickable(true);
-//
-//                currentExpense.setText(String.valueOf(exp));
-//                currentExpense.setFocusable(false);
-//                currentExpense.setClickable(false);
 
                 newExpense.setEnabled(true);
                 newExpense.setFocusableInTouchMode(true);
                 newExpense.setClickable(true);
-
-//                place.setEnabled(true);
-//                place.setFocusableInTouchMode(true);
-//                place.setClickable(true);
 
                 return true;
             case R.id.Delete_Contact:
@@ -244,10 +204,6 @@ public class DisplayContact extends Activity {
 
             }
             if(Value>0){
-
-//                if(mydb.updateContact(id_To_Update,name.getText().toString(),
-//                        phone.getText().toString(), email.getText().toString(),
-//                        street.getText().toString(), place.getText().toString())){
                 String currentDate=date();
 
                 if(mydb.updateExpense(itemID,ourID,itemID,Integer.parseInt(newExpense.getText().toString()),currentDate)){
@@ -267,13 +223,6 @@ public class DisplayContact extends Activity {
                     Toast.makeText(getApplicationContext(), "not Updated", Toast.LENGTH_SHORT).show();
                 }
             } else{
-                //Creating a new row entry.
-//                if(mydb.insertContact(name.getText().toString(), phone.getText().toString(),
-//                        email.getText().toString(), street.getText().toString(),
-//                        place.getText().toString())){
-//                ourID=getIntent().getIntExtra("ourID",0);
-//                itemID=getIntent().getIntExtra("itemid",0);
-                //mydb.insertItem()
                 String currentDate=date();
                 if(mydb.insertItem(0,ourID,name.getText().toString(), descriptiontxt.getText().toString(),
                         Integer.parseInt(newExpense.getText().toString()),currentDate)){
@@ -294,7 +243,6 @@ public class DisplayContact extends Activity {
                     Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
                     mydb.setNewBudget(ourID,o,ourBudget);
                 }
-                //Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
                 startActivity(intent);
             }
         }
@@ -302,11 +250,6 @@ public class DisplayContact extends Activity {
     public String date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
-//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
-
-        //System.out.println("Current Date: "+ft.format(dNow));
         return ft.format(dNow);
     }
 }
