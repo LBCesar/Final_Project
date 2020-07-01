@@ -211,7 +211,7 @@ public class DBMainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
                 //intentx.putStringArrayListExtra("ad",alldates);
-                int annaulINC=20000;
+                int annaulINC=50000;
                 ArrayList<Integer> mySave= new ArrayList<Integer>();
                 for (int i = 0; i < alldates2.size(); i++) {
                     if(alldates2.get(i)!=null) {
@@ -220,6 +220,8 @@ public class DBMainActivity extends AppCompatActivity {
                     }
                 }
                 intent7.putIntegerArrayListExtra("me",myExp2);
+                intent7.putIntegerArrayListExtra("ms",mySave);
+
 
 
 
