@@ -8,34 +8,16 @@
     android:layout_height="match_parent"
     tools:context=".DashboardActivity">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="385dp">
+        android:layout_height="match_parent">
 
         <com.anychart.AnyChartView
             android:id="@+id/piechart"
             android:layout_width="match_parent"
-            android:layout_height="385dp"
-            android:background="@color/cardview_dark_background" />
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="385dp"
-        android:background="#1B1B1B">
-
-        <TextView
-            android:textSize="26dp"
-            android:text="More data??"
-            android:gravity="center"
-            android:textColor="#5BC3EB"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
 
 
 </RelativeLayout>

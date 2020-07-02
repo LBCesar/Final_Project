@@ -53,23 +53,23 @@ public class Register extends AppCompatActivity {
 //        Intent register =  getIntent();
 
 
-//        mAwesomeValidation.addValidation(Register.this, R.id.newName, "[a-zA-Z\\s]+", R.string.err_name);
-//        mAwesomeValidation.addValidation(Register.this, R.id.newUsername, "[a-zA-Z\\s]+", R.string.err_username);
-//        mAwesomeValidation.addValidation(Register.this, R.id.newPassword, RegexPassword,  R.string.err_password);
-//
-//        mAwesomeValidation.addValidation(Register.this, R.id.newRePassword, RegexPassword,  R.string.err_password);
-//        mAwesomeValidation.addValidation(Register.this, R.id.newRePassword, R.id.newPassword, R.string.err_repassword);
-//
-//        mAwesomeValidation.addValidation(Register.this, R.id.newSavings, "[/^\\d+\\.?\\d*$/]+", R.string.err_savings_goal);
-//        mAwesomeValidation.addValidation(Register.this, R.id.newAnnual, "[/^\\d+\\.?\\d*$/]+", R.string.err_daily_expense);
-//        mAwesomeValidation.addValidation(Register.this, R.id.newAnnual2, "[/^\\d+\\.?\\d*$/]+", R.string.err_annual_income);
+        mAwesomeValidation.addValidation(Register.this, R.id.newName, "[a-zA-Z\\s]+", R.string.err_name);
+        mAwesomeValidation.addValidation(Register.this, R.id.newUsername, "[a-zA-Z\\s]+", R.string.err_username);
+        mAwesomeValidation.addValidation(Register.this, R.id.newPassword, RegexPassword,  R.string.err_password);
+
+        mAwesomeValidation.addValidation(Register.this, R.id.newRePassword, RegexPassword,  R.string.err_password);
+        mAwesomeValidation.addValidation(Register.this, R.id.newRePassword, R.id.newPassword, R.string.err_repassword);
+
+        mAwesomeValidation.addValidation(Register.this, R.id.newSavings, "[/^\\d+\\.?\\d*$/]+", R.string.err_savings_goal);
+        mAwesomeValidation.addValidation(Register.this, R.id.newAnnual, "[/^\\d+\\.?\\d*$/]+", R.string.err_daily_expense);
+        mAwesomeValidation.addValidation(Register.this, R.id.newAnnual2, "[/^\\d+\\.?\\d*$/]+", R.string.err_annual_income);
 
 
         suBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-//                if (mAwesomeValidation.validate()) {        // turn this on for awesome validation. And bottom too
+                if (mAwesomeValidation.validate()) {        // turn this on for awesome validation. And bottom too
                     Toast toast = Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG);
                     toast.show();
 
@@ -120,9 +120,9 @@ public class Register extends AppCompatActivity {
                     //Send the hash map back to the main activity
                     //i.putExtra("data", credentials);
                     startActivity(i);
-//                }
-//                else
-//                    Toast.makeText(Register.this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(Register.this, "Invalid Inputs", Toast.LENGTH_SHORT).show();
             }
 
         });

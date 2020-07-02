@@ -40,7 +40,6 @@ public class DashboardActivity2 extends Activity {
     ArrayList<Integer> myExp;
     ArrayList<Integer> mySave;
 
-
     ArrayList<String> alldates=new ArrayList<String>();
 
     @Override
@@ -49,10 +48,10 @@ public class DashboardActivity2 extends Activity {
         setContentView(R.layout.activity_dashboard2);
 
         Intent intent = getIntent();
-        ourID=intent.getIntExtra("ourID",0);
-        alldates=intent.getStringArrayListExtra("ad");
-        myExp=intent.getIntegerArrayListExtra("me");
-        mySave=intent.getIntegerArrayListExtra("ms");
+        ourID = intent.getIntExtra("ourID",0);
+        alldates = intent.getStringArrayListExtra("ad");
+        myExp = intent.getIntegerArrayListExtra("me");
+        mySave = intent.getIntegerArrayListExtra("ms");
 
         if(alldates.get(0)!=null) {
             Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
@@ -65,48 +64,39 @@ public class DashboardActivity2 extends Activity {
         Cartesian cartesian = AnyChart.line();
 
         cartesian.animation(true);
-
         cartesian.padding(10d, 20d, 5d, 20d);
 
         cartesian.crosshair().enabled(true);
         cartesian.crosshair()
                 .yLabel(true)
-                // TODO yorke
                 .yStroke((Stroke) null, null, null, (String) null, (String) null);
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
 
-        cartesian.title("Daily Savings");
+        cartesian.title("Daily Savings Each Day");
 
-        cartesian.yAxis(0).title("Number of Bottles Buy");
+        cartesian.yAxis(0).title("Savings Amount ($)");
         cartesian.xAxis(0).labels().padding(5d, 5d, 5d, 5d);
 
         List<DataEntry> seriesData = new ArrayList<>();
         for (int i = 0; i < alldates.size(); i++) {
-            if(alldates.get(i)!=null) {
-                seriesData.add(new DashboardActivity2.CustomDataEntry(alldates.get(i), mySave.get(i), 2.3, 2.8));
-                seriesData.add(new DashboardActivity2.CustomDataEntry("2020-07-02", 1200, 2.3, 2.8));
-
+            if(alldates.get(i) != null) {
+//                seriesData.add(new DashboardActivity2.CustomDataEntry(alldates.get(i), mySave.get(i), 2.3, 2.8));
+//                seriesData.add(new DashboardActivity2.CustomDataEntry("2020-07-02", 1200, 2.3, 2.8));
+                seriesData.add(new DashboardActivity2.CustomDataEntry(alldates.get(i), mySave.get(i), null, null));
             }
         }
-//        seriesData.add(new CustomDataEntry("1986", 3.6, 2.3, 2.8));
-//        seriesData.add(new CustomDataEntry("1987", 7.1, 4.0, 4.1));
-//        seriesData.add(new CustomDataEntry("1988", 8.5, 6.2, 5.1));
-//        seriesData.add(new CustomDataEntry("1989", 9.2, 11.8, 6.5));
-//        seriesData.add(new CustomDataEntry("1990", 10.1, 13.0, 12.5));
-//        seriesData.add(new CustomDataEntry("1991", 11.6, 13.9, 18.0));
-//        seriesData.add(new CustomDataEntry("1992", 16.4, 18.0, 21.0));
-//        seriesData.add(new CustomDataEntry("1993", 18.0, 23.3, 20.3));
-//        seriesData.add(new CustomDataEntry("1994", 13.2, 24.7, 19.2));
+
+        // trying dummy data
+        seriesData.add(new DashboardActivity2.CustomDataEntry("2020-07-02", 1200, null, null));
+        seriesData.add(new DashboardActivity2.CustomDataEntry("2020-07-03", 1100, null, null));
 
         Set set = Set.instantiate();
         set.data(seriesData);
         Mapping series1Mapping = set.mapAs("{ x: 'x', value: 'value' }");
-        Mapping series2Mapping = set.mapAs("{ x: 'x', value: 'value2' }");
-        Mapping series3Mapping = set.mapAs("{ x: 'x', value: 'value3' }");
 
         com.anychart.core.cartesian.series.Line series1 = cartesian.line(series1Mapping);
-        series1.name("Brandy");
+        series1.name("Amount ($)");
         series1.hovered().markers().enabled(true);
         series1.hovered().markers()
                 .type(MarkerType.CIRCLE)
@@ -117,20 +107,9 @@ public class DashboardActivity2 extends Activity {
                 .offsetX(5d)
                 .offsetY(5d);
 
-        Line series2 = cartesian.line(series2Mapping);
-        series2.name("Whiskey");
-        series2.hovered().markers().enabled(true);
-        series2.hovered().markers()
-                .type(MarkerType.CIRCLE)
-                .size(4d);
-        series2.tooltip()
-                .position("right")
-                .anchor(Anchor.LEFT_CENTER)
-                .offsetX(5d)
-                .offsetY(5d);
-
         cartesian.legend().enabled(true);
-        cartesian.legend().fontSize(13d);
+        cartesian.legend().fontSize(15d);
+        cartesian.background("#1B1B1B");
         cartesian.legend().padding(0d, 0d, 10d, 0d);
 
         anyChartView.setChart(cartesian);

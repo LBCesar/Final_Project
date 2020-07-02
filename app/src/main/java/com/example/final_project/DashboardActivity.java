@@ -39,12 +39,6 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         int ourID;
-        // all this is default stuff upon creating tab activity
-//        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-//        ViewPager viewPager = findViewById(R.id.piechart);
-//        viewPager.setAdapter(sectionsPagerAdapter);
-//        TabLayout tabs = findViewById(R.id.tabs);
-//        tabs.setupWithViewPager(viewPager);
 
         mydb = new DBHelper(this);
         Intent intent = getIntent();
@@ -92,6 +86,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         pie.animation(true);
         pie.fill("aquastyle");
+        pie.background("black");
         pie.outline(true);
         anyChartView.setChart(pie);
 
