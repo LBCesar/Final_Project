@@ -34,12 +34,12 @@
         android:layout_below="@id/mainLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="22dp">
 
         <TextView
             android:id="@+id/txtSavingsGoal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="right"
             android:text="Your Savings Goal: "
             android:textColor="#F264E612"
@@ -53,7 +53,7 @@
         android:layout_below="@id/mainLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16sp">
+        android:layout_marginTop="22dp">
 
         <TextView
             android:id="@+id/textView"
@@ -66,19 +66,42 @@
             tools:ignore="RtlHardcoded" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/mainLayout4"
+        android:layout_below="@id/mainLayout2"
+        android:gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp">
+
+        <TextView
+            android:id="@+id/txtDailySavings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Daily Savings: "
+            android:textColor="#F7B5891C"
+            android:textSize="20sp"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+
+
+
     <View
+        android:id="@+id/lineLayout"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/mainLayout2"
+        android:layout_below="@+id/mainLayout4"
         android:layout_width="fill_parent"
         android:layout_height="1.5dp"
         android:background="#000000"/>
 
     <ListView
         android:id="@+id/listView1"
-        android:layout_below="@id/mainLayout2"
+        android:layout_below="@id/lineLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="3dp"
         tools:ignore="NestedScrolling" />
 
 </RelativeLayout>

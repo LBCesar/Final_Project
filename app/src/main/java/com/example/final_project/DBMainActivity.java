@@ -31,6 +31,7 @@ public class DBMainActivity extends AppCompatActivity {
     private TextView expenseMain ;
     private TextView savingsGoal;
     private TextView nameMain;
+    private TextView txtDailySavings;
     int ourID;
     int xx;
 
@@ -42,6 +43,7 @@ public class DBMainActivity extends AppCompatActivity {
         expenseMain =  findViewById(R.id.textView);
         savingsGoal = findViewById(R.id.txtSavingsGoal);
         nameMain =  findViewById(R.id.textView2);
+        txtDailySavings = findViewById(R.id.txtDailySavings);
 
         mydb = new DBHelper(this);
         int x=0;
@@ -51,7 +53,7 @@ public class DBMainActivity extends AppCompatActivity {
 
         // Retrieve the username from the main activity
         String message = intent.getStringExtra("first message");
-        ourID=intent.getIntExtra("itemid",0);
+        ourID = intent.getIntExtra("itemid",0);
 
         // Update the text on the welcome screen
         String todayDate= date();
@@ -66,10 +68,18 @@ public class DBMainActivity extends AppCompatActivity {
         String todaysExpense = currencyFormat(Integer.toString(o));
         expenseMain.setText(expenseMain.getText().toString() + "$" + todaysExpense);
 
-        String ourGoal = mydb.getOurGoal(ourID);
 
+        // find this one, it should be saving goal 2000
+        String ourGoal = mydb.getOurIncome(ourID);
         ourGoal = currencyFormat(ourGoal);
         savingsGoal.setText(savingsGoal.getText().toString() + " $" + ourGoal);
+
+
+//        this is income
+        String myIncome = mydb.getOurGoal(ourID);
+        Double dailyExp = (Double.valueOf(myIncome)/365) - o;
+        String result = currencyFormat(String.valueOf(Double.toString(dailyExp)));
+        txtDailySavings.setText(txtDailySavings.getText().toString() + " $" + result);
 
 
         //String dummyDate="2020-07-2";

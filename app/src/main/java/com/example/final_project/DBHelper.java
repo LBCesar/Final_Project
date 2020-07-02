@@ -156,7 +156,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return ourName + ", ";
     }
 
-    // this one to get the goal
+    // this is getOutIncome this gets income
     public String getOurGoal(int userid1){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res=db.rawQuery( "select * from users where  userid= " + userid1 + "", null);
@@ -171,6 +171,24 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return ourGoal;
     }
+
+    // this should be savings goals
+    public String getOurIncome(int userid1){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res=db.rawQuery( "select * from users where  userid= " + userid1 + "", null);
+        String ourIncome = "";
+
+        if(res.getCount() > 0) {
+            res.moveToFirst();
+            while (!res.isAfterLast()) {
+                ourIncome = res.getString(res.getColumnIndex(USERS_COLUMN_BUDGET));
+                res.moveToNext();
+            }
+        }
+        return ourIncome;
+    }
+
+
     //The getData___ family will return a pointer to all of the data we queried.
     //ex. getDataItem(int id) will return all items belonging to a particular user id.
     public Cursor getDataItem(int id,int itemid2) {
