@@ -44,8 +44,8 @@
     <string name="no">No</string>
 
     <string name="save">Save Item</string>
-    <string name="itemDisplayItem">Item</string>
-    <string name="new_expense_display_contact">New Expense</string>
+    <string name="itemDisplayItem">*Item</string>
+    <string name="new_expense_display_contact">*New Expense</string>
     <string name="description_display_contact">Description</string>
     <string name="current_expense_display_contact">Current Expense</string>
     <string name="delete_item_display_contact">Delete Item</string>
@@ -65,6 +65,7 @@
     <string name="err_savings_goal">Invalid Savings Goal</string>
     <string name="err_daily_expense">Invalid Max Daily Expense</string>
     <string name="err_annual_income">Invalid Annual Income</string>
+    <string name="item">Item</string>
 
 
 </resources>

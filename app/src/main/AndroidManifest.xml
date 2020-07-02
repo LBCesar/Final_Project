@@ -12,7 +12,8 @@
         <activity android:name=".UpdateUser"></activity>
         <activity android:name=".About" />
         <activity android:name=".Help" />
-        <activity android:name=".Register" />
+        <activity android:name=".Register"
+            android:screenOrientation = "portrait"/>
         <activity android:name=".DisplayContact" />
         <activity android:name=".DBMainActivity" />
         <activity android:name=".DashboardActivity1" />
@@ -22,7 +23,8 @@
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation = "portrait"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,6 +6,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
     android:background="#1B1B1B"
     tools:context=".MainActivity">
 
@@ -19,7 +23,7 @@
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="60dp"
+        android:paddingBottom="35dp"
         android:layout_above="@id/txtUserName">
 
         <TextView
@@ -29,7 +33,8 @@
             android:textAlignment="center"
             android:textColor="#5BC3EB"
             android:textSize="30sp"
-            android:textStyle="italic" />
+            android:fontFamily="cursive"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <View
@@ -37,7 +42,7 @@
         android:layout_above="@+id/txtUserName"
         android:layout_width="fill_parent"
         android:layout_height="1.5dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
         android:background="#FFFFFF" />
 
     <EditText
@@ -46,7 +51,7 @@
         android:layout_height="45dp"
         android:layout_above="@id/txtPassword"
         android:layout_centerHorizontal="true"
-        android:background="@color/cardview_dark_background"
+        android:background="@color/cardview_light_background"
         android:ems="10"
         android:paddingStart="10dp"
         android:hint="@string/enter_username"
@@ -61,7 +66,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="15dp"
         android:autofillHints=""
-        android:background="@color/cardview_dark_background"
+        android:background="@color/cardview_light_background"
         android:ems="10"
         android:paddingStart="10dp"
         android:hint="@string/enter_password"
@@ -120,3 +125,6 @@
 
 </RelativeLayout>
 
+
+
+<!--    android:textColor="#EDD5CBCB"-->

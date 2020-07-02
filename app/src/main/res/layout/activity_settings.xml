@@ -5,12 +5,13 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
+    android:background="#1B1B1B"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/settingsLayout1"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,17 +19,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:textColor="@color/cardview_light_background"
             android:text="@string/settings"
-            android:textSize="25sp"
+            android:textSize="40sp"
             android:gravity="center"/>
     </LinearLayout>
+
+    <View
+        android:layout_below="@+id/settingsLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#FFFFFF"/>
 
     <ListView
         android:id="@+id/settingsListView"
         android:layout_below="@id/settingsLayout1"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
+        android:background="#DAD1C4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>
