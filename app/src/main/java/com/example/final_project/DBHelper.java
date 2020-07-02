@@ -240,6 +240,22 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("items", contentValues, "id = ? ", new String[] { Integer.toString(itemid) } );
         return true;
     }
+    public boolean updateUser (int userid, String username, String password, String name,int budget,int annual,int savings, int log,String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(USERS_COLUMN_USERNAME, username);
+        contentValues.put(USERS_COLUMN_PASSWORD, password);
+        contentValues.put(USERS_COLUMN_NAME, name);
+        contentValues.put(USERS_COLUMN_BUDGET, budget);
+
+        contentValues.put(USERS_COLUMN_ANNUAL, annual);
+        contentValues.put(USERS_COLUMN_SAVINGS, savings);
+        contentValues.put(USERS_COLUMN_LOG,0);
+        //contentValues.put(ITEM, street);
+        //contentValues.put("place", place);
+        db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(userid) } );
+        return true;
+    }
     public boolean updateExpense (int expensesid, int userid, int itemid, int price,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

@@ -44,6 +44,9 @@ public class Settings  extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
                     Toast.makeText(Settings.this, "update the database", Toast.LENGTH_SHORT).show();
+                    Intent intentUpdate=new Intent(getApplicationContext(),UpdateUser.class);
+                    intentUpdate.putExtra("itemid",ourID);
+                    startActivity(intentUpdate);
                 }
                 if (position == 1){
                     Intent intentHelp = new Intent(getApplicationContext(), Help.class);
