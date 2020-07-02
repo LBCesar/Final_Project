@@ -17,7 +17,6 @@ import java.util.HashMap;
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName2.db";
-    public static final String CONTACTS_TABLE_NAME = "contacts";
 
     public static final String USERS_TABLE_NAME="users";
     public static final String USERS_COLUMN_ID="userid";
@@ -226,7 +225,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public int numberOfRows(){
         SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, CONTACTS_TABLE_NAME);
+        int numRows = (int) DatabaseUtils.queryNumEntries(db, USERS_TABLE_NAME);
         return numRows;
     }
 

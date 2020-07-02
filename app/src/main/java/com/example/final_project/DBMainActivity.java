@@ -73,7 +73,7 @@ public class DBMainActivity extends AppCompatActivity {
         String ourGoal = mydb.getOurIncome(ourID);
         String ourGoal2 = mydb.getOurIncome(ourID);
 
-//        this is income
+        //Pulling values from the DB to fill in the main menu summary.
         String myIncome = mydb.getOurGoal(ourID);
         Double dailyExp = (Double.valueOf(myIncome)/365) - o;
         Double d1=Double.valueOf(ourGoal);
@@ -94,6 +94,7 @@ public class DBMainActivity extends AppCompatActivity {
         ArrayList array_list2= new ArrayList();
         final ArrayList lastAL=new ArrayList();
 
+        //This loop will concatenate all our item names with their associated price.
         for(int i=0;i<array_list.size();i++){
             float here=mydb.getAllExpensesForOneDayAndOneItem(ourID,array_list.get(i).toString(),todayDate);
             String formating=currencyFormat(String.valueOf(here));
@@ -114,16 +115,14 @@ public class DBMainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), DisplayItems.class);
                 intent.putExtra("ourID",ourID);
-                Toast.makeText(getApplicationContext(), array_list.get(id_To_Search-1).toString(),
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), array_list.get(id_To_Search-1).toString(),
+//                        Toast.LENGTH_SHORT).show();
 
                 Cursor u=mydb.getItemID(ourID,array_list.get(id_To_Search-1).toString());
                 if(u.getCount() > 0) {
                    u.moveToFirst();
                     while (!u.isAfterLast()) {
                         xx = u.getInt(u.getColumnIndex(DBHelper.ITEMS_COLUMN_ID));
-                        Toast.makeText(getApplicationContext(), "In Main xx"+xx,
-                                Toast.LENGTH_SHORT).show();
                         u.moveToNext();
                     }
                 }

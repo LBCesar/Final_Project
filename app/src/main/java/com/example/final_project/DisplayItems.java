@@ -1,8 +1,6 @@
 package com.example.final_project;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -33,7 +31,6 @@ public class DisplayItems extends Activity {
     private TextView descriptiontxt;
     private TextView currentExpense;
     private TextView newExpense;
-    private TextView place;
 
     int p = 0;
     int id_To_Update = 0;
@@ -43,7 +40,7 @@ public class DisplayItems extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_contact);
+        setContentView(R.layout.activity_display_items);
 
         name =  findViewById(R.id.editTextName);
         descriptiontxt =  findViewById(R.id.editTextPhone);
