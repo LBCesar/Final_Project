@@ -1,3 +1,11 @@
+/*
+    Cesar Gonzalez
+    Shoraj Manandhar
+    App: eTRACK
+    Final Project: Expense Tracker
+    2nd July, 2020
+ */
+
 package com.example.final_project;
 
 import android.content.Intent;

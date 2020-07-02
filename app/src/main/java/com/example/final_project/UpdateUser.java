@@ -16,6 +16,12 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/*
+    On Settings, Users are able to update their accounts info in the database
+
+    Using AwesomeValidation to check for Invalid inputs
+    https://github.com/thyrlian/AwesomeValidation
+ */
 public class UpdateUser extends AppCompatActivity {
     private EditText name;
     private EditText uName;
@@ -30,7 +36,6 @@ public class UpdateUser extends AppCompatActivity {
     int ourID;
     String currentDate=date();
 
-    // https://github.com/thyrlian/AwesomeValidation
     AwesomeValidation mAwesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
     private final String RegexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{5,}";
     String RegexNumber = "[/^\\d+\\.?\\d*$/]+";

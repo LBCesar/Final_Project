@@ -33,14 +33,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-// report graph 3
+/*  Report 3 - Line Chart
+    An activity that display a report with Line graph. The graph contains daily savings the user
+    is able to make each day. Daily Savings($) per Day (date, YYYY-MM-DD format). In order to show such, a
+    Line Graph from Anychart is implemented.
+
+    GitHub: Anychart - https://github.com/AnyChart/AnyChart-Android
+ */
 public class DashboardActivity2 extends Activity {
 
+    // Initialize all required variables
     DBHelper mydb;
     int ourID=0;
+
     ArrayList<Integer> myExp;
     ArrayList<Integer> mySave;
-
     ArrayList<String> alldates=new ArrayList<String>();
 
     @Override
@@ -48,18 +55,21 @@ public class DashboardActivity2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard2);
 
+        // slides to DBMainActivity: https://github.com/r0adkll/Slidr
         Slidr.attach(this);
 
+        // get the date and each day savings as an intent, this is obtain
+        // from the database
         Intent intent = getIntent();
         ourID = intent.getIntExtra("ourID",0);
         alldates = intent.getStringArrayListExtra("ad");
         myExp = intent.getIntegerArrayListExtra("me");
         mySave = intent.getIntegerArrayListExtra("ms");
 
-        if(alldates.get(0)!=null) {
-            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
-                    Toast.LENGTH_SHORT).show();
-        }
+//        if(alldates.get(0) != null) {
+//            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
+//                    Toast.LENGTH_SHORT).show();
+//        }
 
         AnyChartView anyChartView = findViewById(R.id.any_chart_view2);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar1));
@@ -118,8 +128,6 @@ public class DashboardActivity2 extends Activity {
         anyChartView.setChart(cartesian);
     }
 
-
-
     private static class CustomDataEntry extends ValueDataEntry {
 
         CustomDataEntry(String x, Number value, Number value2, Number value3) {
@@ -131,114 +139,3 @@ public class DashboardActivity2 extends Activity {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//        Intent intent = getIntent();
-//        ourID=intent.getIntExtra("ourID",0);
-//        alldates=intent.getStringArrayListExtra("ad");
-//        if(alldates.get(0)!=null) {
-//            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
-//                    Toast.LENGTH_SHORT).show();
-//        }
-////       // ArrayList<String> a=mydb.getAllItemsName(ourID);
-////        //ArrayList<String> b=mydb.getAllExpenses(ourID);
-////
-////                alldates=mydb.getAllDates(ourID);
-////
-////        java.util.Set<String> set2 = new HashSet<>(alldates);
-////        alldates.clear();
-////        alldates.addAll(set2);
-////        Toast.makeText(getApplicationContext(), "======" ,
-////                Toast.LENGTH_SHORT).show();
-////        if(alldates.size()>0) {
-////            Toast.makeText(getApplicationContext(), "======" + alldates.get(0),
-////                    Toast.LENGTH_SHORT).show();
-////        }
-//
-//
-//
-//        AnyChartView anyChartView = findViewById(R.id.any_chart_view2);
-////        anyChartView.setProgressBar(findViewById(R.id.progress_bar2));
-//
-//        Radar radar = AnyChart.radar();
-//        radar.title("Vertical bar graph");
-//
-//        radar.yScale().minimum(0d);
-//        radar.yScale().minimumGap(0d);
-//        radar.yScale().ticks().interval(50d);
-//
-//        radar.xAxis().labels().padding(5d, 5d, 5d, 5d);
-//
-//        radar.legend()
-//                .align(Align.CENTER)
-//                .enabled(true);
-//
-//        List<DataEntry> data = new ArrayList<>();
-//        data.add(new CustomDataEntry("Strength", 136, 199, 43));
-//        data.add(new CustomDataEntry("Agility", 79, 125, 56));
-//        data.add(new CustomDataEntry("Stamina", 149, 173, 101));
-//        data.add(new CustomDataEntry("Intellect", 135, 33, 202));
-//        data.add(new CustomDataEntry("Spirit", 158, 64, 196));
-//
-//        Set set = Set.instantiate();
-//        set.data(data);
-//        Mapping shamanData = set.mapAs("{ x: 'x', value: 'value' }");
-//        Mapping warriorData = set.mapAs("{ x: 'x', value: 'value2' }");
-//        Mapping priestData = set.mapAs("{ x: 'x', value: 'value3' }");
-//
-//        Line shamanLine = radar.line(shamanData);
-//        shamanLine.name("Shaman");
-//        shamanLine.markers()
-//                .enabled(true)
-//                .type(MarkerType.CIRCLE)
-//                .size(3d);
-//
-//        Line warriorLine = radar.line(warriorData);
-//        warriorLine.name("Warrior");
-//        warriorLine.markers()
-//                .enabled(true)
-//                .type(MarkerType.CIRCLE)
-//                .size(3d);
-//
-//        radar.tooltip().format("Value: {%Value}");
-//        anyChartView.setChart(radar);
-//    }
-//
-//
-//    private class CustomDataEntry extends ValueDataEntry {
-//        public CustomDataEntry(String x, Number value, Number value2, Number value3) {
-//            super(x, value);
-//            setValue("value2", value2);
-//            setValue("value3", value3);
-//        }
-//    }
-//
-//
-//}

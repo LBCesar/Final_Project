@@ -15,13 +15,22 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+/*
+    New Users are able to register for a new accounts.
+    Along with Name, Username, Password & Confirm Password, they are also
+    required to enter their Savings Goal, Maximum Daily Expense and
+    their Annual Income during registration.
 
+    Using AwesomeValidation to check for Invalid inputs
+    https://github.com/thyrlian/AwesomeValidation
+ */
 public class Register extends AppCompatActivity {
 
     private EditText name;
     private EditText uName;
     private EditText pwd;
     private EditText pwd2;
+
     private EditText savingsGoal;
     private EditText newBudget;
     private EditText annual;
@@ -30,7 +39,6 @@ public class Register extends AppCompatActivity {
     DBHelper mydb;
     String currentDate=date();
 
-    // https://github.com/thyrlian/AwesomeValidation
     AwesomeValidation mAwesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
     private final String RegexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{5,}";
     String RegexNumber = "[/^\\d+\\.?\\d*$/]+";
@@ -52,7 +60,7 @@ public class Register extends AppCompatActivity {
         suBtn=findViewById(R.id.btnRegisterComplete);
 //        Intent register =  getIntent();
 
-
+//        enable the AwesomeValidation comments for the registration
 //        mAwesomeValidation.addValidation(Register.this, R.id.newName, "[a-zA-Z\\s]+", R.string.err_name);
 //        mAwesomeValidation.addValidation(Register.this, R.id.newUsername, "[a-zA-Z\\s]+", R.string.err_username);
 //        mAwesomeValidation.addValidation(Register.this, R.id.newPassword, RegexPassword,  R.string.err_password);
@@ -132,7 +140,6 @@ public class Register extends AppCompatActivity {
 
     public int helperID(Cursor res) {
         int x = 0;
-
         if (res.getCount() > 0) {
             res.moveToFirst();
             while (!res.isAfterLast()) {
@@ -146,11 +153,6 @@ public class Register extends AppCompatActivity {
     public String date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat outputFormat = new SimpleDateFormat("MMMMM dd, yyyy");
-//        String output = outputFormat.format(inputFormat.parse(String.valueOf(dNow)));
-
-        //System.out.println("Current Date: "+ft.format(dNow));
         return ft.format(dNow);
     }
 

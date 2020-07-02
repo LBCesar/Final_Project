@@ -39,7 +39,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String USERS_COLUMN_SAVINGS_TODAY="savingstoday";
     public static final String USERS_COLUMN_SAVINGS_TOTAL="savingstotal";
 
-
     public static final String ITEMS_TABLE_NAME="items";
     public static final String ITEMS_COLUMN_ID="itemid";
     public static final String ITEMS_COLUMN_USER_ID="userid";
@@ -52,7 +51,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String EXPENSES_COLUMN_ITEM_ID="itemid";
     public static final String EXPENSES_COLUMN_PRICE="price";
     public static final String EXPENSES_COLUMN_date="date";
-
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME , null, 8);

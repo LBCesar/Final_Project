@@ -14,13 +14,11 @@ Breaking down the functionalities
 
 1- A splash screen that shows your company name or logo.
 
-
 2- User registration
     a. Username
     b. Password
     c. Retype Password
     d. Email address
-
 
 3- Setting
     a. Amount of annual income
@@ -33,11 +31,11 @@ Breaking down the functionalities
     If an item already in use for the previous expenses, the user is not allowed to delete it.
     Examples of items are grocery, uber, …
 
-
 4- Data entry
     a. The user selects an expense item from a list
     b. The user enters the amount of expense
     c. The app calculates the total daily cost amount of saving for that day
+
 5- Reports
     a. A report for daily expenses (Bar chart or line graph)
     i. The range of days can be specified by the user

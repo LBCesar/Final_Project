@@ -3,8 +3,11 @@ package com.example.final_project;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/*
+    Tester class
+    A class to slightly manage the dates better.
+ */
 public class DateHelper {
-
 
     public String date() {
         java.util.Date dNow = new java.util.Date();
