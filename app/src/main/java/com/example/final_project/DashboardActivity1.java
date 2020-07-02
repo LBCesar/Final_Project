@@ -21,13 +21,16 @@ import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Cartesian;
 import com.anychart.charts.Pie;
+import com.anychart.core.cartesian.series.Column;
 import com.anychart.core.cartesian.series.Line;
 import com.anychart.data.Mapping;
 import com.anychart.data.Set;
 import com.anychart.enums.Align;
 import com.anychart.enums.Anchor;
+import com.anychart.enums.HoverMode;
 import com.anychart.enums.LegendLayout;
 import com.anychart.enums.MarkerType;
+import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
 
@@ -47,22 +50,70 @@ public class DashboardActivity1 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard1);
 
-
-
         Intent intent = getIntent();
-        ourID=intent.getIntExtra("ourID",0);
-        alldates=intent.getStringArrayListExtra("ad");
-        myExp=intent.getIntegerArrayListExtra("me");
-        if(alldates.get(0)!=null) {
-            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
-                    Toast.LENGTH_SHORT).show();
-        }
+        ourID = intent.getIntExtra("ourID",0);
+        alldates = intent.getStringArrayListExtra("ad");
+        myExp = intent.getIntegerArrayListExtra("me");
+
+//        if(alldates.get(0)!=null) {
+//            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
+//                    Toast.LENGTH_SHORT).show();
+//        }
 //        int y=mydb.getSumDaily(ourID,0,alldates.get(0));
 
         AnyChartView anyChartView = findViewById(R.id.any_chart_view1);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar1));
 
-        Cartesian cartesian = AnyChart.line();
+        Cartesian cartesian = AnyChart.column();
+
+        List<DataEntry> data = new ArrayList<>();
+//        data.add(new ValueDataEntry("Rouge", 80540));
+
+        for (int i = 0; i < alldates.size(); i++) {
+            if(alldates.get(i)!=null) {
+                data.add(new ValueDataEntry(alldates.get(i), myExp.get(i)));
+            }
+        }
+
+        // this is a dummy data
+        data.add(new ValueDataEntry("2020-02-29", 999));
+        data.add(new ValueDataEntry("2020-03-22", 654));
+
+        Column column;
+        column = cartesian.column(data);
+
+        column.tooltip()
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(0d)
+                .offsetY(5d)
+                .format("${%Value}{groupsSeparator: }");
+
+        cartesian.animation(true);
+        cartesian.background("#1B1B1B");
+        cartesian.textMarker("white");
+
+        cartesian.xMinorGrid(true);
+        cartesian.yMinorGrid(true);
+
+        cartesian.title("Total Spending per Day");
+
+        cartesian.yScale().minimum(0d);
+        cartesian.yAxis(0).labels().format("${%Value}{groupsSeparator: }");
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+
+        cartesian.xAxis(0).title("Date (YYYY-MM-DD)");
+        cartesian.yAxis(0).title("Expense (per day))");
+
+        anyChartView.setChart(cartesian);
+
+
+
+
+      /*  Cartesian cartesian = AnyChart.line();
 
         cartesian.animation(true);
 
@@ -71,7 +122,6 @@ public class DashboardActivity1 extends Activity {
         cartesian.crosshair().enabled(true);
         cartesian.crosshair()
                 .yLabel(true)
-                // TODO yorke
                 .yStroke((Stroke) null, null, null, (String) null, (String) null);
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
@@ -82,6 +132,7 @@ public class DashboardActivity1 extends Activity {
         cartesian.xAxis(0).labels().padding(5d, 5d, 5d, 5d);
 
         List<DataEntry> seriesData = new ArrayList<>();
+
         for (int i = 0; i < alldates.size(); i++) {
             if(alldates.get(i)!=null) {
                 //String w=alldates.get(i);
@@ -89,8 +140,10 @@ public class DashboardActivity1 extends Activity {
                 // myExp.set(i, w2);
                // myExp.add(i,w2);
                 seriesData.add(new CustomDataEntry(alldates.get(i), myExp.get(i), 2.3, 2.8));
-                seriesData.add(new CustomDataEntry("2020-07-02", 1200, 2.3, 2.8));
+//                int value = myExp.get(i);
+//                seriesData.add(new CustomDataEntry(alldates.get(i), value, 0, 0));
 
+//                seriesData.add(new CustomDataEntry("2020-07-02", 1200, 2.3, 2.8));
             }
         }
 //        seriesData.add(new CustomDataEntry("1986", 3.6, 2.3, 2.8));
@@ -106,10 +159,10 @@ public class DashboardActivity1 extends Activity {
         Set set = Set.instantiate();
         set.data(seriesData);
         Mapping series1Mapping = set.mapAs("{ x: 'x', value: 'value' }");
-        Mapping series2Mapping = set.mapAs("{ x: 'x', value: 'value2' }");
-        Mapping series3Mapping = set.mapAs("{ x: 'x', value: 'value3' }");
+//        Mapping series2Mapping = set.mapAs("{ x: 'x', value: 'value2' }");
 
         Line series1 = cartesian.line(series1Mapping);
+
         series1.name("Brandy");
         series1.hovered().markers().enabled(true);
         series1.hovered().markers()
@@ -121,23 +174,23 @@ public class DashboardActivity1 extends Activity {
                 .offsetX(5d)
                 .offsetY(5d);
 
-        Line series2 = cartesian.line(series2Mapping);
-        series2.name("Whiskey");
-        series2.hovered().markers().enabled(true);
-        series2.hovered().markers()
-                .type(MarkerType.CIRCLE)
-                .size(4d);
-        series2.tooltip()
-                .position("right")
-                .anchor(Anchor.LEFT_CENTER)
-                .offsetX(5d)
-                .offsetY(5d);
+//        Line series2 = cartesian.line(series2Mapping);
+//        series2.name("Whiskey");
+//        series2.hovered().markers().enabled(true);
+//        series2.hovered().markers()
+//                .type(MarkerType.CIRCLE)
+//                .size(4d);
+//        series2.tooltip()
+//                .position("right")
+//                .anchor(Anchor.LEFT_CENTER)
+//                .offsetX(5d)
+//                .offsetY(5d);
 
         cartesian.legend().enabled(true);
         cartesian.legend().fontSize(13d);
         cartesian.legend().padding(0d, 0d, 10d, 0d);
 
-        anyChartView.setChart(cartesian);
+        anyChartView.setChart(cartesian);*/
     }
 
 

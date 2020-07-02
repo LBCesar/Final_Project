@@ -9,43 +9,38 @@
     tools:context=".DashboardActivity">
 
 
-    <com.anychart.AnyChartView
-        android:id="@+id/piechart"
-        android:layout_marginTop="150dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="385dp">
+
+        <com.anychart.AnyChartView
+            android:id="@+id/piechart"
+            android:layout_width="match_parent"
+            android:layout_height="385dp"
+            android:background="@color/cardview_dark_background" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_dark_background" />
+        android:layout_marginTop="385dp"
+        android:background="#1B1B1B">
+
+        <TextView
+            android:textSize="26dp"
+            android:text="More data??"
+            android:gravity="center"
+            android:textColor="#5BC3EB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 
 </RelativeLayout>
 
 
 
-<!--
-   <com.google.android.material.appbar.AppBarLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:theme="@style/AppTheme.AppBarOverlay">-->
 
-    <!--&lt;!&ndash;        <TextView&ndash;&gt;-->
-    <!--&lt;!&ndash;            android:id="@+id/title"&ndash;&gt;-->
-    <!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-    <!--&lt;!&ndash;            android:gravity="center"&ndash;&gt;-->
-    <!--&lt;!&ndash;            android:minHeight="?actionBarSize"&ndash;&gt;-->
-    <!--&lt;!&ndash;            android:padding="@dimen/appbar_padding"&ndash;&gt;-->
-    <!--&lt;!&ndash;            android:text="@string/title"&ndash;&gt;-->
-    <!--&lt;!&ndash;            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />&ndash;&gt;-->
 
-    <!--        <com.google.android.material.tabs.TabLayout-->
-    <!--            android:id="@+id/tabs"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:background="?attr/colorPrimary" />-->
-    <!--    </com.google.android.material.appbar.AppBarLayout>-->
-
-    <!--    <androidx.viewpager.widget.ViewPager-->
-    <!--        android:id="@+id/view_pager"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->

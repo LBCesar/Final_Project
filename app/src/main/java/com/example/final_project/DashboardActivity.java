@@ -45,52 +45,55 @@ public class DashboardActivity extends AppCompatActivity {
 //        viewPager.setAdapter(sectionsPagerAdapter);
 //        TabLayout tabs = findViewById(R.id.tabs);
 //        tabs.setupWithViewPager(viewPager);
-        mydb = new DBHelper(this);
 
+        mydb = new DBHelper(this);
         Intent intent = getIntent();
 
-        ourID=intent.getIntExtra("ourID",0);
-        alldates=intent.getStringArrayListExtra("ai");
-        myExp=intent.getIntegerArrayListExtra("tsfi");
+        ourID = intent.getIntExtra("ourID",0);
+        alldates = intent.getStringArrayListExtra("ai");
+        myExp = intent.getIntegerArrayListExtra("tsfi");
 
         Toast.makeText(getApplicationContext(), "Nothing"+ ourID,
                 Toast.LENGTH_SHORT).show();
+
         ArrayList<String> a=mydb.getAllItemsName(ourID);
         ArrayList<String> b=mydb.getAllExpenses(ourID);
 
-
-        if(a.size()>0) {
-            Toast.makeText(getApplicationContext(), "======" + a.get(0),
-                    Toast.LENGTH_SHORT).show();
-            if(b.size()>0) {
-                Toast.makeText(getApplicationContext(), "=======" + b.get(0),
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
+//        if(a.size()>0) {
+//            Toast.makeText(getApplicationContext(), "======" + a.get(0),
+//                    Toast.LENGTH_SHORT).show();
+//            if(b.size()>0) {
+//                Toast.makeText(getApplicationContext(), "=======" + b.get(0),
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        }
 
         AnyChartView anyChartView = findViewById(R.id.piechart);
         Pie pie = AnyChart.pie();
 
         List<DataEntry> data = new ArrayList<>();
-        for(int i=0;i<alldates.size();i++){
+        for(int i=0; i<alldates.size(); i++){
             data.add(new ValueDataEntry(alldates.get(i), myExp.get(i)));
-
         }
+
         pie.data(data);
 
         pie.labels().position("outside");
 
         pie.legend().title().enabled(true);
         pie.legend().title()
-                .text("My yearly expense")
-                .padding(0d, 0d, 10d, 0d);
+                .text("Daily Expense Based On Category")
+                .padding(5d, 0d, 5d, 0d);
 
         pie.legend()
                 .position("center-bottom")
                 .itemsLayout(LegendLayout.HORIZONTAL)
                 .align(Align.CENTER);
-        anyChartView.setChart(pie);
 
+        pie.animation(true);
+        pie.fill("aquastyle");
+        pie.outline(true);
+        anyChartView.setChart(pie);
 
     }
 }

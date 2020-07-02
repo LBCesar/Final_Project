@@ -5,10 +5,6 @@
         android:title="@string/Add_New" >
     </item>
 
-    <item android:id="@+id/item2"
-        android:title="@string/delete" >
-    </item>
-
     <item android:id="@+id/item3"
         android:title="Report1" >
     </item>
