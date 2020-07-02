@@ -361,6 +361,9 @@ public class DBHelper extends SQLiteOpenHelper {
             insertItem(0, id, array_list.get(i), array_list2.get(i), 0, todaysDate);
         }
         dateUpdate(id);
+        float ds=getDailySavings(id);
+        float ts=getTotalSavings(id);
+        setTotalSavings(id,(int)(ds+ts));
     }
     public String lastLoginDate(int uid){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -481,10 +484,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
         //return true;
     }
-    public void setSavings(int uid,int newSave){
+    public void setTotalSavings(int uid,int newSave){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(USERS_COLUMN_SAVINGS, newSave);
+        contentValues.put(USERS_COLUMN_SAVINGS_TOTAL, newSave);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
     }
     public void setNewBudget(int uid,int newBudget,int saving){
