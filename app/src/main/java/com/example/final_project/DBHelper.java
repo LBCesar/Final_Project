@@ -18,13 +18,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MyDBName2.db";
     public static final String CONTACTS_TABLE_NAME = "contacts";
-//    public static final String CONTACTS_COLUMN_ID = "id";
-//    public static final String CONTACTS_COLUMN_NAME = "name";
-//    public static final String CONTACTS_COLUMN_EMAIL = "email";
-//    public static final String CONTACTS_COLUMN_STREET = "street";
-//    public static final String CONTACTS_COLUMN_CITY = "place";
-//    public static final String CONTACTS_COLUMN_PHONE = "phone";
-    private HashMap hp;
 
     public static final String USERS_TABLE_NAME="users";
     public static final String USERS_COLUMN_ID="userid";
@@ -59,10 +52,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
-//        db.execSQL(
-//                "create table contacts " +
-//                        "(id integer primary key, name text,phone text,email text, street text,place text)"
-//        );
         db.execSQL(
                 "create table expenses"+
                         "(expensesid integer primary key AUTOINCREMENT NOT NULL,userid integer,itemid integer,price integer,date text)"
@@ -82,7 +71,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // TODO Auto-generated method stub
-        //db.execSQL("DROP TABLE IF EXISTS contacts");
         db.execSQL("DROP TABLE IF EXISTS users");
         db.execSQL("DROP TABLE IF EXISTS items");
         db.execSQL("DROP TABLE IF EXISTS expenses");
@@ -245,10 +233,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean updateBudget (int id,int budget) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        //contentValues.put("name", name);
-        //contentValues.put("phone", phone);
-        //contentValues.put("email", email);
-        //contentValues.put("street", street);
         contentValues.put(USERS_COLUMN_BUDGET, budget);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(id) } );
         return true;
@@ -259,8 +243,6 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(ITEMS_COLUMN_USER_ID, userid);
         contentValues.put(ITEMS_COLUMN_ITEM, item);
         contentValues.put(ITEMS_COLUMN_DESCRIPTION, description);
-        //contentValues.put(ITEM, street);
-        //contentValues.put("place", place);
         db.update("items", contentValues, "id = ? ", new String[] { Integer.toString(itemid) } );
         return true;
     }
@@ -275,8 +257,6 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(USERS_COLUMN_ANNUAL, annual);
         contentValues.put(USERS_COLUMN_SAVINGS, savings);
         contentValues.put(USERS_COLUMN_LOG,0);
-        //contentValues.put(ITEM, street);
-        //contentValues.put("place", place);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(userid) } );
         return true;
     }
@@ -286,11 +266,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(USERS_COLUMN_SAVINGS_TODAY, change);
         ContentValues contentValues2 = new ContentValues();
         contentValues2.put(USERS_COLUMN_SAVINGS_TODAY, 0);
-        //contentValues.put(ITEM, street);
-        //contentValues.put("place", place);
-        //db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(userid) } );
         float today=getDailySavings(userid);
-        //updateTotalSavings(userid,change);
         float alldays=getTotalSavings(userid);
         float goal=getSavingsGoal(userid);
         if((alldays-change)<0){
@@ -309,9 +285,6 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(USERS_COLUMN_SAVINGS_TOTAL, change);
-
-        //contentValues.put(ITEM, street);
-        //contentValues.put("place", place);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(userid) } );
         return true;
     }
@@ -319,7 +292,6 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from users where userid="+uid+"",null );
         res.moveToFirst();
-        //String results="";
         int results=0;
         while(res.isAfterLast() == false){
             results=res.getInt(res.getColumnIndex(USERS_COLUMN_SAVINGS_TOTAL));
@@ -331,7 +303,6 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from users where userid="+uid+"",null );
         res.moveToFirst();
-        //String results="";
         int results=0;
         while(res.isAfterLast() == false){
             results=res.getInt(res.getColumnIndex(USERS_COLUMN_SAVINGS_TODAY));
@@ -342,7 +313,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean updateExpense (int expensesid, int userid, int itemid, int price,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        //contentValues.put("expensesid", expensesid);
         contentValues.put("userid", userid);
         contentValues.put("itemid", itemid);
         contentValues.put("price", price);
@@ -493,14 +463,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public void setNewBudget(int uid,int newBudget,int saving){
         int newTotal=newBudget-saving;
         int newSavings=getSavingsGoal(uid)-newTotal;
-        //if(newSavings<0){
-            //setSavings(uid,0);
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put(USERS_COLUMN_BUDGET, newBudget);
-
             db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(uid) } );
-
     }
     public int logInSearch(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -508,9 +474,7 @@ public class DBHelper extends SQLiteOpenHelper {
         res.moveToFirst();
         int x=0;
         while(res.isAfterLast() == false){
-            //array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
             x=x+res.getInt(res.getColumnIndex(USERS_COLUMN_ID));
-
             res.moveToNext();
             return x;
         }
