@@ -9,26 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DateRange"></activity>
         <activity android:name=".UpdateUser" />
         <activity android:name=".About" />
         <activity android:name=".Help" />
-        <activity android:name=".Register"
-            android:screenOrientation = "portrait"/>
+        <activity
+            android:name=".Register"
+            android:screenOrientation="portrait" />
         <activity android:name=".DisplayItems" />
-        <activity android:name=".DBMainActivity"
-            android:theme="@style/AppTheme.SlidrActivityTheme"> </activity>
-        <activity android:name=".DashboardActivity1"
-            android:theme="@style/AppTheme.SlidrActivityTheme"/>
-        <activity android:name=".DashboardActivity2"
-            android:theme="@style/AppTheme.SlidrActivityTheme"/>
-        <activity android:name=".Settings"
-            android:theme="@style/AppTheme.SlidrActivityTheme"/>
+        <activity
+            android:name=".DBMainActivity"
+            android:theme="@style/AppTheme.SlidrActivityTheme"></activity>
+        <activity
+            android:name=".DashboardActivity1"
+            android:theme="@style/AppTheme.SlidrActivityTheme" />
+        <activity
+            android:name=".DashboardActivity2"
+            android:theme="@style/AppTheme.SlidrActivityTheme" />
+        <activity
+            android:name=".Settings"
+            android:theme="@style/AppTheme.SlidrActivityTheme" />
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity"
-            android:screenOrientation = "portrait"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

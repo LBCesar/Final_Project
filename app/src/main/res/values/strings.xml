@@ -69,7 +69,7 @@
     <string name="report_1">Report 1</string>
     <string name="report_2">Report 2</string>
     <string name="report_3">Report 3</string>
-<!--    <string name="settings" tools:ignore="DuplicateDefinition">Settings</string>-->
+    <!--    <string name="settings" tools:ignore="DuplicateDefinition">Settings</string>-->
     <string name="logout">Logout</string>
 
     <string name="AboutActivityText">

@@ -177,6 +177,8 @@ public class DBMainActivity extends AppCompatActivity {
 
             case R.id.item6:    // report 2 line graph
                 Intent intentx = new Intent(getApplicationContext(), DashboardActivity1.class);
+                //Intent intentx = new Intent(getApplicationContext(), DateRange.class);
+
                 ArrayList<String> alldates=new ArrayList<String>();
                 alldates=mydb.getAllDates(ourID);
 

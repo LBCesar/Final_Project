@@ -68,6 +68,12 @@ public class DashboardActivity1 extends Activity {
         ourID = intent.getIntExtra("ourID",0);
         alldates = intent.getStringArrayListExtra("ad");
         myExp = intent.getIntegerArrayListExtra("me");
+        String s1= intent.getStringExtra("d1");
+        String s2=intent.getStringExtra("d2");
+
+        Toast.makeText(getApplicationContext(), "Begining Date"+s1, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Ending Date"+s2, Toast.LENGTH_SHORT).show();
+
 
         // Using Anychart do display in a Bar Graph
         AnyChartView anyChartView = findViewById(R.id.any_chart_view1);
@@ -78,9 +84,11 @@ public class DashboardActivity1 extends Activity {
         List<DataEntry> data = new ArrayList<>();
 
         // Two Arraylists, one contains dates (each day) & expense($)
-        for (int i = 0; i < alldates.size(); i++) {
-            if(alldates.get(i)!=null) {
-                data.add(new ValueDataEntry(alldates.get(i), myExp.get(i)));
+        if(!alldates.isEmpty()) {
+            for (int i = 0; i < alldates.size(); i++) {
+                if (alldates.get(i) != null) {
+                    data.add(new ValueDataEntry(alldates.get(i), myExp.get(i)));
+                }
             }
         }
 
