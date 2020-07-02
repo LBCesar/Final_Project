@@ -9,12 +9,18 @@
     android:background="#1B1B1B"
     tools:context=".MainActivity">
 
+    <View
+        android:layout_above="@+id/layout1"
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:background="#FFFFFF"/>
+
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/txtUserName"
-        android:layout_marginBottom="20dp">
+        android:paddingBottom="60dp"
+        android:layout_above="@id/txtUserName">
 
         <TextView
             android:layout_width="match_parent"
@@ -26,6 +32,13 @@
             android:textStyle="italic" />
     </LinearLayout>
 
+    <View
+        android:id="@+id/mainLine2"
+        android:layout_above="@+id/txtUserName"
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginBottom="50dp"
+        android:background="#FFFFFF" />
 
     <EditText
         android:id="@+id/txtUserName"
@@ -54,6 +67,7 @@
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:textColor="#EDD5CBCB" />
+
 
     <LinearLayout
         android:id="@+id/layout3"
@@ -96,6 +110,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="@string/keep_logged_in" />
+
+    <View
+        android:layout_below="@+id/checkBox"
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:background="#FFFFFF"/>
 
 </RelativeLayout>
 
