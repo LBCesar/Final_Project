@@ -65,21 +65,33 @@ public class DBMainActivity extends AppCompatActivity {
         String ourName = mydb.getOurName(ourID);
         nameMain.setText(nameMain.getText().toString() + ourName);
 
-        String todaysExpense = currencyFormat(Integer.toString(o));
-        expenseMain.setText(expenseMain.getText().toString() + "$" + todaysExpense);
+//        String todaysExpense = currencyFormat(Integer.toString(o));
+//        expenseMain.setText(expenseMain.getText().toString() + "$" + todaysExpense);
 
 
         // find this one, it should be saving goal 2000
         String ourGoal = mydb.getOurIncome(ourID);
-        ourGoal = currencyFormat(ourGoal);
-        savingsGoal.setText(savingsGoal.getText().toString() + " $" + ourGoal);
+        String ourGoal2=mydb.getOurIncome(ourID);
+//        ourGoal = currencyFormat(ourGoal);
+//        savingsGoal.setText(savingsGoal.getText().toString() + " $" + ourGoal2);
 
 
 //        this is income
         String myIncome = mydb.getOurGoal(ourID);
         Double dailyExp = (Double.valueOf(myIncome)/365) - o;
+        Double d1=Double.valueOf(ourGoal);
+        Double d2=Double.valueOf(o);
+        Double dailyExp2=(d1-d2);
         String result = currencyFormat(String.valueOf(Double.toString(dailyExp)));
-        txtDailySavings.setText(txtDailySavings.getText().toString() + " $" + result);
+        String todaysExpense = currencyFormat(Integer.toString(o));
+        expenseMain.setText(expenseMain.getText().toString() + "$" + todaysExpense);
+
+        ourGoal = currencyFormat(ourGoal);
+        savingsGoal.setText(savingsGoal.getText().toString() + " $" + ourGoal2);
+
+
+        String result2=currencyFormat(String.valueOf(Double.toString(dailyExp2)));
+        txtDailySavings.setText(txtDailySavings.getText().toString() + " $" + result2);
 
 
         //String dummyDate="2020-07-2";

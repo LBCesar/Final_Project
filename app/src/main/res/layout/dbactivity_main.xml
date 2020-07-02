@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right"
-            android:text="Your Savings Goal: "
+            android:text="Todays Budget: "
             android:textColor="#F264E612"
             android:textSize="20sp"
             tools:ignore="RtlHardcoded" />

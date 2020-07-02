@@ -93,7 +93,7 @@ public class UpdateUser extends AppCompatActivity {
                 //Add the new user to the hashmap
                 //credentials.put(user.name,user);
                 //mydb.insertUser(0, name2, pwd1, name1, save2, annual2, annual3, 0, currentDate);
-                mydb.updateUser(ourID, name2, pwd1, name1, save2, annual2, annual3, 0, " ");
+                mydb.updateUser(ourID, name2, pwd1, name1, annual2,  save2,annual3, 0, " ");
                 int x = 0;
                 Cursor res = mydb.verify2(name2, pwd1);
 
