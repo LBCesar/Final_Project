@@ -479,6 +479,27 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return array_list;
     }
+    public float getAllExpensesForOneDayAndOneItem(int id,String item1,String date) {
+        ArrayList<String> array_list = new ArrayList<String>();
+        float total=0;
+        int x=0;
+        //hp = new HashMap();
+        SQLiteDatabase db = this.getReadableDatabase();
+        //Cursor r=db.rawQuery("select * from items,expenses where expenses.date= ? and items.userid= ? ", new String[] { date,Integer.toString(id) });
+        Cursor r=db.rawQuery("select expenses.price from items inner join expenses on expenses.itemid = items.itemid where items.userid="+id+
+                " and items.item= ? and expenses.date= ?", new String[] { item1,date});
+        r.moveToFirst();
+
+        while(r.isAfterLast() == false){
+
+            array_list.add(r.getString(r.getColumnIndex(EXPENSES_COLUMN_PRICE)));
+            total=total+Float.parseFloat(array_list.get(x));
+            x++;
+            r.moveToNext();
+        }
+        //return array_list;
+        return total;
+    }
     public ArrayList<String> getAllExpenses(int id) {
         ArrayList<String> array_list = new ArrayList<String>();
 

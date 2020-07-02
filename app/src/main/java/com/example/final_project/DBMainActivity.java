@@ -96,7 +96,15 @@ public class DBMainActivity extends AppCompatActivity {
 
         //String dummyDate="2020-07-2";
         final ArrayList array_list = mydb.getAllItemsNameWithDate(ourID,todayDate);
-        ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, array_list);
+        ArrayList array_list2= new ArrayList();
+        final ArrayList lastAL=new ArrayList();
+        for(int i=0;i<array_list.size();i++){
+            float here=mydb.getAllExpensesForOneDayAndOneItem(ourID,array_list.get(i).toString(),todayDate);
+            String formating=currencyFormat(String.valueOf(here));
+            array_list2.add(i,formating);
+            lastAL.add(i,array_list.get(i).toString()+"    "+array_list2.get(i));
+        }
+        ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, lastAL);
         obj = findViewById(R.id.listView1);
         obj.setAdapter(arrayAdapter);
         obj.setOnItemClickListener(new OnItemClickListener(){
