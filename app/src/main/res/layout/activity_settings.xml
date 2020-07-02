@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingBottom="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
@@ -22,7 +23,8 @@
             android:textColor="@color/cardview_light_background"
             android:text="@string/settings"
             android:textSize="40sp"
-            android:gravity="center"/>
+            android:gravity="center"
+            tools:ignore="PrivateResource" />
     </LinearLayout>
 
     <View

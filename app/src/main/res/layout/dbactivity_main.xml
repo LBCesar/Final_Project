@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right"
-            android:text="Todays Budget: "
+            android:text="Today's Budget: "
             android:textColor="#F264E612"
             android:textSize="20sp"
             tools:ignore="RtlHardcoded" />
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="Today's expenses: "
+            android:text="Today's Expense: "
             android:textColor="#F0E62128"
             android:textSize="20sp"
             tools:ignore="RtlHardcoded" />

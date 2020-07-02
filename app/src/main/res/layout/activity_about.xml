@@ -5,15 +5,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1B1B1B"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
     tools:context=".About">
+
+    <LinearLayout
+        android:id="@+id/aboutLayout1"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/cardview_light_background"
+            android:text="About"
+            android:textSize="40sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <View
+        android:layout_below="@+id/aboutLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#FFFFFF"/>
 
     <TextView
         android:id="@+id/aboutActivitytext"
+        android:layout_below="@id/aboutLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="false"
         android:layout_centerVertical="true"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:background="#DAD1C4"
+        android:textColor="@color/cardview_dark_background"
         android:text="@string/AboutActivityText"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
 </RelativeLayout>

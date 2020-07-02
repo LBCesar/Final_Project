@@ -32,6 +32,7 @@ import java.util.HashSet;
 
 public class DBMainActivity extends AppCompatActivity {
 
+    // Initialize all the required variables
     public final static String EXTRA_MESSAGE = "MESSAGE";
     private ListView obj;
     private DBHelper mydb;
@@ -54,35 +55,23 @@ public class DBMainActivity extends AppCompatActivity {
         txtDailySavings = findViewById(R.id.txtDailySavings);
 
         mydb = new DBHelper(this);
-        int x=0;
+        int x = 0;
 
-        // txtName=findViewById(R.id.txtName);
-        Intent intent=getIntent();
-
-        // Retrieve the username from the main activity
+        // Retrieve the username from the MainActivity
+        Intent intent = getIntent();
         String message = intent.getStringExtra("first message");
         ourID = intent.getIntExtra("itemid",0);
 
         // Update the text on the welcome screen
-        String todayDate= date();
+        String todayDate = date();
         int o = mydb.getSumDaily(ourID,0, todayDate);
 
-//        Toast.makeText(getApplicationContext(),"OUR SUM:"+o,
-//                Toast.LENGTH_SHORT).show();
-
+        // show the user's name
         String ourName = mydb.getOurName(ourID);
         nameMain.setText(nameMain.getText().toString() + ourName);
 
-//        String todaysExpense = currencyFormat(Integer.toString(o));
-//        expenseMain.setText(expenseMain.getText().toString() + "$" + todaysExpense);
-
-
-        // find this one, it should be saving goal 2000
         String ourGoal = mydb.getOurIncome(ourID);
-        String ourGoal2=mydb.getOurIncome(ourID);
-//        ourGoal = currencyFormat(ourGoal);
-//        savingsGoal.setText(savingsGoal.getText().toString() + " $" + ourGoal2);
-
+        String ourGoal2 = mydb.getOurIncome(ourID);
 
 //        this is income
         String myIncome = mydb.getOurGoal(ourID);
@@ -97,21 +86,21 @@ public class DBMainActivity extends AppCompatActivity {
         ourGoal = currencyFormat(ourGoal);
         savingsGoal.setText(savingsGoal.getText().toString() + " $" + ourGoal2);
 
-
-        String result2=currencyFormat(String.valueOf(Double.toString(dailyExp2)));
+        String result2 = currencyFormat(String.valueOf(Double.toString(dailyExp2)));
         txtDailySavings.setText(txtDailySavings.getText().toString() + " $" + result2);
-
 
         //String dummyDate="2020-07-2";
         final ArrayList array_list = mydb.getAllItemsNameWithDate(ourID,todayDate);
         ArrayList array_list2= new ArrayList();
         final ArrayList lastAL=new ArrayList();
+
         for(int i=0;i<array_list.size();i++){
             float here=mydb.getAllExpensesForOneDayAndOneItem(ourID,array_list.get(i).toString(),todayDate);
             String formating=currencyFormat(String.valueOf(here));
             array_list2.add(i,formating);
             lastAL.add(i,array_list.get(i).toString()+"    "+array_list2.get(i));
         }
+
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, lastAL);
         obj = findViewById(R.id.listView1);
         obj.setAdapter(arrayAdapter);
@@ -173,11 +162,13 @@ public class DBMainActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(getApplicationContext(), DashboardActivity.class);
                 ArrayList<String> allitems=new ArrayList<>();
                 ArrayList<Integer> totalSumforItem=new ArrayList<>();
+
                 allitems=mydb.getAllItemsName(ourID);
                 for(int i=0;i<allitems.size();i++){
                     int u=mydb.sumAllExpensesForAnItem(ourID,allitems.get(i));
                     totalSumforItem.add(i,u);
                 }
+
                 intent2.putStringArrayListExtra("ai",allitems);
                 intent2.putIntegerArrayListExtra("tsfi",totalSumforItem);
                 intent2.putExtra("ourID",ourID);

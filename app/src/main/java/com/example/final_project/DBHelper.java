@@ -88,6 +88,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS expenses");
         onCreate(db);
     }
+
     //The insert___ family is for inserting a new row into the table
     //This is not for updating existing values.
     public boolean insertExpenses (int expensesid, int userid, int itemid, int price,String date) {
@@ -101,6 +102,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert("expenses", null, contentValues);
         return true;
     }
+
     public boolean insertItem (int itemid, int userid, String item, String description, int price,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -130,6 +132,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert("users", null, contentValues);
         return true;
     }
+
     public Cursor verify2(String username2,String password){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery( "select * from users where username= ?", new String[] { username2 } );
@@ -191,6 +194,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return ourIncome;
     }
+
     public int getOurBudget(int userid1){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res=db.rawQuery( "select * from users where  userid= " + userid1 + "", null);
@@ -208,7 +212,6 @@ public class DBHelper extends SQLiteOpenHelper {
         //return ourIncome;
         return result;
     }
-
 
     //The getData___ family will return a pointer to all of the data we queried.
     //ex. getDataItem(int id) will return all items belonging to a particular user id.
@@ -312,7 +315,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(userid) } );
         return true;
     }
-
     public float getTotalSavings(int uid){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from users where userid="+uid+"",null );

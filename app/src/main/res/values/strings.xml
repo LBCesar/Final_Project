@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">Final_Project</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">eTRACK</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
@@ -10,7 +10,7 @@
     <string name="edit">Edit Contact</string>
     <string name="delete">Delete Contact</string>
 
-    <string name="etrack">eTrack</string>
+    <string name="etrack">eTRACK</string>
     <string name="enter_username">Enter Username</string>
     <string name="enter_password">Enter Password</string>
     <string name="login">Login</string>
@@ -54,7 +54,6 @@
 
     <string name="settings">Settings</string>
     <string name="action_settings">Settings</string>
-    <string name="AboutActivityText">This is About Activity</string>
     <string name="this_help_activity">This is Help Activity</string>
 
     <string name="err_name">Invalid Name</string>
@@ -67,5 +66,26 @@
     <string name="err_annual_income">Invalid Annual Income</string>
     <string name="update_info">Update Account</string>
 
+    <string name="report_1">Report 1</string>
+    <string name="report_2">Report 2</string>
+    <string name="report_3">Report 3</string>
+<!--    <string name="settings" tools:ignore="DuplicateDefinition">Settings</string>-->
+    <string name="logout">Logout</string>
+
+    <string name="AboutActivityText">
+        This is the basic flow of how the program is structured \n\n
+        Splash \n
+        DBHelper \n
+        MainActivity (Login)\n
+            - Register \n
+        DBMainActivity (Main Screen)\n
+            - DisplayContact (Add/Remove Items)\n
+        Settings (Menu)\n
+            - Update User \n
+            - DashboardActivity (Graph1)\n
+            - DashboardActivity2 (Graph2)\n
+            - DashboardActivity3 (Graph3)\n
+            - Logout \n
+    </string>
 
 </resources>
