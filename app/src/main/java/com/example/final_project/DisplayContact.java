@@ -184,13 +184,28 @@ public class DisplayContact extends Activity {
 
         Bundle extras = getIntent().getExtras();
         if(extras !=null) {
-            int Value = extras.getInt("id");
-            if (Value > 0) {
-                mydb.deleteItem(itemID);
-                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+            String s = mydb.getOneItemName(ourID, itemID);
+            Toast.makeText(getApplicationContext(), "ESSS"+s, Toast.LENGTH_SHORT).show();
+
+            float d = mydb.getAllExpensesForOneDayAndOneItem(ourID, s, date());
+            Toast.makeText(getApplicationContext(), "OUR FLOAT"+d, Toast.LENGTH_SHORT).show();
+
+            if (!(d > 0)) {
+                int Value = extras.getInt("id");
+                if (Value > 0) {
+                    mydb.deleteItem(itemID);
+                    Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
+                    intent.putExtra("itemid", ourID);
+                    startActivity(intent);
+                }
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "Could not be deleted\nContains value: $"+d, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
-                intent.putExtra("itemid",ourID);
+                intent.putExtra("itemid", ourID);
                 startActivity(intent);
+
             }
         }
     }
@@ -212,9 +227,8 @@ public class DisplayContact extends Activity {
                     intent.putExtra("itemid",ourID);
                     int ourBudget=mydb.getMaxExpense(ourID);
                     int o = mydb.getSumDaily(ourID,0, date());
-                    if(o>ourBudget){
-                        Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
-                        mydb.setNewBudget(ourID,o,ourBudget);
+                    if(!mydb.updateDailySavings(ourID,o)){
+                                             Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -235,13 +249,10 @@ public class DisplayContact extends Activity {
                 }
                 Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
                 intent.putExtra("itemid",ourID);
-                Toast.makeText(getApplicationContext(), "OUR ID:"+ourID,
-                        Toast.LENGTH_SHORT).show();
                 int ourBudget=mydb.getMaxExpense(ourID);
                 int o = mydb.getSumDaily(ourID,0, date());
-                if(o>ourBudget){
+                if(!mydb.updateDailySavings(ourID,o)){
                     Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
-                    mydb.setNewBudget(ourID,o,ourBudget);
                 }
                 startActivity(intent);
             }

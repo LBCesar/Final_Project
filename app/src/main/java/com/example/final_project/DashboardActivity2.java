@@ -88,7 +88,7 @@ public class DashboardActivity2 extends Activity {
         }
 
         // trying dummy data
-        seriesData.add(new DashboardActivity2.CustomDataEntry("2020-07-02", 1200, null, null));
+        //seriesData.add(new DashboardActivity2.CustomDataEntry("2020-07-02", 1200, null, null));
         seriesData.add(new DashboardActivity2.CustomDataEntry("2020-07-03", 1100, null, null));
 
         Set set = Set.instantiate();
