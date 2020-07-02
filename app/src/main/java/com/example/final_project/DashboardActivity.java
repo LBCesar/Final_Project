@@ -62,17 +62,8 @@ public class DashboardActivity extends AppCompatActivity {
         alldates = intent.getStringArrayListExtra("ai");
         myExp = intent.getIntegerArrayListExtra("tsfi");
 
-        ArrayList<String> a = mydb.getAllItemsName(ourID);
-        ArrayList<String> b = mydb.getAllExpenses(ourID);
-
-//        if(a.size()>0) {
-//            Toast.makeText(getApplicationContext(), "======" + a.get(0),
-//                    Toast.LENGTH_SHORT).show();
-//            if(b.size()>0) {
-//                Toast.makeText(getApplicationContext(), "=======" + b.get(0),
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        }
+//        ArrayList<String> a = mydb.getAllItemsName(ourID);
+//        ArrayList<String> b = mydb.getAllExpenses(ourID);
 
         // Using Anychart do display in a pie graph
         AnyChartView anyChartView = findViewById(R.id.piechart);

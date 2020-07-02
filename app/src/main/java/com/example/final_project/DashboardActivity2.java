@@ -66,11 +66,6 @@ public class DashboardActivity2 extends Activity {
         myExp = intent.getIntegerArrayListExtra("me");
         mySave = intent.getIntegerArrayListExtra("ms");
 
-//        if(alldates.get(0) != null) {
-//            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
-//                    Toast.LENGTH_SHORT).show();
-//        }
-
         AnyChartView anyChartView = findViewById(R.id.any_chart_view2);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar1));
 

@@ -260,7 +260,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(userid) } );
         return true;
     }
-    public boolean updateDailySavings (int userid,float change) {
+    public boolean updateDailySavings (int userid,float change,float ourBudget) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(USERS_COLUMN_SAVINGS_TODAY, change);
@@ -269,12 +269,14 @@ public class DBHelper extends SQLiteOpenHelper {
         float today=getDailySavings(userid);
         float alldays=getTotalSavings(userid);
         float goal=getSavingsGoal(userid);
+        if(change>ourBudget){
         if((alldays-change)<0){
             int budget=getOurBudget(userid);
             setNewBudget(userid,(budget+(budget/10)),0);
             db.update("users", contentValues2, "userid = ? ", new String[] { Integer.toString(userid) } );
             updateTotalSavings(userid,0);
             return false;
+        }
         }
         updateTotalSavings(userid,change);
         db.update("users", contentValues, "userid = ? ", new String[] { Integer.toString(userid) } );

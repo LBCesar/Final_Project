@@ -54,12 +54,15 @@ public class MainActivity extends AppCompatActivity {
         final String sss = date();
 
         mydb = new DBHelper(this);
-        y = mydb.logInSearch();
 
+        //logInSearch will look through the DB for a user who has chosen to remain logged in.
+        //The search will return their userID.
+        y = mydb.logInSearch();
         if (y != -1) {
             String datetest = mydb.lastLoginDate(y);
             //"2020-07-08", sss
-
+            //If your last login date does not match today's date
+            //We will reset all the item monetary values back to 0.
             if(!datetest.equals(sss)){
                 mydb.itsANewDay(y, datetest);
                 Toast.makeText(getApplicationContext(), "Values have been reset",
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 if (x != 0) {
                     Toast.makeText(getApplicationContext(), "Login Successful" + x,
                             Toast.LENGTH_LONG).show();
-
+                    //If z==1 the user has chosen to remain logged in.
                     if (z == 1) {
                         mydb.setLogIn(x);
                     }

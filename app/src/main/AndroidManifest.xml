@@ -14,7 +14,7 @@
         <activity android:name=".Help" />
         <activity android:name=".Register"
             android:screenOrientation = "portrait"/>
-        <activity android:name=".DisplayContact" />
+        <activity android:name=".DisplayItems" />
         <activity android:name=".DBMainActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme"> </activity>
         <activity android:name=".DashboardActivity1"

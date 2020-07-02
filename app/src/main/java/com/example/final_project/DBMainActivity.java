@@ -98,7 +98,7 @@ public class DBMainActivity extends AppCompatActivity {
             float here=mydb.getAllExpensesForOneDayAndOneItem(ourID,array_list.get(i).toString(),todayDate);
             String formating=currencyFormat(String.valueOf(here));
             array_list2.add(i,formating);
-            lastAL.add(i,array_list.get(i).toString()+"    "+array_list2.get(i));
+            lastAL.add(i,array_list.get(i).toString()+"    $"+array_list2.get(i));
         }
 
         ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1, lastAL);
@@ -112,7 +112,7 @@ public class DBMainActivity extends AppCompatActivity {
                 Bundle dataBundle = new Bundle();
                 dataBundle.putInt("id", id_To_Search);
 
-                Intent intent = new Intent(getApplicationContext(),DisplayContact.class);
+                Intent intent = new Intent(getApplicationContext(), DisplayItems.class);
                 intent.putExtra("ourID",ourID);
                 Toast.makeText(getApplicationContext(), array_list.get(id_To_Search-1).toString(),
                         Toast.LENGTH_SHORT).show();
@@ -151,7 +151,7 @@ public class DBMainActivity extends AppCompatActivity {
             case R.id.item1:
                 Bundle dataBundle = new Bundle();
                 dataBundle.putInt("id", 0);
-                Intent intent = new Intent(getApplicationContext(), DisplayContact.class);
+                Intent intent = new Intent(getApplicationContext(), DisplayItems.class);
                 intent.putExtras(dataBundle);
                 intent.putExtra("ourID",ourID);
                 intent.putExtra("itemid",xx);
@@ -178,36 +178,20 @@ public class DBMainActivity extends AppCompatActivity {
 
             case R.id.item6:    // report 2 line graph
                 Intent intentx = new Intent(getApplicationContext(), DashboardActivity1.class);
-                Toast.makeText(getApplicationContext(), "Nothing"+ ourID,
-                        Toast.LENGTH_SHORT).show();
-                // ArrayList<String> a=mydb.getAllItemsName(ourID);
-                //ArrayList<String> b=mydb.getAllExpenses(ourID);
                 ArrayList<String> alldates=new ArrayList<String>();
                 alldates=mydb.getAllDates(ourID);
 
                 java.util.Set<String> set2 = new HashSet<>(alldates);
                 alldates.clear();
                 alldates.addAll(set2);
-                //        int y=mydb.getSumDaily(ourID,0,alldates.get(0));
                 ArrayList<Integer> myExp=new ArrayList<Integer>();
-                //if(alldates.size()>0) {
                     for (int i = 0; i < alldates.size(); i++) {
                         if(alldates.get(i)!=null) {
                             String w=alldates.get(i);
                             int w2=mydb.getSumDaily(ourID, 0, w);
-                           // myExp.set(i, w2);
                             myExp.add(i,w2);
                         }
                     }
-                //}
-                if(myExp.size()>0) {
-                    Toast.makeText(getApplicationContext(), "======LLL"+myExp.get(0),
-                            Toast.LENGTH_SHORT).show();
-                }
-                if(alldates.size()>0) {
-                    Toast.makeText(getApplicationContext(), "======" + alldates.get(0),
-                            Toast.LENGTH_SHORT).show();
-                }
                 intentx.putStringArrayListExtra("ad",alldates);
                 intentx.putIntegerArrayListExtra("me",myExp);
                 intentx.putExtra("ourID",ourID);
@@ -224,37 +208,18 @@ public class DBMainActivity extends AppCompatActivity {
                 java.util.Set<String> set3 = new HashSet<>(alldates2);
                 alldates2.clear();
                 alldates2.addAll(set3);
-                Toast.makeText(getApplicationContext(), "======" ,
-                        Toast.LENGTH_SHORT).show();
-                if(alldates2.size()>0) {
-                    Toast.makeText(getApplicationContext(), "======" + alldates2.get(0),
-                            Toast.LENGTH_SHORT).show();
-                }
                 ArrayList<Integer> myExp2=new ArrayList<Integer>();
-                //if(alldates.size()>0) {
                 for (int i = 0; i < alldates2.size(); i++) {
                     if(alldates2.get(i)!=null) {
                         String w=alldates2.get(i);
                         int w2=mydb.getSumDaily(ourID, 0, w);
-                        // myExp.set(i, w2);
                         myExp2.add(i,w2);
                     }
                 }
-                //}
-                if(myExp2.size()>0) {
-                    Toast.makeText(getApplicationContext(), "======LLL"+myExp2.get(0),
-                            Toast.LENGTH_SHORT).show();
-                }
-                if(alldates2.size()>0) {
-                    Toast.makeText(getApplicationContext(), "======" + alldates2.get(0),
-                            Toast.LENGTH_SHORT).show();
-                }
-                //intentx.putStringArrayListExtra("ad",alldates);
                 int annaulINC=mydb.getAnnualIncome(ourID);
                 ArrayList<Integer> mySave= new ArrayList<Integer>();
                 for (int i = 0; i < alldates2.size(); i++) {
                     if(alldates2.get(i)!=null) {
-                        //d. Daily Saving = ((annual income)/365) – (Daily expense)
                         mySave.add(i,((annaulINC)/365)-myExp2.get(i));
                     }
                 }
@@ -268,7 +233,6 @@ public class DBMainActivity extends AppCompatActivity {
 
             case R.id.item4:
                 Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
-                //intent2.putExtras(dataBundle);
                 mydb.logOut(ourID);
                 intent3.putExtra("ourID",ourID);
                 intent3.putExtra("itemid",xx);

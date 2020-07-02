@@ -69,12 +69,6 @@ public class DashboardActivity1 extends Activity {
         alldates = intent.getStringArrayListExtra("ad");
         myExp = intent.getIntegerArrayListExtra("me");
 
-//        if(alldates.get(0)!=null) {
-//            Toast.makeText(getApplicationContext(), "TEST:" + alldates.get(0),
-//                    Toast.LENGTH_SHORT).show();
-//        }
-//        int y=mydb.getSumDaily(ourID,0,alldates.get(0));
-
         // Using Anychart do display in a Bar Graph
         AnyChartView anyChartView = findViewById(R.id.any_chart_view1);
         anyChartView.setProgressBar(findViewById(R.id.progress_bar1));

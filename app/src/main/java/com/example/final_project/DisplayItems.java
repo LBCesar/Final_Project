@@ -24,7 +24,7 @@ import java.util.Date;
     Description about the item entered, the current expense (if item is already present in the
     table), and New Expense (constantly updating the table according to the user's choice).
  */
-public class DisplayContact extends Activity {
+public class DisplayItems extends Activity {
 
     // Initialize the variables
     private DBHelper mydb ;
@@ -173,30 +173,6 @@ public class DisplayContact extends Activity {
                 newExpense.setClickable(true);
 
                 return true;
-
-            case R.id.Delete_Contact:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.deleteContact)
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                mydb.deleteContact(id_To_Update);
-                                Toast.makeText(getApplicationContext(), "Deleted Successfully",
-                                        Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), DBMainActivity.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // User cancelled the dialog
-                            }
-                        });
-
-                AlertDialog d = builder.create();
-                d.setTitle("Are you sure");
-                d.show();
-
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
@@ -209,16 +185,11 @@ public class DisplayContact extends Activity {
      * @param view
      */
     public void run2(View view) {
-        Toast.makeText(getApplicationContext(), "We are in delete mode.", Toast.LENGTH_SHORT).show();
-
         Bundle extras = getIntent().getExtras();
         if(extras !=null) {
             String s = mydb.getOneItemName(ourID, itemID);
-            Toast.makeText(getApplicationContext(), "ESSS"+s, Toast.LENGTH_SHORT).show();
-
             float d = mydb.getAllExpensesForOneDayAndOneItem(ourID, s, date());
-            Toast.makeText(getApplicationContext(), "OUR FLOAT"+d, Toast.LENGTH_SHORT).show();
-
+            //if d >0 then the item we are trying to delete already has a monetary value.
             if (!(d > 0)) {
                 int Value = extras.getInt("id");
                 if (Value > 0) {
@@ -241,17 +212,10 @@ public class DisplayContact extends Activity {
 
     public void run(View view) {
         Bundle extras = getIntent().getExtras();
-
         if(extras != null) {
             int Value = extras.getInt("id");
-
-            if(Value ==3 ){
-                Toast.makeText(getApplicationContext(), "We are in delete mode.", Toast.LENGTH_SHORT).show();
-            }
-
             if(Value>0){
                 String currentDate = date();
-
                 if(mydb.updateExpense(itemID,ourID,itemID,Integer.parseInt(newExpense.getText().toString()),currentDate)){
                     Toast.makeText(getApplicationContext(), "Updated"+newExpense.getText().toString(),
                             Toast.LENGTH_SHORT).show();
@@ -261,7 +225,7 @@ public class DisplayContact extends Activity {
                     int ourBudget=mydb.getMaxExpense(ourID);
                     int o = mydb.getSumDaily(ourID,0, date());
 
-                    if(!mydb.updateDailySavings(ourID,o)){
+                    if(!mydb.updateDailySavings(ourID,o,ourBudget)){
                         Toast.makeText(getApplicationContext(), "Our budget has been surpassed ",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -290,7 +254,7 @@ public class DisplayContact extends Activity {
                 int ourBudget=mydb.getMaxExpense(ourID);
                 int o = mydb.getSumDaily(ourID,0, date());
 
-                if(!mydb.updateDailySavings(ourID,o)){
+                if(!mydb.updateDailySavings(ourID,o,ourBudget)){
                     Toast.makeText(getApplicationContext(), "Our budget has been surpassed ", Toast.LENGTH_SHORT).show();
                 }
                 startActivity(intent);
