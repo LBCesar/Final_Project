@@ -27,6 +27,7 @@ import com.anychart.enums.LegendLayout;
 import com.anychart.enums.MarkerType;
 import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
+import com.r0adkll.slidr.Slidr;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -46,6 +47,8 @@ public class DashboardActivity2 extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard2);
+
+        Slidr.attach(this);
 
         Intent intent = getIntent();
         ourID = intent.getIntExtra("ourID",0);

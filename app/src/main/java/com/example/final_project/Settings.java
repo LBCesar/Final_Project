@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.r0adkll.slidr.Slidr;
+
 import java.util.ArrayList;
 
 public class Settings  extends Activity {
@@ -20,6 +22,7 @@ public class Settings  extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        Slidr.attach(this);
 
         final int LogMeOut = 0;
         mydb = new DBHelper(this);
@@ -36,7 +39,6 @@ public class Settings  extends Activity {
         ArrayAdapter myAdapter =  new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, settings_menu);
         ListView listView = findViewById(R.id.settingsListView);
         listView.setAdapter(myAdapter);
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("ResourceType")

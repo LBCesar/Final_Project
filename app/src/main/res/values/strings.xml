@@ -43,6 +43,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="item">Item</string>
     <string name="save">Save Item</string>
     <string name="itemDisplayItem">*Item</string>
     <string name="new_expense_display_contact">*New Expense</string>
@@ -56,7 +57,6 @@
     <string name="AboutActivityText">This is About Activity</string>
     <string name="this_help_activity">This is Help Activity</string>
 
-
     <string name="err_name">Invalid Name</string>
     <string name="err_username">Invalid Username</string>
     <string name="err_password">Invalid Password. Needs to be in correct format</string>
@@ -65,7 +65,7 @@
     <string name="err_savings_goal">Invalid Savings Goal</string>
     <string name="err_daily_expense">Invalid Max Daily Expense</string>
     <string name="err_annual_income">Invalid Annual Income</string>
-    <string name="item">Item</string>
+    <string name="update_info">Update Account</string>
 
 
 </resources>

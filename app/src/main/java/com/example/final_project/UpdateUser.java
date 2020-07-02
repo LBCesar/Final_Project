@@ -108,8 +108,6 @@ public class UpdateUser extends AppCompatActivity {
                     }
                 }
 
-
-
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
@@ -121,7 +119,6 @@ public class UpdateUser extends AppCompatActivity {
     public String date() {
         Date dNow = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-
         return ft.format(dNow);
     }
 

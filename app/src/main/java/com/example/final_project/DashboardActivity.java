@@ -24,12 +24,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.final_project.ui.main.SectionsPagerAdapter;
+import com.r0adkll.slidr.Slidr;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // report graph 1
 public class DashboardActivity extends AppCompatActivity {
+
     DBHelper mydb;
     ArrayList<String> alldates;
     ArrayList<Integer> myExp;
@@ -38,8 +40,12 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        int ourID;
 
+        // slides to activity
+        // https://github.com/r0adkll/Slidr
+        Slidr.attach(this);
+
+        int ourID;
         mydb = new DBHelper(this);
         Intent intent = getIntent();
 

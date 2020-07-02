@@ -99,8 +99,6 @@
 
     </LinearLayout>
 
-
-
     <View
         android:id="@+id/lineLayout"
         android:layout_marginTop="20dp"

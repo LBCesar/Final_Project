@@ -7,6 +7,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
+    android:background="#1B1B1B"
     tools:context=".UpdateUser">
 
     <LinearLayout
@@ -20,13 +21,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:gravity="center"
+            android:textColor="#DAD1C4"
             android:text="Update User Info"
-            android:textSize="25sp" />
+            android:textSize="35sp" />
     </LinearLayout>
+
+    <View
+        android:layout_below="@+id/regLayout10"
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#FFFFFF"/>
 
     <LinearLayout
         android:id="@+id/reglayout1"
         android:layout_below="@id/regLayout10"
+        android:background="#DAD1C4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
@@ -47,11 +57,11 @@
             android:inputType="textPersonName" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/reglayout2"
         android:layout_below="@id/reglayout1"
         android:layout_marginTop="20dp"
+        android:background="#DAD1C4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -70,11 +80,11 @@
             android:hint="@string/enter_username_register" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/reglayout3"
         android:layout_below="@id/reglayout2"
         android:layout_marginTop="20dp"
+        android:background="#DAD1C4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -98,6 +108,7 @@
         android:id="@+id/reglayout4"
         android:layout_below="@id/reglayout3"
         android:layout_marginTop="20dp"
+        android:background="#DAD1C4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -115,11 +126,11 @@
             android:hint="@string/confirm_password_register" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/reglayout5"
         android:layout_below="@id/reglayout4"
         android:layout_marginTop="20dp"
+        android:background="#DAD1C4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -138,11 +149,11 @@
             android:hint="@string/goal_register" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/reglayout6"
         android:layout_width="match_parent"
         android:layout_height="50sp"
+        android:background="#DAD1C4"
         android:layout_below="@id/reglayout5"
         android:layout_marginTop="20dp">
 
@@ -167,6 +178,7 @@
         android:id="@+id/reglayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#DAD1C4"
         android:layout_below="@id/reglayout6"
         android:layout_marginTop="20dp">
 
@@ -194,6 +206,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/reglayout7"
         android:layout_marginTop="35dp"
-        android:text="@string/sign_me_up" />
+        android:background="#E55812"
+        android:text="@string/update_info" />
 
 </RelativeLayout>

@@ -22,7 +22,7 @@
             android:layout_marginTop="5dp"
             android:text="@string/register_register"
             android:textColor="#DAD1C4"
-            android:textSize="35dp"
+            android:textSize="35sp"
             android:gravity="center"/>
     </LinearLayout>
 
@@ -54,9 +54,9 @@
             android:layout_marginStart="66dp"
             android:ems="10"
             android:hint="@string/enter_name_register"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            tools:ignore="Autofill" />
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/reglayout2"
@@ -78,9 +78,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:ems="10"
-            android:hint="@string/enter_username_register" />
+            android:hint="@string/enter_username_register"
+            tools:ignore="Autofill" />
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/reglayout3"
@@ -102,9 +102,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="31dp"
             android:ems="10"
-            android:hint="@string/enter_password_register" />
+            android:hint="@string/enter_password_register"
+            tools:ignore="Autofill" />
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/reglayout4"
@@ -125,9 +125,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/confirm_password_register" />
+            android:hint="@string/confirm_password_register"
+            tools:ignore="Autofill" />
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/reglayout5"
@@ -152,7 +152,6 @@
             android:hint="@string/goal_register" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/reglayout6"
         android:layout_width="match_parent"
@@ -175,7 +174,8 @@
             android:layout_marginStart="28dp"
             android:inputType="number"
             android:hint="@string/daily_amount_register"
-            android:ems="10" />
+            android:ems="10"
+            tools:ignore="Autofill" />
     </LinearLayout>
 
     <LinearLayout
@@ -200,7 +200,8 @@
             android:layout_marginStart="46dp"
             android:inputType="number"
             android:hint="@string/yearly_income_register"
-            android:ems="10" />
+            android:ems="10"
+            tools:ignore="Autofill" />
     </LinearLayout>
 
     <Button
